@@ -104,7 +104,7 @@ export default function HomePage() {
               </div>
 
               <ul className="mt-8 flex flex-wrap gap-x-6 gap-y-2.5">
-                {["No setup fees", "You pay when we collect", "42 specialties supported"].map((f) => (
+                {["No setup fees", "You pay when we collect", "25 specialties supported"].map((f) => (
                   <li key={f} className="flex items-center gap-2 text-sm text-muted">
                     <Check className="h-4 w-4 shrink-0 text-accent" />
                     {f}

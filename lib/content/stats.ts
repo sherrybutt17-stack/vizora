@@ -28,16 +28,30 @@ export type CitedStat = Stat & {
   url?: string;
 };
 
-/** Vizora's own performance claims. Reconciled — see note above. */
+/**
+ * Vizora's own performance claims.
+ *
+ * 2026-08-21 — REDUCED TO WHAT CAN BE EVIDENCED.
+ *
+ * Removed: cleanClaimRate 97%, denialRecovery 60%, arDays 24, paymentCycle
+ * 20 days, revenueIncrease 30%, recovered $480K+. Each was published as a
+ * company-wide statement of fact with no measurement behind it, and several
+ * read as performance guarantees. They were inherited from the reference site
+ * alongside the SOC 2 and ISO 27001 certifications already removed, and were
+ * dead code here — only `onboarding` was ever rendered.
+ *
+ * Note that `aggregateResults` in case-studies.ts still publishes $480K+, 97%
+ * and 20 days. Those are DERIVED FROM the five case studies, which the owner
+ * confirmed are real engagements, so they have a stated basis these did not.
+ *
+ * `specialties` moved to a derived count — see specialtyCount below — because
+ * the hardcoded 42 contradicted the 25 specialty pages the site actually has.
+ *
+ * Do not add a number here without a measurement behind it. The same rule the
+ * industry benchmarks below are held to applies to our own claims.
+ */
 export const performance = {
-  cleanClaimRate: { value: "97%", label: "Clean claim rate", detail: "First-pass acceptance across all specialties" },
-  denialRecovery: { value: "60%", label: "Denial recovery rate", detail: "Of initially denied claims successfully appealed" },
-  arDays: { value: "24", label: "Average days in AR", detail: "Against an MGMA median of 47" },
-  paymentCycle: { value: "20 days", label: "Average payment cycle", detail: "From date of service to posted payment" },
-  revenueIncrease: { value: "30%", label: "Average revenue increase", detail: "Within the first 12 months" },
-  specialties: { value: "42", label: "Specialties supported", detail: "Solo primary care through multi-site surgical groups" },
   onboarding: { value: "Within 2 weeks", label: "Typical onboarding", detail: "Signed agreement to first claim submitted" },
-  recovered: { value: "$480K+", label: "Revenue recovered", detail: "Combined across client partnerships" },
 } as const satisfies Record<string, Stat>;
 
 /**
@@ -217,14 +231,6 @@ export const industry: Record<string, CitedStat> = {
     url: "https://www.kff.org/medicare/",
   },
 };
-
-/** Headline stat row on the homepage. */
-export const heroStats: Stat[] = [
-  performance.cleanClaimRate,
-  performance.arDays,
-  performance.denialRecovery,
-  performance.revenueIncrease,
-];
 
 /**
  * Denial categories as a distribution.

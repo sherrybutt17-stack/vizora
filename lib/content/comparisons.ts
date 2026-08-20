@@ -34,6 +34,28 @@ import type { Faq } from "./faq";
  *
  * Someone with current knowledge of each product should read these before
  * they go live.
+ *
+ * 2026-08-21 — CATEGORY REWRITE APPLIED.
+ * The four named-competitor pages previously asserted structural facts about
+ * those companies that nobody here could verify: that athenahealth's RCM
+ * requires its platform, that AdvancedMD bundles software and service in one
+ * inseparable contract, that CareCloud sells RCM only platform-attached, and
+ * that Tebra offers billing as a managed service rather than software.
+ *
+ * Each of those was load-bearing — whole arguments rested on them — and each
+ * would have been wrong if the vendor sells the component separately. They are
+ * now written at the level of the MODEL ("platform-attached RCM", "bundled
+ * suite RCM") with the vendor named only as an example, and every claim that
+ * would turn on a specific contract now says to confirm it with the vendor.
+ *
+ * Deliberately unchanged: metaTitle, metaDescription, keywords and slug still
+ * carry the competitor name. That is where the search traffic comes from, and
+ * naming a competitor to say "here is how this category of product compares"
+ * is ordinary comparative content. What was removed is the unverifiable
+ * assertion, not the comparison.
+ *
+ * If someone later confirms these products first-hand, the specificity can be
+ * restored — it ranks better. Do not restore it from memory.
  * ---------------------------------------------------------------------------
  */
 
@@ -538,10 +560,10 @@ export const comparisons: Comparison[] = [
       "outsourced billing vs ehr billing",
       "should I use my ehr vendor for billing",
     ],
-    labelA: "Platform RCM (athenahealth)",
+    labelA: "Platform RCM (EHR vendor)",
     labelB: "Independent billing service",
     answer:
-      "athenahealth bundles EHR, practice management and revenue cycle management into one platform, which means tight data integration and one vendor relationship — but billing is coupled to their clinical software. An independent billing service works inside whatever system you already run, so billing can be changed without replacing the systems your clinicians use daily.",
+      "Platform vendors such as athenahealth bundle EHR, practice management and revenue cycle into one product, which means tight data integration and a single vendor relationship — but billing is generally coupled to the clinical software. An independent billing service works inside whatever system you already run, so billing can be changed without replacing the systems your clinicians use daily. Confirm with any vendor whether their RCM can be purchased separately, because that answer determines the whole comparison.",
     intro: [
       "This is not really a comparison of two billing companies. It is a comparison of two structures, and the structural difference matters more than any feature list.",
       "In the platform model, the same vendor supplies the software your clinicians document in and the service that collects your money. Data moves between them without an interface, and there is one contract and one number to call.",
@@ -550,16 +572,16 @@ export const comparisons: Comparison[] = [
     ],
     rows: [
       { dimension: "What you are buying", a: "EHR, practice management and RCM as one product", b: "Billing and revenue cycle only, on your existing system", edge: "even" },
-      { dimension: "Clinical software", a: "Their EHR — using their RCM generally means using their platform", b: "Whatever you already run; unchanged", edge: "b" },
+      { dimension: "Clinical software", a: "Typically the vendor's own EHR; confirm whether RCM is available separately", b: "Whatever you already run; unchanged", edge: "b" },
       { dimension: "Data integration", a: "Native — no interface between chart and claim", b: "Works within your PM system; no new interface, but two vendors", edge: "a" },
       { dimension: "Vendor relationships", a: "One", b: "Two — your PM/EHR and your biller", edge: "a" },
-      { dimension: "Cost of changing billers", a: "High — usually means changing EHR too", b: "Moderate — notice period, clinical systems untouched", edge: "b" },
+      { dimension: "Cost of changing billers", a: "Higher where billing is coupled to the platform contract", b: "Moderate — notice period, clinical systems untouched", edge: "b" },
       { dimension: "Cost of changing EHR", a: "High — billing moves with it", b: "Independent of billing", edge: "b" },
       { dimension: "Pricing model", a: "Typically a percentage of collections; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Payer rules and edits", a: "Large national rules engine, a genuine strength of scale", b: "Payer-specific and NCCI edits, plus regional payer knowledge", edge: "a" },
       { dimension: "Specialty coding depth", a: "Broad; depth varies by specialty", b: "Specialty-assigned certified coders", edge: "even" },
       { dimension: "Denial appeal capacity", a: "Scales with the platform", b: "Scales with the service; ask for appeal rate, not denial rate", edge: "even" },
-      { dimension: "Best-fit practice size", a: "Larger groups and health systems", b: "Solo through mid-size groups", edge: "even" },
+      { dimension: "Best-fit practice size", a: "Varies by vendor and tier; confirm fit for your size", b: "Solo through mid-size groups", edge: "even" },
       { dimension: "Implementation burden", a: "Significant — a platform migration touches clinical workflow", b: "Lower — billing changes, clinical workflow does not", edge: "b" },
     ],
     chooseA: {
@@ -621,24 +643,24 @@ export const comparisons: Comparison[] = [
       "best billing service for small practice",
       "kareo billing alternative",
     ],
-    labelA: "All-in-one platform (Tebra)",
+    labelA: "All-in-one practice platform",
     labelB: "Dedicated billing service",
     answer:
-      "Tebra targets independent practices with practice management, EHR and patient-growth tools in one product, with billing available alongside. A dedicated billing service does only revenue cycle. The trade-off is breadth against depth: one vendor covering many needs adequately, or one function done by specialists.",
+      "All-in-one platforms aimed at independent practices, Tebra among them, combine practice management, EHR and patient-growth tools in a single product. A dedicated billing service does only revenue cycle. The trade-off is breadth against depth: one vendor covering many needs adequately, or one function done by specialists. Confirm what billing support a given platform actually provides — software, a managed service, or both.",
     intro: [
       "Small practices are the hardest segment to serve well, because they need the same functions a large group needs with a fraction of the administrative staff to run them. That is the gap all-in-one platforms are built to close, and they close a real one.",
       "The question is what happens when a practice's problem is specifically collections. Breadth is valuable when many things are mediocre. It is less valuable when nine things are fine and one thing — the denial queue, the aged AR, the underpayments nobody is checking — is quietly costing more than everything else combined.",
       "Optum's index of 124 million claim remits found 84% of denials are potentially avoidable and 44% originate at the front end. Fixing that is specialist work, and it is the work most likely to be deprioritised when the same team is also responsible for scheduling, patient messaging and web presence.",
     ],
     rows: [
-      { dimension: "Scope", a: "Practice management, EHR, patient growth tools, billing", b: "Revenue cycle only", edge: "even" },
+      { dimension: "Scope", a: "Practice management, EHR, patient growth tools, and billing in some form", b: "Revenue cycle only", edge: "even" },
       { dimension: "Vendor count", a: "One", b: "Two — your PM system and your biller", edge: "a" },
       { dimension: "Best when", a: "Several functions need improving at once", b: "Collections specifically are underperforming", edge: "even" },
       { dimension: "Coding expertise", a: "Available; depth varies by specialty", b: "Specialty-assigned certified coders", edge: "b" },
       { dimension: "Denial and appeal work", a: "Part of a broader service offering", b: "The core of the engagement", edge: "b" },
       { dimension: "Aged AR recovery", a: "Confirm scope explicitly before signing", b: "Typically in scope; confirm whether backlog is separate", edge: "even" },
       { dimension: "Clinical software change required", a: "Yes, to use the platform fully", b: "No", edge: "b" },
-      { dimension: "Patient-facing tools", a: "Included — scheduling, reminders, reputation", b: "Not included", edge: "a" },
+      { dimension: "Patient-facing tools", a: "Commonly included — scheduling, reminders, reputation", b: "Not included", edge: "a" },
       { dimension: "Pricing model", a: "Subscription plus billing fees; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Practice size fit", a: "Solo and small independent practices", b: "Solo through mid-size groups", edge: "even" },
     ],
@@ -700,19 +722,19 @@ export const comparisons: Comparison[] = [
       "advancedmd billing alternative",
       "bundled rcm vs outsourced billing",
     ],
-    labelA: "Bundled suite RCM (AdvancedMD)",
+    labelA: "Bundled suite RCM",
     labelB: "Independent billing service",
     answer:
-      "AdvancedMD sells practice management, EHR and revenue cycle as parts of one suite, so billing is procured alongside the software. An independent billing service is bought separately and measured separately — which means it can be replaced on its performance alone, without touching the systems your clinicians use.",
+      "Suite vendors such as AdvancedMD sell practice management, EHR and revenue cycle as parts of one product family, so billing is typically procured alongside the software. An independent billing service is bought separately and measured separately — which means it can be replaced on its performance alone, without touching the systems your clinicians use. Ask any suite vendor whether RCM can be contracted independently; where it can, much of the difference below narrows.",
     intro: [
       "Bundling is a real convenience and it is worth naming honestly: one contract, one implementation, one support number, and no argument between vendors about whose problem a given failure is.",
       "The cost of bundling is separability. When billing and software are the same purchase, underperforming billing is expensive to fix, because fixing it means unpicking the software too. That cost is invisible on day one and becomes the whole story in year three.",
       "So the question is not which vendor is better. It is whether you want billing performance to be a decision you can revisit cheaply.",
     ],
     rows: [
-      { dimension: "Procurement", a: "One contract covering software and service", b: "Separate from your software contract", edge: "a" },
+      { dimension: "Procurement", a: "Typically one contract covering software and service; confirm whether they can be separated", b: "Separate from your software contract", edge: "a" },
       { dimension: "Accountability when collections underperform", a: "Same vendor supplies the tool and the service", b: "Isolated — the service is measurable on its own", edge: "b" },
-      { dimension: "Cost of replacing the biller", a: "High — entangled with the software contract", b: "Notice period; clinical systems untouched", edge: "b" },
+      { dimension: "Cost of replacing the biller", a: "Higher where the service is contracted with the software", b: "Notice period; clinical systems untouched", edge: "b" },
       { dimension: "Implementation", a: "One project, but a larger one", b: "Billing only — clinical workflow unchanged", edge: "b" },
       { dimension: "Support model", a: "Single vendor, single escalation path", b: "Two vendors, two escalation paths", edge: "a" },
       { dimension: "Pricing", a: "Subscription plus RCM fees; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
@@ -774,17 +796,17 @@ export const comparisons: Comparison[] = [
       "standalone medical billing service",
       "platform rcm vs billing company",
     ],
-    labelA: "Platform-attached RCM (CareCloud)",
+    labelA: "Platform-attached RCM",
     labelB: "Standalone billing service",
     answer:
-      "CareCloud offers practice management, EHR and revenue cycle services as an integrated set. A standalone billing service provides revenue cycle only, working inside your existing systems. The right choice follows from a single diagnostic: whether your problem is that your systems are inadequate, or that your collections are.",
+      "Vendors such as CareCloud offer practice management, EHR and revenue cycle services as an integrated set, though several also sell RCM to practices running other systems. A standalone billing service provides revenue cycle only, working inside your existing systems. The right choice follows from a single diagnostic: whether your problem is that your systems are inadequate, or that your collections are.",
     intro: [
       "Practices usually arrive at this comparison having noticed a number they do not like — a denial rate, an AR figure, a collection ratio — and then start evaluating vendors of quite different kinds against each other.",
       "That is worth separating before shortlisting. Replacing a platform solves a systems problem. Replacing a biller solves a collections problem. They cost different amounts, take different lengths of time, and disrupt different people.",
       "If your clinicians are productive and your reporting is adequate, a platform migration is a large amount of disruption aimed at a target it does not sit on.",
     ],
     rows: [
-      { dimension: "Scope", a: "Practice management, EHR and revenue cycle", b: "Revenue cycle only", edge: "even" },
+      { dimension: "Scope", a: "Practice management, EHR and revenue cycle, sold together or separately", b: "Revenue cycle only", edge: "even" },
       { dimension: "Solves", a: "A systems problem", b: "A collections problem", edge: "even" },
       { dimension: "Disruption to clinicians", a: "Significant — a platform migration changes daily workflow", b: "Minimal — clinical workflow is untouched", edge: "b" },
       { dimension: "Time to effect", a: "Months, following implementation", b: "Weeks — typically under 2 from agreement to first claim", edge: "b" },

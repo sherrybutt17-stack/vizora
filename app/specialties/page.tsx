@@ -78,7 +78,7 @@ export default function SpecialtiesPage() {
 
       <FinalCTA
         title="Don't see your specialty?"
-        lead="We support 42 specialties in total. Tell us what you practice and we'll walk you through the billing challenges specific to it."
+        lead="Tell us what you practice and we'll walk you through the billing challenges specific to it."
         cta="Talk to a billing specialist"
       />
     </PageTransition>

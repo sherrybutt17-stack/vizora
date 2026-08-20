@@ -29,7 +29,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What specialties do you work with?",
         answer:
-          "We support 42 specialties, from primary care and behavioral health through cardiology, orthopedics, oncology and surgical subspecialties. Coders are assigned by specialty rather than pooled, so the person coding your claims works in your specialty every day.",
+          "We support 25 specialties, from primary care and behavioral health through cardiology, orthopedics, oncology and surgical subspecialties. Coders are assigned by specialty rather than pooled, so the person coding your claims works in your specialty every day.",
       },
     ],
   },

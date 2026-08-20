@@ -52,7 +52,7 @@ training, management overhead, and coverage during absence or turnover.
 
 ## Coverage
 
-- Specialties supported: 42
+- Specialties supported: 25
 - States served: all 50
 - Free billing audit: yes, no obligation
 

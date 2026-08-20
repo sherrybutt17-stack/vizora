@@ -83,7 +83,7 @@ export default function AboutPage() {
               <div className="mt-5 space-y-4 leading-relaxed text-muted">
                 <p>
                   We provide medical billing and coding, credentialing, denial management, AR
-                  recovery, eligibility verification, prior authorization and analytics — across 42
+                  recovery, eligibility verification, prior authorization and analytics — across 25
                   specialties, in all 50 states.
                 </p>
                 <p>

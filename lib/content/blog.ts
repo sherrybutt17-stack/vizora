@@ -27,7 +27,7 @@ export const author = {
   // and naming one unverified is the same class of claim as the SOC 2 and
   // ISO 27001 certifications removed from site.ts.
   reviewer: "Reviewed by a certified coding lead",
-  bio: "Certified coders and revenue cycle specialists working across 42 medical specialties.",
+  bio: "Certified coders and revenue cycle specialists working across 25 medical specialties.",
 };
 
 export { posts };
