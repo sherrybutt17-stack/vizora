@@ -44,6 +44,22 @@ export const site = {
    * here as they go live and the schema picks them up with no code change.
    */
   social: {} as Record<string, string>,
+  /**
+   * Search engine ownership verification.
+   *
+   * Only needed if you verify by HTML meta tag. DNS TXT verification is the
+   * better route and needs nothing here — it proves ownership of the domain
+   * itself, so it covers apex, www, http and https in one record and survives
+   * a change of host. Leave these empty unless you deliberately chose the tag.
+   *
+   * Empty strings are omitted from the rendered metadata rather than emitted
+   * blank, because an empty verification tag is a broken signal, not a neutral
+   * one.
+   */
+  verification: {
+    google: "",
+    bing: "",
+  },
   pricing: {
     /**
      * Vizora's own rates, confirmed by the owner 2026-08-20.

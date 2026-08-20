@@ -25,6 +25,17 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
+  // Emitted only when a code is actually set — see site.verification.
+  ...(site.verification.google || site.verification.bing
+    ? {
+        verification: {
+          ...(site.verification.google ? { google: site.verification.google } : {}),
+          ...(site.verification.bing
+            ? { other: { "msvalidate.01": site.verification.bing } }
+            : {}),
+        },
+      }
+    : {}),
   openGraph: { type: "website", locale: "en_US", siteName: site.name, url: site.url },
   twitter: { card: "summary_large_image" },
 };
