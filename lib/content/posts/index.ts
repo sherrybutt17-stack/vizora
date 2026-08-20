@@ -1,4 +1,6 @@
 import type { BlogPost } from "../blog-types";
+import pCard from "./cardiology-billing-component-denials";
+import pFam from "./family-medicine-em-and-preventive-denials";
 import pBh from "./behavioral-health-billing-denials";
 import pOrtho from "./orthopedic-billing-global-periods";
 import pPt from "./physical-therapy-billing-units";
@@ -24,6 +26,8 @@ import p6 from "./understanding-medical-coding-updates";
  * ordering.
  */
 const all: BlogPost[] = [
+  pCard,
+  pFam,
   pBh,
   pOrtho,
   pPt,
