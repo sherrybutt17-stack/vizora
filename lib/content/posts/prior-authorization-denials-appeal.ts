@@ -7,8 +7,8 @@ const post: BlogPost = {
     "Four out of five appealed Medicare Advantage prior-auth denials are overturned. Almost nobody appeals them. The gap is capacity, not merit — and it is measurable.",
   category: "Prior Authorization",
   published: "2026-08-19",
-  updated: "2026-08-19",
-  readingMinutes: 4,
+  updated: "2026-08-20",
+  readingMinutes: 8,
   answer:
     "80.7% of appealed Medicare Advantage prior authorization denials are overturned, but only 11.5% of denials are ever appealed. That means roughly 88% of denied authorizations are abandoned — and based on the overturn rate, most of them would have been approved. The constraint is staff capacity, not the strength of the claim.",
   sections: [
@@ -73,11 +73,68 @@ const post: BlogPost = {
       ],
     },
     {
+      heading: "Peer-to-peer review is the fastest route, and it is time-limited",
+      body: [
+        "Most payers offer a peer-to-peer review in which the ordering physician speaks directly with the payer\u2019s medical director. It is the fastest available reversal mechanism \u2014 frequently resolved on the call rather than in the 30 to 60 days a written appeal takes.",
+        "It is also the mechanism practices most often lose by default, because the window is short. Payers typically allow only a few business days from the denial notice to request it, and once that window closes the case drops into the written appeal queue regardless of merit.",
+        "Two things make peer-to-peer work. Request it the same day the denial is received, before anyone has decided whether to appeal, because the request can be withdrawn but the window cannot be reopened. Then have the ordering physician cite the payer\u2019s own published medical policy criteria and state which of them the documentation satisfies. A conversation about clinical judgement in general terms tends to fail; a conversation about criterion three of the payer\u2019s own policy tends to succeed.",
+      ],
+    },
+    {
+      heading: "Build the appeal against the payer\u2019s criteria, not the diagnosis",
+      body: [
+        "The most common weakness in a prior authorization appeal is that it argues the patient needs the service. The payer is not disputing that. It is asserting that the documentation submitted did not establish the specific criteria in its coverage policy.",
+        "Every commercial payer publishes medical policies stating exactly what must be documented for a given service. An appeal that walks through those criteria in order, quotes the policy, and points to the page and date in the record satisfying each one is answering the question actually asked. An appeal that describes the patient\u2019s condition is answering a different one.",
+      ],
+      list: [
+        "Quote the payer\u2019s own policy number and effective date at the top of the letter",
+        "Address each criterion in the order the policy lists them",
+        "Cite the specific chart date and page establishing each criterion, not the record as a whole",
+        "Document conservative treatment already tried, with dates and outcomes, where the policy requires step therapy",
+        "Include the denial letter and the original authorization request as attachments",
+        "State the requested remedy explicitly \u2014 approval of the named CPT for the named date range",
+      ],
+    },
+    {
+      heading: "Track the deadlines, because they are shorter than they look",
+      body: [
+        "Appeal rights expire, and the windows are set by the payer and the plan type rather than by any single rule. Medicare Advantage, commercial and self-funded ERISA plans all run different clocks, and the clock generally starts at the date on the denial notice rather than the date the practice opened the envelope.",
+        "The practical control is a single tracked list with three dates per denial: the peer-to-peer request deadline, the first-level appeal deadline, and the external review deadline where one exists. Denials worked from a general queue without those dates attached are the ones that expire, and an expired appeal right converts a recoverable denial into a write-off with no further options.",
+      ],
+    },
+    {
       heading: "The capacity problem is the real problem",
       body: [
         "Every figure above points at the same conclusion. The denials are largely avoidable, the appeals largely succeed, and the reason neither happens is that nobody has the hours.",
         "That is a staffing and process question rather than a clinical one, which is also why it is solvable. A practice that systematically works its authorization queue — preventing what it can upstream and appealing what it cannot — is not being cleverer than its payers. It is simply doing work that most practices leave undone because they cannot staff it.",
       ],
+    },
+  ],
+  faq: [
+    {
+      question: "How often are prior authorization denials overturned on appeal?",
+      answer:
+        "KFF\u2019s analysis of CMS Part C reporting found that 80.7% of appealed Medicare Advantage prior authorization denials were overturned. That figure is the argument for appealing: the large majority of denied requests were payable, and they were denied on documentation grounds rather than on clinical merit.",
+    },
+    {
+      question: "If most appeals succeed, why do so few practices appeal?",
+      answer:
+        "Capacity, not judgement. The AMA measures roughly 13 hours of physician time per week spent on prior authorization before any appeal is written. Appeals compete with clinical work for the same hours, so they are triaged out in favour of patients \u2014 which means the denials that go unappealed are selected by staffing pressure rather than by whether they were correct.",
+    },
+    {
+      question: "What is a peer-to-peer review and when should it be requested?",
+      answer:
+        "A direct conversation between the ordering physician and the payer\u2019s medical director, and generally the fastest way to reverse a denial \u2014 often resolved on the call rather than in the weeks a written appeal takes. The request window is usually only a few business days from the denial notice, so it should be requested the same day the denial arrives, before deciding whether to pursue it.",
+    },
+    {
+      question: "What should a prior authorization appeal letter contain?",
+      answer:
+        "It should argue against the payer\u2019s published medical policy rather than describing the patient\u2019s condition. Quote the policy number and effective date, address each criterion in the order listed, and cite the specific chart date and page satisfying each one. Attach the denial letter and the original request, and state the remedy sought \u2014 approval of the named CPT for a named date range.",
+    },
+    {
+      question: "What happens if the appeal deadline is missed?",
+      answer:
+        "The appeal right expires and the denial becomes a write-off, regardless of how strong the clinical case was. Windows vary by payer and plan type and generally run from the date on the denial notice rather than the date it was received, so tracking three dates per denial \u2014 peer-to-peer, first-level appeal, and external review \u2014 is what prevents recoverable revenue expiring unworked.",
     },
   ],
   relatedServices: ["prior-authorization", "denial-management", "eligibility-verification"],

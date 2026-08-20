@@ -50,7 +50,15 @@ export default function CaseStudiesPage() {
                         <CountUp value={c.headlineMetric.value} />
                       </p>
                       <p className="mt-2 text-sm text-faint">{c.headlineMetric.label}</p>
-                      <h2 className="mt-6 text-2xl font-600 leading-snug">{c.title}</h2>
+                      <h2 className="mt-6 text-2xl font-600 leading-snug">
+                        <Link
+                          href={`/case-studies/${c.slug}`}
+                          data-tap
+                          className="transition-colors hover:text-accent"
+                        >
+                          {c.title}
+                        </Link>
+                      </h2>
                       <dl className="mt-6 space-y-2 border-t border-border pt-5 text-sm">
                         {[
                           ["Specialty", c.specialtySlug ? <Link key="s" href={`/specialties/${c.specialtySlug}`} data-tap className="text-accent hover:text-accent-2">{c.specialty}</Link> : c.specialty],
@@ -92,6 +100,13 @@ export default function CaseStudiesPage() {
                           — {c.client.name}, {c.client.role}
                         </footer>
                       </blockquote>
+                      <Link
+                        href={`/case-studies/${c.slug}`}
+                        data-tap
+                        className="inline-flex text-sm font-500 text-accent transition-colors hover:text-accent-2"
+                      >
+                        Read the full case study &rarr;
+                      </Link>
                     </div>
                   </div>
                 </Card>

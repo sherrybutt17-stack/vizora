@@ -1,13 +1,13 @@
 # Pricing — Vizora Medical Billing
 
-Last updated: 2026-08-19
+Last updated: 2026-08-20
 
 ## Model
 
 Percentage of net collections. You pay only on what is actually collected.
 
-- Starting rate: 3.2% of net collections
-- Typical range: 4% - 8% of net collections
+- Starting rate: 3% of net collections
+- Typical range: 3% - 6% of net collections
 - Billing frequency: monthly, in arrears
 - Minimum term: 6 months recommended; no long-term lock-in after that
 
@@ -23,7 +23,7 @@ Percentage of net collections. You pay only on what is actually collected.
 
 ## Included at no additional charge
 
-- Medical coding by specialty-assigned AAPC/AHIMA-certified coders
+- Medical coding by specialty-assigned certified coders
 - Claim scrubbing against payer-specific edits
 - Electronic claim submission and status tracking
 - Denial management, appeals and rework

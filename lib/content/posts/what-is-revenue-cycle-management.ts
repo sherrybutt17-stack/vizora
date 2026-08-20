@@ -7,8 +7,8 @@ const post: BlogPost = {
     "A plain explanation of RCM, how it differs from medical billing, and which metrics actually indicate whether yours is working.",
   category: "Education",
   published: "2026-05-03",
-  updated: "2026-08-19",
-  readingMinutes: 4,
+  updated: "2026-08-20",
+  readingMinutes: 8,
   answer:
     "Revenue cycle management is the complete financial process for a healthcare encounter, running from patient scheduling and insurance verification through coding, claim submission, payment posting, denial management and collection of any remaining balance. It covers every step where revenue can be earned, delayed or lost — which is why it is broader than medical billing.",
   sections: [
@@ -91,6 +91,39 @@ const post: BlogPost = {
       ],
     },
     {
+      heading: "The handoffs are where revenue is lost",
+      body: [
+        "Each stage of the revenue cycle usually works acceptably in isolation. Revenue leaks at the joints between them, because that is where responsibility transfers and where nobody is measured on the transfer itself.",
+      ],
+      table: {
+        headers: ["Handoff", "What is passed", "What goes wrong"],
+        rows: [
+          ["Scheduling \u2192 registration", "Demographics and coverage", "Coverage assumed unchanged from the last visit"],
+          ["Registration \u2192 clinical", "Authorization status", "Service delivered before authorization is confirmed"],
+          ["Clinical \u2192 coding", "Documentation", "Notes support a lower level than the work performed"],
+          ["Coding \u2192 submission", "Coded charges", "Charges never posted \u2014 the encounter is simply never billed"],
+          ["Submission \u2192 posting", "Acknowledgements and remits", "Rejections not read; claim looks submitted but was never received"],
+          ["Posting \u2192 follow-up", "Denials and underpayments", "Posted as adjustments and treated as final"],
+        ],
+      },
+    },
+    {
+      heading: "Charge capture is the leak nobody sees",
+      body: [
+        "Every other revenue cycle failure produces evidence. A denial appears on a report; an aged claim appears in AR; an underpayment appears as a variance. An encounter that is never charged produces nothing at all \u2014 no claim, no denial, no balance, no trace.",
+        "This is why practices can run a clean revenue cycle by every measured metric and still lose material revenue. The metrics are all calculated on claims that exist. Missing charges are absent from the denominator as well as the numerator.",
+        "The only reliable control is reconciliation against the schedule rather than against the billing system: every completed appointment should resolve to a charge, a documented no-show, or a deliberate non-billable encounter. Running that comparison weekly catches the missing charge while the documentation is still fresh and the timely filing window is still wide open.",
+      ],
+    },
+    {
+      heading: "The administrative load is the underlying constraint",
+      body: [
+        "Revenue cycle work is often discussed as though it were mainly a question of diligence. It is more usefully understood as a capacity problem, because the volume is fixed by the payer environment rather than by the practice.",
+        "CAQH measures roughly 70 minutes of administrative work per patient visit across the US healthcare system, and puts the savings available from electronic eligibility verification alone at $11.7 billion annually \u2014 the largest single administrative savings opportunity it tracks. A single claim status inquiry made by phone costs 25 minutes of staff time.",
+        "Those numbers explain why revenue cycle problems resist being solved by working harder. A practice cannot out-diligence 70 minutes per visit; it can only remove transactions from the manual path. Every process converted from phone or portal to electronic exchange returns capacity that can then be spent on the work that genuinely requires judgement \u2014 appeals, underpayment variances, and the denial clusters worth removing at the cause.",
+      ],
+    },
+    {
       heading: "The three reports worth reading every month",
       body: [
         "Most practice management systems will generate dozens of reports. Three of them carry nearly all the decision-relevant signal, and reading them monthly is enough.",
@@ -100,6 +133,33 @@ const post: BlogPost = {
         "AR aging by bucket and payer — the 90+ bucket is where timely-filing risk lives, and one payer over-represented there is a contract or enrollment problem.",
         "Net collection ratio by payer — this is the report that exposes underpayments, which produce no denial and therefore no alert.",
       ],
+    },
+  ],
+  faq: [
+    {
+      question: "What is revenue cycle management?",
+      answer:
+        "Revenue cycle management is the end-to-end process of capturing and collecting revenue for care delivered \u2014 from scheduling and eligibility verification, through coding, claim submission and payment posting, to denial follow-up and patient collections. It begins before the patient arrives and ends when the balance reaches zero.",
+    },
+    {
+      question: "How is revenue cycle management different from medical billing?",
+      answer:
+        "Billing is one stage within the revenue cycle: preparing and submitting claims and posting what comes back. Revenue cycle management covers the whole span, including the front-end steps that determine whether a claim can be paid at all. Since 44% of denials originate in front-end processes, a practice can bill flawlessly and still lose revenue decided before billing began.",
+    },
+    {
+      question: "Which revenue cycle metrics matter most?",
+      answer:
+        "Days in AR, percentage of AR over 90 days, first-pass clean claim rate, denial rate, and net collection rate. They should be read together rather than individually \u2014 days in AR falls when aged balances are written off, so it can improve while collections worsen. The percentage over 90 days and the net collection rate are the harder figures to flatter.",
+    },
+    {
+      question: "Where do practices lose the most revenue in the cycle?",
+      answer:
+        "At the handoffs between stages, and most invisibly at charge capture. An encounter that is never charged produces no claim, no denial and no balance, so it appears in no report at all \u2014 which means a practice can look healthy on every metric while losing real revenue. Reconciling completed appointments against posted charges weekly is the only reliable control.",
+    },
+    {
+      question: "When does outsourcing revenue cycle management make sense?",
+      answer:
+        "Generally when the practice is at a capacity threshold rather than a cost one \u2014 volume has outgrown one biller but does not yet justify two, specialty knowledge for appeals is missing, or the function has no cross-trained backup and stalls whenever one person is unavailable. Outsourced pricing scales continuously with collections, whereas in-house capacity moves in whole headcount steps.",
     },
   ],
   relatedServices: ["revenue-cycle-management", "practice-analytics", "medical-billing"],

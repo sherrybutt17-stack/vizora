@@ -29,7 +29,7 @@ export const compactUsd = (n: number) =>
   }).format(n);
 
 /** Site-wide "last reviewed" stamp. Freshness is an AI-citation signal. */
-export const LAST_UPDATED = "2026-08-19";
+export const LAST_UPDATED = "2026-08-20";
 
 export function formatDate(iso: string) {
   return new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-US", {

@@ -7,8 +7,8 @@ const post: BlogPost = {
     "Outsourced billing runs 4–8% of collections. In-house looks cheaper until you cost the whole function rather than one salary. Here is the comparison with the parts most calculations leave out.",
   category: "Practice Economics",
   published: "2026-08-19",
-  updated: "2026-08-19",
-  readingMinutes: 4,
+  updated: "2026-08-20",
+  readingMinutes: 8,
   answer:
     "Outsourced medical billing typically costs 4–8% of net collections, with larger practices and high-value specialties at the lower end. In-house billing costs roughly $73,000 per biller annually once benefits are included, plus software, clearinghouse fees and management time — which is why per-biller salary alone understates the true cost of the function.",
   sections: [
@@ -71,12 +71,82 @@ const post: BlogPost = {
       ],
     },
     {
+      heading: "What a percentage rate includes, and what it usually does not",
+      body: [
+        "Two vendors quoting 6% can be quoting materially different services. The rate is the visible number; the scope is where the actual cost sits. Before comparing rates, establish which side of the line each item falls on.",
+      ],
+      table: {
+        headers: ["Item", "Commonly included", "Commonly billed separately"],
+        rows: [
+          ["Claim submission and payment posting", "Yes", "\u2014"],
+          ["Denial rework and first-level appeals", "Usually", "Second-level and external appeals"],
+          ["Clearinghouse fees", "Sometimes", "Often passed through per claim"],
+          ["Patient statements and postage", "Rarely", "Per statement, plus postage"],
+          ["Credentialing and payer enrollment", "Rarely", "Per provider, per payer"],
+          ["Coding from documentation", "No \u2014 usually assumes coded charges", "Priced separately per encounter"],
+          ["Practice management software licence", "No", "Practice retains its own contract"],
+          ["Implementation and data migration", "Sometimes waived", "One-time fee"],
+        ],
+      },
+    },
+    {
+      heading: "Where the break-even between in-house and outsourced actually sits",
+      body: [
+        "The comparison practices usually run is billing salary against the percentage fee, and it produces the wrong answer because it compares one line item to a whole function.",
+        "A fully loaded biller costs roughly $73,000 annually once employer taxes and benefits are counted, per Bureau of Labor Statistics wage and compensation data. Add clearinghouse fees, the share of practice management software attributable to billing, and the management time spent supervising the function. Then add the costs that only appear when something goes wrong: the vacation with no cross-trained backup, the resignation that leaves AR unworked for six weeks, the denial category nobody has the specialty knowledge to appeal.",
+        "The honest framing is capacity rather than cost. One biller can sustain a certain claim volume; the second hire is a step change, not a gradual one, and it arrives well before the practice feels ready. Outsourced pricing scales continuously with collections, which is why the models tend to converge for small practices and diverge for practices sitting just past a headcount threshold.",
+      ],
+    },
+    {
+      heading: "The contract terms that matter more than the rate",
+      body: [
+        "A percentage point of difference is worth less than most of the terms below, and the terms are where a cheap quote becomes an expensive relationship.",
+      ],
+      list: [
+        "What the percentage is calculated on \u2014 net collections received, not charges submitted or claims worked",
+        "Whether patient payments and copays collected at the desk are included in the fee base",
+        "Notice period and whether it can be served at any time or only at renewal",
+        "Who owns the data on exit, in what format, and within how many days",
+        "Whether AR outstanding at termination continues to be worked, and at what rate",
+        "The reporting cadence, and whether denial detail is included or only summary collections",
+        "Named escalation contact and response time, rather than a shared support queue",
+        "Whether a signed HIPAA business associate agreement is provided without being asked for",
+      ],
+    },
+    {
       heading: "The cost that does not appear on either quote",
       body: [
         "Premier's analysis puts the average cost of contesting a single denied claim at $57.23, up 31% in a single year. Optum's index of 124 million claim remits found 84% of denials are potentially avoidable.",
         "Those two numbers define the real spread between a cheap billing arrangement and a good one. A vendor whose denial rate is two points higher than another's is not cheaper at the same percentage — the difference simply moves from the invoice to the AR report, where it is harder to see.",
         "Which is the argument for evaluating billing cost on collected revenue rather than on rate. A practice paying 7% and collecting 97% of what it bills is materially better off than one paying 4% and collecting 88%.",
       ],
+    },
+  ],
+  faq: [
+    {
+      question: "How much does outsourced medical billing cost?",
+      answer:
+        "Typically 4% to 8% of net collections, with larger practices and higher-value specialties at the lower end of that range. The percentage alone is not comparable between vendors, because scope varies \u2014 patient statements, credentialing, clearinghouse fees and coding are frequently billed separately rather than included in the headline rate.",
+    },
+    {
+      question: "Is in-house billing cheaper than outsourcing?",
+      answer:
+        "It depends on volume, and the comparison is usually made incorrectly. A fully loaded biller costs roughly $73,000 a year once benefits and employer taxes are included, before software, clearinghouse fees and management time. Because in-house capacity moves in whole headcount steps while outsourced pricing scales with collections, the two models converge for small practices and separate sharply just past a hiring threshold.",
+    },
+    {
+      question: "Should the billing fee be based on charges or collections?",
+      answer:
+        "Collections, always. A percentage of charges pays the vendor whether or not the claim is ever paid, which removes their incentive to work denials and appeals. A percentage of net collections received aligns the vendor with the practice, because the vendor earns nothing on a claim that does not pay.",
+    },
+    {
+      question: "What is a flat per-claim billing fee, and when does it make sense?",
+      answer:
+        "A fixed amount per claim submitted, independent of the claim\u2019s value. It suits practices with high claim volume at low average value, where a percentage model would cost more than the work warrants. It suits high-value specialties poorly, because the vendor earns the same on a claim worth $80 and one worth $8,000 and has no financial reason to pursue the larger one.",
+    },
+    {
+      question: "What hidden costs should be checked before signing?",
+      answer:
+        "Implementation and data migration fees, per-statement and postage charges, clearinghouse pass-throughs, credentialing priced per provider per payer, and the terms governing exit \u2014 specifically who owns the data, in what format it is returned, and whether outstanding AR continues to be worked after notice is served. Exit terms are the most commonly overlooked and the most expensive to discover late.",
     },
   ],
   relatedServices: ["medical-billing", "revenue-cycle-management", "denial-management"],

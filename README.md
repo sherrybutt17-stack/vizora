@@ -59,8 +59,12 @@ differentiator, since no competitor does this.
    performance claims in healthcare marketing carry real legal exposure.
 5. **Replace the legal pages with counsel-approved text.** `/privacy`, `/terms`,
    `/hipaa` and `/baa` are structural drafts and say so on the page. Not binding.
-6. **Set real pricing** on `/pricing` and `public/pricing.md` if 3.2% / 4–8% is
-   not accurate.
+6. ~~Set real pricing~~ — DONE (2026-08-20). Owner-confirmed at 3% starting,
+   3–6% typical. Set in `lib/content/site.ts`; `/pricing`, `llms.txt`,
+   `llms-full.txt` and the FAQ derive from it. `public/pricing.md` is static
+   and was updated alongside. Note the industry-typical 4–8% still quoted in
+   blog and pricing-model comparison content is a MARKET figure, not ours —
+   the two are deliberately different and should not be reconciled.
 7. **Name a credentialed content reviewer** in `lib/content/blog.ts` (`author`).
    A faceless "team" byline is the weakest possible E-E-A-T signal.
 

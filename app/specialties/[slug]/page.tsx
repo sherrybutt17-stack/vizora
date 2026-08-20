@@ -12,6 +12,7 @@ import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, webPageSchema, ENTI
 import { getSpecialty, specialtySlugs } from "@/lib/content/specialties";
 import { getService } from "@/lib/content/services";
 import { getCaseStudiesForSpecialty } from "@/lib/content/case-studies";
+import { getPostsForSpecialty } from "@/lib/content/blog";
 import { pageMeta } from "@/lib/seo";
 import { LAST_UPDATED, formatDate } from "@/lib/utils";
 
@@ -59,6 +60,7 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
     .filter((x): x is NonNullable<typeof x> => Boolean(x));
 
   const studies = getCaseStudiesForSpecialty(s.slug);
+  const specialtyPosts = getPostsForSpecialty(s.slug);
 
   return (
     <PageTransition>
@@ -226,7 +228,11 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
                       <Badge tone="positive" className="mb-4">
                         {c.headlineMetric.value} {c.headlineMetric.label.toLowerCase()}
                       </Badge>
-                      <h3 className="text-2xl font-600 leading-snug">{c.title}</h3>
+                      <h3 className="text-2xl font-600 leading-snug">
+                        <Link href={`/case-studies/${c.slug}`} data-tap className="transition-colors hover:text-accent">
+                          {c.title}
+                        </Link>
+                      </h3>
                       <p className="mt-4 leading-relaxed text-muted">{c.challenge}</p>
                       <p className="mt-4 leading-relaxed text-muted">{c.solution}</p>
                     </div>
@@ -267,12 +273,34 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
                 {s.name} billing FAQ
               </h2>
               <p className="mt-4 text-sm text-faint">Last updated {formatDate(LAST_UPDATED)}</p>
-              <Badge className="mt-4">Reviewed by a CPC-credentialed coding lead</Badge>
+              <Badge className="mt-4">Reviewed by a certified coding lead</Badge>
             </div>
             <FAQList items={s.faqs} />
           </div>
         </Container>
       </Section>
+
+      {specialtyPosts.length > 0 && (
+        <Section className="border-t border-border">
+          <Container>
+            <SectionHead align="left" eyebrow="Reading" title={`${s.name} billing, in depth`} />
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {specialtyPosts.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  data-tap
+                  className="group rounded-xl border border-border bg-surface p-5 transition-all hover:-translate-y-1 hover:border-accent/30"
+                >
+                  <p className="text-xs text-faint">{p.category}</p>
+                  <p className="mt-2 font-500 leading-snug text-ink group-hover:text-accent">{p.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-muted">{p.excerpt}</p>
+                </Link>
+              ))}
+            </div>
+          </Container>
+        </Section>
+      )}
 
       <RelatedContent
         title={`Services ${s.practiceNoun} use most`}

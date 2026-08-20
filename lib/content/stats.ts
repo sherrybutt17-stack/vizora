@@ -36,7 +36,7 @@ export const performance = {
   paymentCycle: { value: "20 days", label: "Average payment cycle", detail: "From date of service to posted payment" },
   revenueIncrease: { value: "30%", label: "Average revenue increase", detail: "Within the first 12 months" },
   specialties: { value: "42", label: "Specialties supported", detail: "Solo primary care through multi-site surgical groups" },
-  onboarding: { value: "2–4 weeks", label: "Typical onboarding", detail: "Signed agreement to first claim submitted" },
+  onboarding: { value: "Within 2 weeks", label: "Typical onboarding", detail: "Signed agreement to first claim submitted" },
   recovered: { value: "$480K+", label: "Revenue recovered", detail: "Combined across client partnerships" },
 } as const satisfies Record<string, Stat>;
 

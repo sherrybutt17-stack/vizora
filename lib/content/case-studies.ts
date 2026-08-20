@@ -71,7 +71,7 @@ export const caseStudies: CaseStudy[] = [
     challenge:
       "Surgical coding complexity had produced a 35% denial rate on orthopedic procedures. The previous billing company had limited orthopedic expertise, resulting in systematic undercoding and a backlog of denied surgical claims nobody had appealed.",
     solution:
-      "We assigned AAPC-certified orthopedic coders, implemented comprehensive procedure documentation review, and launched an appeal process covering every rejected surgical claim still inside its filing window.",
+      "We assigned certified orthopedic coders, implemented comprehensive procedure documentation review, and launched an appeal process covering every rejected surgical claim still inside its filing window.",
     results: [
       "Denial rate decreased from 35% to 9%",
       "$150,000 recovered in previously denied surgical claims",

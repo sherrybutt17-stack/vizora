@@ -93,7 +93,7 @@ export const comparisons: Comparison[] = [
     ],
     rows: [
       { dimension: "Cost structure", a: "Fixed — salary and benefits regardless of collections", b: "Variable — a percentage of what is actually collected", edge: "b" },
-      { dimension: "Fully loaded annual cost", a: "~$73,000 per biller (BLS wage + benefits data)", b: "4–8% of net collections", edge: "even" },
+      { dimension: "Fully loaded annual cost", a: "~$73,000 per biller (BLS wage + benefits data)", b: "3–6% of net collections at Vizora", edge: "even" },
       { dimension: "Cost when volume drops", a: "Unchanged", b: "Falls proportionally", edge: "b" },
       { dimension: "Coverage during leave or turnover", a: "Collections stop or slow", b: "Team coverage, no single point of failure", edge: "b" },
       { dimension: "Specialty coding depth", a: "Limited to what your hires know", b: "Access to certified coders across specialties", edge: "b" },
@@ -140,7 +140,7 @@ export const comparisons: Comparison[] = [
       {
         question: "How long does it take to switch to an outsourced biller?",
         answer:
-          "Typically two to four weeks from signed agreement to first claim submitted, assuming system access is granted promptly. The genuine risk in a transition is not the new claims — it is the existing AR. Agree explicitly, in writing, who works the aged balances during changeover, or that inventory will quietly age past timely filing.",
+          "Typically under two weeks from signed agreement to first claim submitted, assuming system access is granted promptly. The genuine risk in a transition is not the new claims — it is the existing AR. Agree explicitly, in writing, who works the aged balances during changeover, or that inventory will quietly age past timely filing.",
       },
     ],
     related: [
@@ -282,7 +282,7 @@ export const comparisons: Comparison[] = [
       ],
     },
     caveat:
-      "Under either model, read the definition of what is billable before the rate. A percentage applied to gross charges rather than net collections is a materially different deal at the same headline number. Ask specifically whether patient payments, capitation, refunds, and payments on claims submitted before the contract started are included — that is where the surprises live. Vizora charges a percentage of net collections starting at 3.2%, and does not bill separately for denial appeals.",
+      "Under either model, read the definition of what is billable before the rate. A percentage applied to gross charges rather than net collections is a materially different deal at the same headline number. Ask specifically whether patient payments, capitation, refunds, and payments on claims submitted before the contract started are included — that is where the surprises live. Vizora charges a percentage of net collections starting at 3%, and does not bill separately for denial appeals.",
     faqs: [
       {
         question: "What is a normal percentage for medical billing services?",
@@ -407,7 +407,7 @@ export const comparisons: Comparison[] = [
       { dimension: "Files appeals", a: "No", b: "Yes", edge: "b" },
       { dimension: "Improves claim scrubbing", a: "Yes", b: "Yes, via its own tooling", edge: "even" },
       { dimension: "Cost shape", a: "Per-seat or per-provider subscription", b: "Percentage of collections or per claim" },
-      { dimension: "Time to benefit", a: "Months — implementation and retraining", b: "2–4 weeks typically", edge: "b" },
+      { dimension: "Time to benefit", a: "Months — implementation and retraining", b: "Under 2 weeks typically", edge: "b" },
       { dimension: "Scales with provider count", a: "Cost rises per seat", b: "Cost rises with collections", edge: "even" },
       { dimension: "Survives your biller resigning", a: "No", b: "Yes", edge: "b" },
       { dimension: "You keep direct control of process", a: "Yes", b: "Contractual", edge: "a" },
@@ -555,7 +555,7 @@ export const comparisons: Comparison[] = [
       { dimension: "Vendor relationships", a: "One", b: "Two — your PM/EHR and your biller", edge: "a" },
       { dimension: "Cost of changing billers", a: "High — usually means changing EHR too", b: "Moderate — notice period, clinical systems untouched", edge: "b" },
       { dimension: "Cost of changing EHR", a: "High — billing moves with it", b: "Independent of billing", edge: "b" },
-      { dimension: "Pricing model", a: "Typically a percentage of collections; confirm current terms directly", b: "Percentage of net collections, 4–8% typical", edge: "even" },
+      { dimension: "Pricing model", a: "Typically a percentage of collections; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Payer rules and edits", a: "Large national rules engine, a genuine strength of scale", b: "Payer-specific and NCCI edits, plus regional payer knowledge", edge: "a" },
       { dimension: "Specialty coding depth", a: "Broad; depth varies by specialty", b: "Specialty-assigned certified coders", edge: "even" },
       { dimension: "Denial appeal capacity", a: "Scales with the platform", b: "Scales with the service; ask for appeal rate, not denial rate", edge: "even" },
@@ -639,7 +639,7 @@ export const comparisons: Comparison[] = [
       { dimension: "Aged AR recovery", a: "Confirm scope explicitly before signing", b: "Typically in scope; confirm whether backlog is separate", edge: "even" },
       { dimension: "Clinical software change required", a: "Yes, to use the platform fully", b: "No", edge: "b" },
       { dimension: "Patient-facing tools", a: "Included — scheduling, reminders, reputation", b: "Not included", edge: "a" },
-      { dimension: "Pricing model", a: "Subscription plus billing fees; confirm current terms directly", b: "Percentage of net collections, 4–8% typical", edge: "even" },
+      { dimension: "Pricing model", a: "Subscription plus billing fees; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Practice size fit", a: "Solo and small independent practices", b: "Solo through mid-size groups", edge: "even" },
     ],
     chooseA: {
@@ -715,7 +715,7 @@ export const comparisons: Comparison[] = [
       { dimension: "Cost of replacing the biller", a: "High — entangled with the software contract", b: "Notice period; clinical systems untouched", edge: "b" },
       { dimension: "Implementation", a: "One project, but a larger one", b: "Billing only — clinical workflow unchanged", edge: "b" },
       { dimension: "Support model", a: "Single vendor, single escalation path", b: "Two vendors, two escalation paths", edge: "a" },
-      { dimension: "Pricing", a: "Subscription plus RCM fees; confirm current terms directly", b: "Percentage of net collections, 4–8% typical", edge: "even" },
+      { dimension: "Pricing", a: "Subscription plus RCM fees; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Specialty coding depth", a: "Available; depth varies by specialty", b: "Specialty-assigned certified coders", edge: "b" },
       { dimension: "Aged AR recovery", a: "Confirm whether backlog is in scope", b: "Confirm whether backlog is scoped separately", edge: "even" },
       { dimension: "Reporting", a: "Native to the suite", b: "Provided by the service; verify depth before signing", edge: "a" },
@@ -787,9 +787,9 @@ export const comparisons: Comparison[] = [
       { dimension: "Scope", a: "Practice management, EHR and revenue cycle", b: "Revenue cycle only", edge: "even" },
       { dimension: "Solves", a: "A systems problem", b: "A collections problem", edge: "even" },
       { dimension: "Disruption to clinicians", a: "Significant — a platform migration changes daily workflow", b: "Minimal — clinical workflow is untouched", edge: "b" },
-      { dimension: "Time to effect", a: "Months, following implementation", b: "Weeks — typically 2–4 from agreement to first claim", edge: "b" },
+      { dimension: "Time to effect", a: "Months, following implementation", b: "Weeks — typically under 2 from agreement to first claim", edge: "b" },
       { dimension: "Vendor count", a: "One", b: "Two", edge: "a" },
-      { dimension: "Pricing", a: "Subscription plus RCM fees; confirm current terms directly", b: "Percentage of net collections, 4–8% typical", edge: "even" },
+      { dimension: "Pricing", a: "Subscription plus RCM fees; confirm current terms directly", b: "Percentage of net collections, 3–6% at Vizora", edge: "even" },
       { dimension: "Specialty coding depth", a: "Available; varies by specialty", b: "Specialty-assigned certified coders", edge: "b" },
       { dimension: "If it underperforms", a: "Changing it means changing systems", b: "Changing it means a notice period", edge: "b" },
       { dimension: "Data ownership on exit", a: "Confirm export terms before signing", b: "Confirm export terms before signing", edge: "even" },
@@ -822,7 +822,7 @@ export const comparisons: Comparison[] = [
       {
         question: "How quickly can a billing service improve collections?",
         answer:
-          "Onboarding typically runs two to four weeks from signed agreement to first claim submitted. New claims improve first; aged AR recovery runs on the payers' timelines and the remaining filing windows. Agree explicitly, in writing, who works the existing backlog during changeover — that inventory ages quietly during transitions and is where recoverable revenue is most often lost.",
+          "Onboarding typically runs under two weeks from signed agreement to first claim submitted. New claims improve first; aged AR recovery runs on the payers' timelines and the remaining filing windows. Agree explicitly, in writing, who works the existing backlog during changeover — that inventory ages quietly during transitions and is where recoverable revenue is most often lost.",
       },
     ],
     related: [

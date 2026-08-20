@@ -4,9 +4,10 @@ import { Container, Section, Badge, DataTable, Eyebrow } from "@/components/ui";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { RelatedContent } from "@/components/sections/RelatedContent";
-import { JsonLd, articleSchema, breadcrumbSchema } from "@/lib/schema";
+import { JsonLd, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { getPost, postSlugs, posts, author } from "@/lib/content/blog";
 import { getService } from "@/lib/content/services";
+import { getSpecialty } from "@/lib/content/specialties";
 import { pageMeta } from "@/lib/seo";
 import { formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
@@ -37,6 +38,13 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     .map((s) => getService(s))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
+  // `relatedSpecialties` was declared on the type and set on a post, but never
+  // rendered — so specialty-targeted articles pushed no authority to the
+  // specialty pages they were written to support.
+  const relatedSpecialties = (post.relatedSpecialties ?? [])
+    .map((s) => getSpecialty(s))
+    .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
   /**
    * "Keep reading" picks the three posts *following* this one in the sorted
    * list, wrapping at the end.
@@ -64,6 +72,10 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           updated: post.updated,
           authorName: author.name,
         }),
+        // Only emitted when the post actually renders a visible FAQ block.
+        // FAQPage markup describing questions absent from the page is a
+        // structured-data violation, so the two are kept in one condition.
+        ...(post.faq?.length ? [faqSchema(post.faq)] : []),
       ]} />
       <Breadcrumbs items={crumbs} />
 
@@ -120,6 +132,25 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 </section>
               ))}
 
+              {post.faq?.length ? (
+                <section className="mt-14">
+                  <h2 className="text-[clamp(1.4rem,2.6vw,1.85rem)] font-600 leading-snug">
+                    Frequently asked questions
+                  </h2>
+                  <dl className="mt-6 space-y-4">
+                    {post.faq.map((f) => (
+                      <div
+                        key={f.question}
+                        className="rounded-xl border border-border bg-surface p-5"
+                      >
+                        <dt className="font-600 leading-snug text-ink">{f.question}</dt>
+                        <dd className="mt-2.5 leading-[1.75] text-ink-2">{f.answer}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </section>
+              ) : null}
+
               <footer className="mt-14 rounded-xl border border-border bg-surface p-6">
                 <Eyebrow>About the author</Eyebrow>
                 <p className="mt-3 font-500 text-ink">{author.name}</p>
@@ -133,7 +164,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       <RelatedContent
         title="Services referenced in this article"
-        links={related.map((r) => ({ label: r.name, href: `/services/${r.slug}`, description: r.blurb }))}
+        links={[
+          ...related.map((r) => ({ label: r.name, href: `/services/${r.slug}`, description: r.blurb })),
+          ...relatedSpecialties.map((r) => ({
+            label: `${r.name} billing`,
+            href: `/specialties/${r.slug}`,
+            description: r.blurb,
+          })),
+        ]}
       />
 
       <Section className="scroll-rise border-t border-border bg-bg-soft">

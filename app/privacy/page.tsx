@@ -4,7 +4,7 @@ import { site } from "@/lib/content/site";
 
 export const metadata = pageMeta({
   title: "Privacy Policy",
-  description: `How ${site.name} collects, uses, protects and shares information.`,
+  description: `How ${site.name} collects, uses, protects and shares information, including protected health information handled under HIPAA as a business associate of the practices we bill for.`,
   path: "/privacy",
 });
 

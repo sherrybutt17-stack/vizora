@@ -17,7 +17,7 @@ import { PageTransition } from "@/components/motion/ViewTransition";
 export const metadata = pageMeta({
   title: "Medical Billing Pricing",
   description:
-    "Transparent medical billing pricing: from 3.2% of net collections, typically 4–8% depending on volume and specialty. No setup fees, no charge for denial appeals, no long-term lock-in.",
+    "Transparent medical billing pricing: from 3% of net collections, typically 3–6% depending on volume and specialty. No setup fees, no charge for denial appeals, no long-term lock-in.",
   path: "/pricing",
   keywords: [
     "medical billing pricing", "medical billing cost", "percentage of collections billing",
@@ -63,7 +63,7 @@ export default function PricingPage() {
           {
             name: "Percentage of net collections",
             description:
-              "Full revenue cycle management billed as a percentage of what is actually collected. Starts at 3.2%; typically 4–8% depending on practice size, specialty and claim volume. No setup fees, and denial appeals are never billed separately.",
+              "Full revenue cycle management billed as a percentage of what is actually collected. Starts at 3%; typically 3–6% depending on practice size, specialty and claim volume. No setup fees, and denial appeals are never billed separately.",
             price: "3.2",
             unit: "percent of net collections, starting rate",
           },

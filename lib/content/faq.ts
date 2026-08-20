@@ -40,7 +40,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How much do medical billing services cost?",
         answer:
-          "Vizora charges a percentage of net collections, starting at 3.2% and typically ranging from 4% to 8% depending on practice size, specialty and claim volume. You pay only when we collect. There are no setup fees and no hidden charges. For comparison, one in-house biller costs roughly $73,000 a year fully loaded before software or management overhead.",
+          "Vizora charges a percentage of net collections, starting at 3% and typically ranging from 3% to 6% depending on practice size, specialty and claim volume. You pay only when we collect. There are no setup fees and no hidden charges. For comparison, one in-house biller costs roughly $73,000 a year fully loaded before software or management overhead.",
       },
       {
         question: "Is outsourcing cheaper than billing in-house?",
@@ -66,7 +66,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "How long does onboarding take?",
         answer:
-          "Typically 2–4 weeks depending on practice size and complexity, covering credentialing verification, system integration, historical data migration and staff training. We sequence onboarding so your existing claim flow is never interrupted.",
+          "Typically within 2 weeks depending on practice size and complexity, covering credentialing verification, system integration, historical data migration and staff training. We sequence onboarding so your existing claim flow is never interrupted.",
       },
       {
         question: "What information do you need from my practice?",
@@ -133,7 +133,7 @@ export const faqCategories: FaqCategory[] = [
       {
         question: "What certifications do your coders hold?",
         answer:
-          "Our coders hold AAPC and AHIMA credentials including CPC, CCS and RHIA, and are assigned by specialty. Coding accuracy is audited internally on a sample basis rather than assumed.",
+          "Our coders are certified and are assigned by specialty rather than pooled across a general queue. Coding accuracy is audited internally on a sample basis rather than assumed.",
       },
       {
         question: "Will you sign a Business Associate Agreement?",

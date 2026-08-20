@@ -4,7 +4,7 @@ import { site } from "@/lib/content/site";
 
 export const metadata = pageMeta({
   title: "Terms of Service",
-  description: `Terms governing use of the ${site.name} website and services.`,
+  description: `Terms governing use of the ${site.name} website and medical billing services, covering scope of engagement, payment terms, data ownership and termination.`,
   path: "/terms",
 });
 

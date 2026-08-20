@@ -224,7 +224,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
               <p className="mt-4 text-sm text-faint">
                 Last updated {formatDate(LAST_UPDATED)}
               </p>
-              <Badge className="mt-4">Reviewed by a CPC-credentialed coding lead</Badge>
+              <Badge className="mt-4">Reviewed by a certified coding lead</Badge>
             </div>
             <FAQList items={service.faqs} />
           </div>

@@ -18,7 +18,7 @@ export const metadata = pageMeta({
     "medical billing company",
     "healthcare RCM company",
     "certified medical coders",
-    "AAPC certified billing company",
+    "certified medical billing company",
     "HIPAA compliant billing company",
   ],
 });
@@ -33,7 +33,7 @@ const VALUES = [
 ];
 
 const TEAM_ROLES = [
-  { role: "Certified coders", body: "AAPC and AHIMA credentialed — CPC, CCS and RHIA — assigned by specialty rather than pooled across a queue." },
+  { role: "Certified coders", body: "Certified coders assigned by specialty rather than pooled across a queue." },
   { role: "AR and denial specialists", body: "Full-time payer follow-up and appeals, working queues by recoverability rather than by whatever surfaces first." },
   { role: "Credentialing coordinators", body: "Managing applications, primary source verification, CAQH maintenance and re-credentialing deadlines." },
   { role: "Revenue cycle analysts", body: "Aggregating denials by reason and payer, and translating the patterns into process changes upstream." },

@@ -48,7 +48,7 @@ export const services: Service[] = [
       "Aging AR that nobody has time to chase",
     ],
     features: [
-      { title: "Certified coding", description: "AAPC-credentialed coders assign ICD-10, CPT and HCPCS codes with specialty-specific accuracy." },
+      { title: "Certified coding", description: "Certified coders assign ICD-10, CPT and HCPCS codes with specialty-specific accuracy." },
       { title: "Clean claim submission", description: "Every claim is scrubbed against payer-specific edits before it leaves our system." },
       { title: "Payer follow-up", description: "We track each claim through adjudication and escalate anything that stalls." },
       { title: "Payment posting", description: "Payments, adjustments and write-offs are posted and reconciled against your ledger." },
@@ -70,7 +70,7 @@ export const services: Service[] = [
       { step: "04", title: "Reporting & optimization", description: "You receive monthly reporting on collections, denials and the specific fixes that will move your numbers." },
     ],
     faqs: [
-      { question: "How quickly can you start billing for our practice?", answer: "Typical onboarding takes 2–4 weeks depending on practice size and complexity. That window covers credentialing verification, system integration, historical data migration and staff training. We sequence it to minimize disruption to your current claim flow." },
+      { question: "How quickly can you start billing for our practice?", answer: "Typical onboarding takes under 2 weeks depending on practice size and complexity. That window covers credentialing verification, system integration, historical data migration and staff training. We sequence it to minimize disruption to your current claim flow." },
       { question: "What billing software do you work with?", answer: "We integrate with most major practice management systems and EHRs. During onboarding we configure our workflow around your existing software rather than forcing a migration, so your clinical team's day-to-day does not change." },
       { question: "How do you handle denied claims?", answer: "Denied claims are analyzed for root cause, corrected, and resubmitted or appealed as part of standard service at no additional charge. We also track denial patterns by payer and reason code so the same denial stops recurring." },
       { question: "What reports will we receive?", answer: "Monthly reporting covers claim submission volume, collections, denial rate by reason and payer, AR aging buckets, and net collection ratio. You also get portal access for real-time claim status between reports." },
@@ -86,8 +86,8 @@ export const services: Service[] = [
     eyebrow: "Certified Professionals",
     headline: "Medical Coding Services",
     summary:
-      "Medical coding converts documented clinical care into the ICD-10, CPT and HCPCS codes payers reimburse against. Coding errors cause underpayment as often as denial. Vizora's AAPC- and AHIMA-credentialed coders assign codes to specialty standards and audit their own work before submission.",
-    blurb: "Precision ICD-10, CPT and HCPCS coding by credentialed specialists.",
+      "Medical coding converts documented clinical care into the ICD-10, CPT and HCPCS codes payers reimburse against. Coding errors cause underpayment as often as denial. Vizora's certified coders assign codes to specialty standards and audit their own work before submission.",
+    blurb: "Precision ICD-10, CPT and HCPCS coding by certified coders.",
     challenges: [
       "Undercoding that quietly forfeits earned revenue on every encounter",
       "Upcoding exposure that invites payer audits and recoupment",
@@ -119,7 +119,7 @@ export const services: Service[] = [
       { step: "04", title: "Feedback loop", description: "Documentation gaps are reported back to providers so the fix is upstream, not repeated." },
     ],
     faqs: [
-      { question: "What certifications do your coders hold?", answer: "Our coders hold AAPC and AHIMA credentials including CPC, CCS and RHIA. Coders are assigned by specialty rather than pooled, so the person coding your cardiology claims codes cardiology every day." },
+      { question: "What certifications do your coders hold?", answer: "Our coders are certified, and they are assigned by specialty rather than pooled — so the person coding your cardiology claims codes cardiology every day. Coding is audited internally on a sample basis rather than assumed correct." },
       { question: "How do you keep up with annual code changes?", answer: "ICD-10-CM and CPT updates take effect October 1 and January 1 respectively. Our coders complete mandatory update training before each effective date, and our claim edits are updated in the same cycle so nothing submits against a retired code." },
       { question: "Can you audit our existing coding?", answer: "Yes. A baseline coding audit is part of the free billing audit. We sample recent encounters, compare codes billed against documentation, and quantify both undercoding losses and overcoding exposure." },
       { question: "What is the difference between undercoding and downcoding?", answer: "Undercoding is your practice billing a lower level than the documentation supports, forfeiting revenue voluntarily. Downcoding is the payer unilaterally reducing the level you billed. Both cost money; the fixes are different, and we address each separately." },

@@ -4,7 +4,7 @@ import { site } from "@/lib/content/site";
 
 export const metadata = pageMeta({
   title: "Business Associate Agreement",
-  description: `Request ${site.name}'s Business Associate Agreement, and what it covers.`,
+  description: `Request ${site.name}'s HIPAA Business Associate Agreement. What it covers, which safeguards it commits us to, and how to get a signed copy for your practice.`,
   path: "/baa",
 });
 

@@ -45,8 +45,16 @@ export const site = {
    */
   social: {} as Record<string, string>,
   pricing: {
-    startingRate: "3.2%",
-    typicalRange: "4–8%",
+    /**
+     * Vizora's own rates, confirmed by the owner 2026-08-20.
+     *
+     * Deliberately NOT the same as the industry-typical 4–8% quoted in
+     * educational content on the blog and the pricing-model comparison pages.
+     * That figure describes the market; this one describes us, and sitting
+     * below the market range is the point. Do not reconcile the two.
+     */
+    startingRate: "3%",
+    typicalRange: "3–6%",
     model: "percentage of net collections",
     note: "You only pay when we collect. No setup fees, no hidden charges.",
   },

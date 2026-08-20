@@ -6,6 +6,7 @@ import { stateSlugs } from "@/lib/content/locations";
 import { posts } from "@/lib/content/blog";
 import { glossarySlugs } from "@/lib/content/glossary";
 import { comparisonSlugs } from "@/lib/content/comparisons";
+import { caseStudies } from "@/lib/content/case-studies";
 import { LAST_UPDATED } from "@/lib/utils";
 
 const now = new Date(LAST_UPDATED);
@@ -69,6 +70,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85,
   }));
 
+  const caseStudyPages = caseStudies.map((c) => ({
+    url: `${site.url}/case-studies/${c.slug}`,
+    changeFrequency: "yearly" as const,
+    priority: 0.75,
+  }));
+
   const blog = posts.map((p) => ({
     url: `${site.url}/blog/${p.slug}`,
     lastModified: new Date(p.updated),
@@ -78,7 +85,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...core, ...services, ...specialties, ...locations,
-    ...comparePages, ...glossaryPages, ...blog,
+    ...comparePages, ...glossaryPages, ...caseStudyPages, ...blog,
   ].map((entry) => ({
     lastModified: now,
     ...entry,

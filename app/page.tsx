@@ -41,7 +41,7 @@ export const metadata = pageMeta({
 
 const PROCESS = [
   { step: "01", title: "Free billing audit", description: "We review your denial rate, AR aging, clean claim rate and payer mix against industry benchmarks — and tell you what we find, whether or not you hire us." },
-  { step: "02", title: "Practice onboarding", description: "We learn your systems, workflows, payers and specialty requirements, then configure around them. Typically 2–4 weeks, with no interruption to your claim flow." },
+  { step: "02", title: "Practice onboarding", description: "We learn your systems, workflows, payers and specialty requirements, then configure around them. Typically under 2 weeks, with no interruption to your claim flow." },
   { step: "03", title: "Claims and follow-up", description: "We code, scrub and submit claims, work the payer queue, and appeal denials instead of writing them off." },
   { step: "04", title: "Monthly reporting", description: "Transparent reporting on collections, denials by reason and payer, and AR aging — with the specific fixes that will move your numbers." },
 ] as const;

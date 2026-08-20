@@ -119,6 +119,58 @@ export function articleSchema(p: {
   };
 }
 
+/**
+ * Case study page: an Article describing the engagement, plus a Review
+ * carrying the client's own words attributed to them by name.
+ *
+ * The Review is deliberately a separate top-level object rather than nested
+ * inside the Article, because the thing being reviewed is the organisation,
+ * not the article about it.
+ *
+ * Worth knowing what this does and does not buy: Google does not render review
+ * rich results for "self-serving" reviews — an entity publishing reviews of
+ * itself on its own site — so this will not produce stars in the SERP. It is
+ * emitted because answer engines do parse it when reconciling what an
+ * organisation is and who vouches for it, which is where the value is.
+ *
+ * Only emit this where the testimonial is genuine and the named person has
+ * agreed to be quoted. Attributed quotes are the one kind of markup where
+ * being wrong is a problem beyond ranking.
+ */
+export function caseStudySchema(c: {
+  title: string;
+  slug: string;
+  description: string;
+  quote: string;
+  clientName: string;
+  clientRole: string;
+  lastReviewed: string;
+}) {
+  const url = `${site.url}/case-studies/${c.slug}`;
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: c.title,
+      description: c.description,
+      url,
+      datePublished: c.lastReviewed,
+      dateModified: c.lastReviewed,
+      author: { "@id": ORG_ID },
+      publisher: { "@id": ORG_ID },
+      mainEntityOfPage: url,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Review",
+      itemReviewed: { "@id": ORG_ID },
+      reviewBody: c.quote,
+      author: { "@type": "Person", name: c.clientName, jobTitle: c.clientRole },
+      publisher: { "@id": ORG_ID },
+    },
+  ];
+}
+
 export function itemListSchema(items: { name: string; path: string }[], name: string) {
   return {
     "@context": "https://schema.org",
