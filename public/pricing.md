@@ -60,7 +60,7 @@ training, management overhead, and coverage during absence or turnover.
 
 | Model | How charged | Vendor paid on a denied, abandoned claim? |
 | --- | --- | --- |
-| Percentage of net collections (Vizora) | 3.2%-8% of what is collected | No |
+| Percentage of net collections (Vizora) | 3%-6% of what is collected | No |
 | Flat fee per claim | Fixed amount per claim submitted | Yes |
 | Hourly / FTE staffing | Per hour or per seat | Yes |
 

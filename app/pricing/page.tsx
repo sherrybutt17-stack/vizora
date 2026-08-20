@@ -64,14 +64,14 @@ export default function PricingPage() {
             name: "Percentage of net collections",
             description:
               "Full revenue cycle management billed as a percentage of what is actually collected. Starts at 3%; typically 3–6% depending on practice size, specialty and claim volume. No setup fees, and denial appeals are never billed separately.",
-            price: "3.2",
+            price: site.pricing.startingRate.replace("%", ""),
             unit: "percent of net collections, starting rate",
           },
         ]),
         webPageSchema({
           name: "Medical billing pricing",
           description:
-            "Percentage-of-collections pricing starting at 3.2%, what is included, and what we do not charge for.",
+            `Percentage-of-collections pricing starting at ${site.pricing.startingRate}, what is included, and what we do not charge for.`,
           path: "/pricing",
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.rcm],
