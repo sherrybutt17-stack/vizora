@@ -1,0 +1,756 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Vizora design tokens — dark-first premium health-fintech
+   ============================================================ */
+@theme {
+  /* Surfaces */
+  --color-bg: #05080f;
+  --color-bg-soft: #070c17;
+  --color-surface: #0b111f;
+  --color-surface-2: #121a2c;
+  --color-surface-3: #18223a;
+  --color-border: #1e293b;
+  --color-border-soft: #151f33;
+
+  /* Brand */
+  --color-navy: #0b3d91;
+  --color-navy-deep: #082b66;
+  --color-blue: #3080ff;
+  --color-accent: #14b8a6;
+  --color-accent-2: #2ec4b6;
+  --color-accent-dim: #0e8177;
+
+  /* Signal */
+  --color-positive: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #f87171;
+
+  /* Text */
+  --color-ink: #f8fafc;
+  --color-ink-2: #cbd5e1;
+  --color-muted: #94a3b8;
+  --color-faint: #7f8ea6;
+
+  /* Type */
+  --font-display: var(--font-instrument), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Layout */
+  --spacing-section: 7rem;
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    overflow-x: clip;
+  }
+
+  body { overflow-x: clip; }
+
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink-2);
+    font-family: var(--font-sans);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    color: var(--color-ink);
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+  }
+
+  p { text-wrap: pretty; }
+
+  /* Form controls carry an intrinsic min-width (a select is as wide as its
+     longest option, an input defaults to ~20 characters). Inside a grid or
+     flex child, whose default is min-width:auto, that propagates upward and
+     pushed the page past the viewport at 320px. */
+  input, select, textarea, output {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Long tokens — an email address, a payer name, a code — must never be the
+     reason a layout scrolls sideways. */
+  a, p, li, dd, h1, h2, h3, h4 { overflow-wrap: break-word; }
+
+  ::selection {
+    background-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* Keyboard focus should look designed, not defaulted. The outline still
+     carries the contrast (it is the part that satisfies WCAG 2.4.7); the ring
+     and glow beneath it are what make it read as part of this UI rather than
+     the browser's. box-shadow is used for the halo rather than a second
+     outline so it cannot affect layout, and it is not animated — a focus ring
+     that eases in lags behind fast tabbing. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 3px;
+    border-radius: 4px;
+    box-shadow:
+      0 0 0 1px color-mix(in oklab, var(--color-bg) 90%, transparent),
+      0 0 0 6px color-mix(in oklab, var(--color-accent) 18%, transparent),
+      0 8px 26px -10px color-mix(in oklab, var(--color-accent) 55%, transparent);
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar { width: 11px; height: 11px; }
+  ::-webkit-scrollbar-track { background: var(--color-bg); }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-surface-3);
+    border-radius: 99px;
+    border: 3px solid var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #24304d; }
+}
+
+@layer base {
+  /* WCAG 2.5.8 asks for 24x24 minimum. Inline links inside running prose are
+     exempt; navigation, footer and card links are not. */
+  @media (pointer: coarse), (max-width: 768px) {
+    nav a, nav button, footer a, [data-tap] {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+  }
+}
+
+@layer utilities {
+  /* Aurora / mesh backdrop */
+  /* Static rgba rather than color-mix(): the same visual result, but far
+     cheaper to paint on throttled mobile CPUs where these cover the viewport. */
+  .bg-aurora {
+    background-image:
+      radial-gradient(58rem 30rem at 12% -8%, rgba(11, 61, 145, 0.44), transparent 62%),
+      radial-gradient(44rem 26rem at 88% 4%, rgba(20, 184, 166, 0.2), transparent 66%),
+      radial-gradient(38rem 24rem at 50% 108%, rgba(48, 128, 255, 0.15), transparent 70%);
+    will-change: auto;
+  }
+
+  /* Technical grid, masked to fade */
+  .bg-grid {
+    background-image:
+      linear-gradient(to right, rgba(30, 41, 59, 0.62) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(30, 41, 59, 0.62) 1px, transparent 1px);
+    background-size: 62px 62px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 62% at 50% 0%, #000 45%, transparent 100%);
+    mask-image: radial-gradient(ellipse 80% 62% at 50% 0%, #000 45%, transparent 100%);
+  }
+
+  .text-gradient {
+    background: linear-gradient(96deg, var(--color-ink) 12%, var(--color-accent-2) 58%, var(--color-blue) 96%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* 1px gradient border via mask — no pseudo-element pileup */
+  .ring-gradient {
+    position: relative;
+  }
+  .ring-gradient::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(150deg,
+      color-mix(in oklab, var(--color-accent) 55%, transparent),
+      color-mix(in oklab, var(--color-border) 90%, transparent) 42%,
+      color-mix(in oklab, var(--color-blue) 40%, transparent));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .shadow-glow { box-shadow: 0 0 0 1px color-mix(in oklab, var(--color-accent) 22%, transparent), 0 18px 48px -12px color-mix(in oklab, var(--color-accent) 26%, transparent); }
+  .shadow-lift { box-shadow: 0 1px 0 0 color-mix(in oklab, #fff 6%, transparent) inset, 0 24px 60px -24px rgb(0 0 0 / 0.85); }
+
+  .animate-marquee { animation: marquee 46s linear infinite; }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  .animate-draw { animation: draw 1.6s var(--ease-out-expo) forwards; }
+  @keyframes draw { to { stroke-dashoffset: 0; } }
+}
+
+/* Honor reduced motion globally */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* ============================================================
+   Premium surface treatment — layered gradients, glow, grain
+   ============================================================ */
+@layer utilities {
+  /* Slowly drifting mesh. Offset radial fields on independent timings so the
+     motion never visibly loops.
+
+     The softness is baked into the gradient stops rather than computed with
+     `filter: blur()`. A 28px blur over a surface 1.4x the viewport is one of
+     the most expensive things a mobile GPU can be asked to composite, and it
+     ran on every frame forever — it was the bulk of the homepage's mobile LCP
+     cost. Radial gradients are already soft; a third mid stop reproduces the
+     falloff for free. The saturate() is folded into the colour values. */
+  .bg-mesh {
+    position: absolute;
+    inset: -20%;
+    background-image:
+      radial-gradient(46rem 33rem at 18% 22%, rgba(13, 68, 160, 0.5), rgba(13, 68, 160, 0.16) 38%, transparent 68%),
+      radial-gradient(40rem 29rem at 82% 18%, rgba(22, 199, 180, 0.26), rgba(22, 199, 180, 0.08) 40%, transparent 70%),
+      radial-gradient(44rem 31rem at 62% 78%, rgba(52, 138, 255, 0.22), rgba(52, 138, 255, 0.07) 40%, transparent 72%),
+      radial-gradient(31rem 24rem at 28% 82%, rgba(50, 210, 196, 0.16), transparent 72%);
+  }
+
+  /* Drift is desktop-only. At phone size the movement is barely legible, but
+     the per-frame composite is charged in full — and that is exactly the
+     device where the budget is tightest. */
+  @media (min-width: 1024px) {
+    .bg-mesh {
+      animation: mesh-drift 26s ease-in-out infinite alternate;
+      will-change: transform;
+    }
+  }
+  @keyframes mesh-drift {
+    0%   { transform: translate3d(0, 0, 0) scale(1); }
+    50%  { transform: translate3d(-2.5%, 1.8%, 0) scale(1.06); }
+    100% { transform: translate3d(2%, -2%, 0) scale(1.02); }
+  }
+
+  /* Fine grain over gradients — stops large flat fills from banding on
+     8-bit displays, which is what makes cheap dark sites look cheap. */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* Conic sheen that rotates around a card border. */
+  .border-sheen { position: relative; isolation: isolate; }
+  .border-sheen::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: conic-gradient(from var(--sheen-angle, 0deg),
+      transparent 0deg, rgba(20, 184, 166, 0.7) 40deg,
+      transparent 110deg, transparent 250deg,
+      rgba(48, 128, 255, 0.55) 300deg, transparent 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    animation: sheen-spin 6s linear infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+  @property --sheen-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes sheen-spin { to { --sheen-angle: 360deg; } }
+
+  /* Cursor-tracked radial highlight. Coordinates set by SpotlightCard. */
+  .spotlight { position: relative; }
+  .spotlight::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    background: radial-gradient(
+      22rem circle at var(--mx, 50%) var(--my, 50%),
+      rgba(20, 184, 166, 0.13), transparent 42%);
+    pointer-events: none;
+  }
+  .spotlight:hover::before { opacity: 1; }
+
+  /* A permanent brand gradient with a highlight sweeping across it. An
+     earlier version animated the whole gradient, which left most of the
+     phrase plain white for most of the cycle and read as a rendering bug. */
+  .text-shimmer {
+    background-image:
+      linear-gradient(100deg, rgba(255,255,255,0) 38%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 62%),
+      linear-gradient(96deg, var(--color-accent-2) 8%, var(--color-blue) 46%, var(--color-accent) 92%);
+    background-size: 220% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    /* Parked on the animation's own start frame, so the highlight sits off the
+       text and only the brand gradient shows. Without this the default
+       `0% 0%` puts the white band mid-phrase, and it would visibly jump when
+       the animation took over. */
+    background-position: 160% 0, 0 0;
+    /* Delayed, not removed. This treatment lands on the h1 span that IS the
+       homepage LCP element, and animating `background-position` on
+       `background-clip: text` repaints the glyphs every frame. Letting first
+       paint finish before the sweep starts costs nothing visually. */
+    animation: shimmer 6.5s ease-in-out 1.4s infinite;
+  }
+  @keyframes shimmer {
+    0%   { background-position: 160% 0, 0 0; }
+    100% { background-position: -60% 0, 0 0; }
+  }
+
+  .glass {
+    background: linear-gradient(160deg, rgba(18, 26, 44, 0.82), rgba(11, 17, 31, 0.7));
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  .animate-float { animation: float 7s ease-in-out infinite; }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-9px); }
+  }
+
+  .animate-pulse-ring { animation: pulse-ring 2.6s ease-out infinite; }
+  @keyframes pulse-ring {
+    0%   { transform: scale(0.85); opacity: 0.65; }
+    70%  { transform: scale(1.55); opacity: 0; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  .animate-dash { animation: dash 3.2s linear infinite; }
+  @keyframes dash { to { stroke-dashoffset: -220; } }
+}
+
+
+/* ============================================================
+   Premium pass II — typography, materials, light
+   ------------------------------------------------------------
+   The principle borrowed here is restraint: fewer effects, each
+   doing more work. Large type carries the page, hairlines do the
+   dividing, and light comes from one direction so surfaces read
+   as physical rather than decorated.
+   ============================================================ */
+
+@theme {
+  /* Fluid display scale. Each step is a clamp so the jump between
+     breakpoints is continuous rather than stepped — the thing that makes
+     responsive type feel engineered rather than adapted. */
+  --text-display-xl: clamp(2.6rem, 6.4vw, 5.25rem);
+  --text-display-lg: clamp(2.2rem, 5vw, 3.9rem);
+  --text-display-md: clamp(1.85rem, 3.9vw, 2.9rem);
+  --text-display-sm: clamp(1.5rem, 2.6vw, 2rem);
+}
+
+@layer base {
+  /* Optical tracking. Large type needs tighter letter-spacing than small type
+     to read as the same weight — this is the single change that most separates
+     typography that was set from typography that was defaulted. */
+  h1 { letter-spacing: -0.035em; }
+  h2 { letter-spacing: -0.03em; }
+  h3 { letter-spacing: -0.022em; }
+
+  /* Tabular figures everywhere numbers are compared column to column. */
+  .font-mono, table, dd, [data-countup] { font-variant-numeric: tabular-nums; }
+}
+
+@layer utilities {
+  /* --------------------------------------------------------------- type */
+  .text-display-xl { font-size: var(--text-display-xl); line-height: 0.98; letter-spacing: -0.04em; }
+  .text-display-lg { font-size: var(--text-display-lg); line-height: 1.03; letter-spacing: -0.035em; }
+  .text-display-md { font-size: var(--text-display-md); line-height: 1.08; letter-spacing: -0.03em; }
+  .text-display-sm { font-size: var(--text-display-sm); line-height: 1.18; letter-spacing: -0.024em; }
+
+  /* Lead paragraph. Slightly larger, slightly looser, capped measure — a
+     paragraph wider than about 68 characters stops being readable. */
+  .lead { font-size: clamp(1.05rem, 1.35vw, 1.22rem); line-height: 1.62; max-width: 42ch; }
+  .measure { max-width: 68ch; }
+
+  /* ---------------------------------------------------------- materials */
+
+  /* A single specular hairline along the top edge, as if lit from above.
+     One light source, consistently applied, is what makes a set of surfaces
+     look like one material instead of several. */
+  .edge-light {
+    position: relative;
+  }
+  .edge-light::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 1px;
+    border-radius: inherit;
+    background: linear-gradient(90deg,
+      transparent, rgba(255, 255, 255, 0.11) 22%, rgba(255, 255, 255, 0.17) 50%,
+      rgba(255, 255, 255, 0.11) 78%, transparent);
+    pointer-events: none;
+  }
+
+  /* Elevated panel. Deliberately not "glassmorphism" — one gradient, one
+     inner highlight, one long shadow. Backdrop blur is reserved for the
+     header, where there is genuinely something moving behind it. */
+  .surface-raised {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0) 42%),
+      linear-gradient(168deg, #101828, #0a1020 62%, #080d19);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.055) inset,
+      0 40px 80px -40px rgba(0, 0, 0, 0.9),
+      0 2px 8px -2px rgba(0, 0, 0, 0.6);
+  }
+
+  .surface-sunken {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.28), rgba(0, 0, 0, 0.06));
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0.04) inset;
+  }
+
+  /* Hairline rules that fade at both ends. A rule that runs edge to edge in a
+     dark UI reads as a seam; one that fades reads as a division. */
+  .rule-fade {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-border) 12%, var(--color-border) 88%, transparent);
+    border: 0;
+  }
+  .rule-fade-accent {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(20, 184, 166, 0.4) 30%, rgba(48, 128, 255, 0.35) 70%, transparent);
+    border: 0;
+  }
+
+  /* Fade content into the page edge — used on marquees and overflow rails so
+     they end rather than get cut. */
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(180deg, #000 62%, transparent);
+    mask-image: linear-gradient(180deg, #000 62%, transparent);
+  }
+
+  /* A single wide beam behind hero content. Cheaper than the full mesh and
+     used where the mesh would be too much. */
+  .beam {
+    background-image:
+      radial-gradient(64rem 26rem at 50% -14%, rgba(20, 184, 166, 0.16), transparent 62%),
+      radial-gradient(52rem 24rem at 14% -8%, rgba(11, 61, 145, 0.34), transparent 66%);
+  }
+
+  /* Numeric display treatment for big metrics. */
+  .metric {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  /* --------------------------------------------------- interaction feel */
+
+  /* Spring-ish easing on interactive elements. The overshoot is small on
+     purpose: enough to feel responsive, not enough to feel bouncy. */
+  .ease-spring { transition-timing-function: cubic-bezier(0.34, 1.4, 0.64, 1); }
+
+  /* Progressive disclosure of an arrow on hover, without layout shift. */
+  .nudge > .nudge-target { transition: transform 0.35s var(--ease-out-expo); }
+  .nudge:hover > .nudge-target { transform: translateX(3px); }
+}
+
+/* Sticky scroll sections rely on the scroll container not being clipped.
+   `overflow-x: clip` on html/body is safe for this; `overflow: hidden` is not,
+   which is why the base layer uses clip. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    /* Scroll-driven entrance. Where supported this replaces the JS observer
+       entirely — no main-thread work, no layout reads, and it cannot get
+       stuck the way an IntersectionObserver can if callbacks are coalesced
+       during a fast scroll. Transform only: an opacity fade would drop muted
+       text below the 4.5:1 contrast floor while it runs. */
+    .scroll-rise {
+      animation: scroll-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 8% cover 26%;
+    }
+    @keyframes scroll-rise {
+      from { transform: translateY(20px); }
+      to   { transform: translateY(0); }
+    }
+  }
+}
+
+
+/* ============================================================
+   Touch ergonomics (WCAG 2.5.8)
+   ------------------------------------------------------------
+   Inline links inside running prose are exempt from the target size
+   requirement, and stretching them to 44px would break line rhythm for no
+   benefit. Everything that behaves as navigation is not exempt.
+   ============================================================ */
+@layer base {
+  @media (pointer: coarse), (max-width: 768px) {
+    /* Dense link lists — sitemap, glossary siblings, footer indexes. These
+       read as navigation, not prose, so they get real targets. */
+    .link-list a {
+      min-height: 44px;
+      min-width: 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    /* A range input's box is only as tall as its track, while the thing you
+       actually drag is the thumb. Give the control a full-height hit area and
+       paint the track through a pseudo-element instead. */
+    input[type="range"] {
+      height: 2.75rem;
+      background: transparent;
+    }
+    input[type="range"]::-webkit-slider-runnable-track {
+      height: 0.375rem;
+      border-radius: 999px;
+      background: var(--color-surface-3);
+    }
+    input[type="range"]::-moz-range-track {
+      height: 0.375rem;
+      border-radius: 999px;
+      background: var(--color-surface-3);
+    }
+  }
+}
+
+@layer components {
+  /* Range control with a 44px hit area and a 6px painted track.
+     Written as a component-layer rule rather than base so it wins against the
+     utility classes on the element, and styled through the pseudo-elements so
+     the visible track stays thin while the touch target does not. */
+  .range-control {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 2.75rem;
+    background: transparent;
+  }
+  .range-control::-webkit-slider-runnable-track {
+    height: 0.375rem;
+    border-radius: 999px;
+    background: var(--color-surface-3);
+  }
+  .range-control::-moz-range-track {
+    height: 0.375rem;
+    border-radius: 999px;
+    background: var(--color-surface-3);
+  }
+  .range-control::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    height: 1.25rem;
+    width: 1.25rem;
+    margin-top: -0.4375rem; /* centres the thumb on the 6px track */
+    border-radius: 999px;
+    background: var(--color-accent);
+    border: 2px solid #04211e;
+    box-shadow: 0 2px 8px -1px rgb(0 0 0 / 0.6);
+    cursor: pointer;
+  }
+  .range-control::-moz-range-thumb {
+    height: 1.25rem;
+    width: 1.25rem;
+    border-radius: 999px;
+    background: var(--color-accent);
+    border: 2px solid #04211e;
+    cursor: pointer;
+  }
+  .range-control:focus-visible::-webkit-slider-thumb {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /* A pulse travelling down the ClaimFlow rail.
+
+     Driven by scaleY rather than height. Height is a layout property, so even
+     on an absolutely-positioned element it forces a layout pass per frame;
+     scaleY on a fixed-height element is handled entirely by the compositor.
+     The element fills its wrapper, which is itself pinned to the rail's exact
+     geometry, so the pulse can never overshoot the last node. */
+  .claimflow-pulse {
+    height: 100%;
+    transform-origin: top;
+    transform: scaleY(0);
+    background: linear-gradient(180deg, transparent, var(--color-accent));
+    animation: claimflow-travel 3.6s var(--ease-out-expo) infinite;
+    opacity: 0.85;
+  }
+  @keyframes claimflow-travel {
+    0%        { transform: scaleY(0); opacity: 0; }
+    12%       { opacity: 0.9; }
+    70%       { transform: scaleY(1); opacity: 0.9; }
+    88%, 100% { transform: scaleY(1); opacity: 0; }
+  }
+}
+
+
+/* ============================================================
+   Footer column stagger
+   ------------------------------------------------------------
+   Each column resolves on its own view() timeline, so the footer
+   assembles column by column as it comes into range instead of
+   arriving as one slab. Transform only; zero main-thread cost.
+   ============================================================ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .footer-stagger > * {
+      animation: footer-col-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+    @keyframes footer-col-rise {
+      from { transform: translateY(14px); }
+      to   { transform: translateY(0); }
+    }
+  }
+}
+
+/* ============================================================
+   Table row build
+   ------------------------------------------------------------
+   Each row carries its own view() timeline, so rows resolve as
+   they individually cross into the viewport. Scrolling a long
+   comparison table therefore reads as the table assembling
+   itself rather than as one block sliding up.
+
+   Transform only, no opacity: a fade would drop table text
+   below the contrast floor for the duration, which is the same
+   reason <Reveal> refuses to fade.
+
+   Zero main-thread cost, and browsers without scroll-driven
+   animation support simply render the finished table.
+   ============================================================ */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .table-rise tbody tr {
+      animation: table-row-rise linear both;
+      animation-timeline: view();
+      animation-range: entry 2% cover 16%;
+    }
+    @keyframes table-row-rise {
+      from { transform: translateY(10px); }
+      to   { transform: translateY(0); }
+    }
+  }
+}
+
+/* ============================================================
+   View transitions
+   ------------------------------------------------------------
+   Route-level motion handled by the browser's View Transitions
+   API via React's <ViewTransition>. Costs no JavaScript: the
+   compositor animates snapshots of the old and new pages.
+
+   Browsers without support navigate instantly, which is the
+   correct degradation — nothing is hidden behind the effect.
+   ============================================================ */
+
+/* The transition overlay sits above the page and captures pointer events for
+   the full duration, so a click landing mid-navigation would be swallowed.
+   Hit-testing still skips named participants, which is why transitions here
+   are kept short. */
+::view-transition {
+  pointer-events: none;
+}
+
+/* The header is the spatial anchor. Content moves; chrome does not — without
+   this the whole viewport appears to slide and the user loses their place.
+   `display: none` on the old snapshot prevents a flash of two headers. */
+::view-transition-group(site-header) {
+  animation: none;
+  z-index: 100;
+}
+::view-transition-old(site-header) { display: none; }
+::view-transition-new(site-header) { animation: none; }
+
+/* Directional slides. Horizontal direction encodes navigation history:
+   left is deeper, right is back. 60px is enough to read as direction without
+   asking the eye to track a fast-moving surface. */
+::view-transition-old(.nav-forward) {
+  --slide-offset: -60px;
+  animation: 150ms ease-in both vt-fade reverse,
+             400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-forward) {
+  --slide-offset: 60px;
+  animation: 210ms ease-out 150ms both vt-fade,
+             400ms ease-in-out both vt-slide;
+}
+::view-transition-old(.nav-back) {
+  --slide-offset: 60px;
+  animation: 150ms ease-in both vt-fade reverse,
+             400ms ease-in-out both vt-slide reverse;
+}
+::view-transition-new(.nav-back) {
+  --slide-offset: -60px;
+  animation: 210ms ease-out 150ms both vt-fade,
+             400ms ease-in-out both vt-slide;
+}
+
+/* Asymmetric on purpose: the old page leaves quickly so it stops competing
+   for attention, the new one arrives more gently and waits for the exit to
+   finish before it becomes visible. Opacity only — no blur on a full-page
+   snapshot, which is the most expensive thing this could do. */
+@keyframes vt-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes vt-slide {
+  from { translate: var(--slide-offset); }
+  to   { translate: 0; }
+}
+
+/* Shared-element morph: "the same thing, seen closer". The brief blur hides
+   pixel interpolation artifacts mid-flight; it is confined to the morphing
+   element, never the page. */
+::view-transition-group(.morph) {
+  animation-duration: 420ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+::view-transition-image-pair(.morph) {
+  animation-name: vt-morph-blur;
+}
+@keyframes vt-morph-blur {
+  30% { filter: blur(2px); }
+}
+
+/* Positional movement across the viewport is the most common trigger for
+   motion sensitivity. The global reduced-motion block cannot reach these
+   pseudo-elements, so they are zeroed explicitly. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*),
+  ::view-transition-group(*) {
+    animation-duration: 0s !important;
+    animation-delay: 0s !important;
+  }
+}
