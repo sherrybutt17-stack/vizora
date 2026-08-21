@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
-  JsonLd, breadcrumbSchema, definedTermSchema, webPageSchema, qaPageSchema, ENTITIES,
+  JsonLd, breadcrumbSchema, definedTermSchema, webPageSchema, faqSchema, ENTITIES,
 } from "@/lib/schema";
 import {
   getTerm, glossarySlugs, glossaryCategories, resolveRelated, termsInCategory,
@@ -73,7 +73,12 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ t
       <JsonLd data={[
         breadcrumbSchema(crumbs),
         definedTermSchema(t),
-        qaPageSchema({ question, answer: t.answer, path: `/glossary/${t.slug}` }),
+        // FAQPage, not QAPage. Google restricts QAPage to pages where users
+        // can submit their own answers; using it for a single site-written
+        // answer is explicitly disallowed and was the source of the Q&A
+        // structured data warnings in Search Console. Both the question and
+        // the answer are rendered on the page, which is what FAQPage requires.
+        faqSchema([{ question, answer: t.answer }]),
         webPageSchema({
           name: `What is ${t.term}?`,
           description: t.answer,

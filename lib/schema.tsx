@@ -443,25 +443,20 @@ export function offerCatalogSchema(tiers: {
  * than a list. QAPage is a closer fit than FAQPage where the page IS the
  * answer — comparison pages, for instance.
  */
-export function qaPageSchema(q: {
-  question: string;
-  answer: string;
-  path: string;
-}) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "QAPage",
-    "@id": `${site.url}${q.path}#qa`,
-    mainEntity: {
-      "@type": "Question",
-      name: q.question,
-      text: q.question,
-      answerCount: 1,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: q.answer,
-        url: `${site.url}${q.path}`,
-      },
-    },
-  };
-}
+/*
+ * qaPageSchema was removed on 2026-08-22.
+ *
+ * It was emitted on all 41 glossary pages and 10 comparison pages, and Search
+ * Console flagged five Q&A structured data issues against it. The fields it
+ * reported missing — author, datePublished and upvoteCount — were a symptom
+ * rather than the problem: QAPage is scoped by Google to pages where users can
+ * submit answers to a question, and it explicitly must not be used for content
+ * with a single answer and no way to add alternatives.
+ *
+ * Both page types now emit FAQPage instead, which is the correct type for
+ * site-written answers and preserves every extractable question-answer pair.
+ * Populating upvoteCount on editorial content would also have published an
+ * engagement number that does not exist.
+ *
+ * Do not reintroduce this unless the site gains genuine user-submitted answers.
+ */

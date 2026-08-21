@@ -7,7 +7,7 @@ import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import {
-  JsonLd, breadcrumbSchema, comparisonSchema, faqSchema, qaPageSchema, webPageSchema, ENTITIES,
+  JsonLd, breadcrumbSchema, comparisonSchema, faqSchema, webPageSchema, ENTITIES,
 } from "@/lib/schema";
 import { getComparison, comparisonSlugs, comparisons } from "@/lib/content/comparisons";
 import { pageMeta } from "@/lib/seo";
@@ -56,8 +56,11 @@ export default async function ComparisonPage({ params }: { params: Promise<{ slu
       <JsonLd data={[
         breadcrumbSchema(crumbs),
         comparisonSchema({ ...c, lastReviewed: LAST_UPDATED }),
-        qaPageSchema({ question: c.question, answer: c.answer, path: `/compare/${c.slug}` }),
-        faqSchema(c.faqs),
+        // The headline question joins the FAQ list rather than being emitted
+        // as a separate QAPage. QAPage is for user-submitted answers; a single
+        // site-written answer is explicitly outside its scope, and emitting
+        // both types for the same content also duplicated the pair.
+        faqSchema([{ question: c.question, answer: c.answer }, ...c.faqs]),
         webPageSchema({
           name: c.title,
           description: c.metaDescription,
