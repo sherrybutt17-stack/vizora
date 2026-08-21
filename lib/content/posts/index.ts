@@ -1,4 +1,7 @@
 import type { BlogPost } from "../blog-types";
+import pAnes from "./anesthesia-billing-units-and-medical-direction";
+import pGs from "./general-surgery-assistant-and-team-billing";
+import pUc from "./urgent-care-billing-s-codes-and-modifier-25";
 import pCard from "./cardiology-billing-component-denials";
 import pFam from "./family-medicine-em-and-preventive-denials";
 import pBh from "./behavioral-health-billing-denials";
@@ -26,6 +29,9 @@ import p6 from "./understanding-medical-coding-updates";
  * ordering.
  */
 const all: BlogPost[] = [
+  pAnes,
+  pGs,
+  pUc,
   pCard,
   pFam,
   pBh,
