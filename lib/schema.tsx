@@ -19,6 +19,24 @@ export function organizationSchema() {
     description: site.description,
     telephone: site.phone,
     email: site.email,
+    // Exported from components/brand/Logo.tsx to public/logo.png at 512x512.
+    // Google requires a resolvable image; referencing a file that does not
+    // exist is the same class of error as a sameAs pointing at a 404.
+    logo: {
+      "@type": "ImageObject",
+      url: `${site.url}/logo.png`,
+      width: 512,
+      height: 512,
+    },
+    image: `${site.url}/logo.png`,
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: "customer service",
+      telephone: site.phone,
+      email: site.email,
+      areaServed: "US",
+      availableLanguage: "English",
+    },
     areaServed: { "@type": "Country", name: "United States" },
     knowsAbout: [
       "Medical billing", "Revenue cycle management", "Medical coding",
@@ -113,7 +131,12 @@ export function articleSchema(p: {
     url: `${site.url}/blog/${p.slug}`,
     datePublished: p.published,
     dateModified: p.updated,
-    author: { "@type": "Organization", name: p.authorName },
+    image: `${site.url}/og.png`,
+    // Reference the organisation entity rather than minting a second, bare
+    // Organization node. The inline version carried only a name, which left
+    // Organization.url missing — a required field — and split the entity in
+    // two for anything trying to reconcile who published the article.
+    author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     mainEntityOfPage: `${site.url}/blog/${p.slug}`,
   };
@@ -156,6 +179,7 @@ export function caseStudySchema(c: {
       url,
       datePublished: c.lastReviewed,
       dateModified: c.lastReviewed,
+      image: `${site.url}/og.png`,
       author: { "@id": ORG_ID },
       publisher: { "@id": ORG_ID },
       mainEntityOfPage: url,
@@ -164,6 +188,11 @@ export function caseStudySchema(c: {
       "@context": "https://schema.org",
       "@type": "Review",
       itemReviewed: { "@id": ORG_ID },
+      // reviewRating is deliberately omitted. Google lists it as recommended,
+      // but these clients never gave a star rating — inventing one to satisfy
+      // a validator would be fabricating the exact signal the property exists
+      // to convey. A Review without a rating is valid.
+      datePublished: c.lastReviewed,
       reviewBody: c.quote,
       author: { "@type": "Person", name: c.clientName, jobTitle: c.clientRole },
       publisher: { "@id": ORG_ID },
@@ -331,6 +360,7 @@ export function comparisonSchema(c: {
     url: `${site.url}/compare/${c.slug}`,
     datePublished: c.lastReviewed,
     dateModified: c.lastReviewed,
+    image: `${site.url}/og.png`,
     author: { "@id": ORG_ID },
     publisher: { "@id": ORG_ID },
     mainEntityOfPage: `${site.url}/compare/${c.slug}`,

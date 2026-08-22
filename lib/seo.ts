@@ -19,6 +19,8 @@ export function clampDescription(text: string, max = 155) {
   return `${cut.slice(0, lastSpace > 0 ? lastSpace : max).replace(/[,;:.\u2014-]+$/, "")}…`;
 }
 
+export const OG_IMAGE = `${site.url}/og.png`;
+
 export function pageMeta({
   title,
   description,
@@ -49,7 +51,16 @@ export function pageMeta({
       siteName: site.name,
       type: "website",
       locale: "en_US",
+      // Set here rather than only in the root layout: pageMeta replaces the
+      // layout's openGraph object wholesale rather than merging into it, so
+      // every page that called pageMeta was shipping a card with no image.
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: site.name }],
     },
-    twitter: { card: "summary_large_image", title: `${title} | ${site.name}`, description: desc },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${site.name}`,
+      description: desc,
+      images: [OG_IMAGE],
+    },
   };
 }
