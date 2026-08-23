@@ -9,7 +9,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { RelatedContent } from "@/components/sections/RelatedContent";
 import { CitedFigure } from "@/components/sections/CitedFigure";
 import { JsonLd, breadcrumbSchema, faqSchema, webPageSchema, serviceSchema, ENTITIES } from "@/lib/schema";
-import { getState, stateSlugs, nearbyStates, regionOf } from "@/lib/content/locations";
+import { getState, stateSlugs, nearbyStates, regionOf, states } from "@/lib/content/locations";
 import { specialties } from "@/lib/content/specialties";
 import { services } from "@/lib/content/services";
 import { industry } from "@/lib/content/stats";
@@ -77,14 +77,37 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
         ? `${s.medicaid} is administered largely fee-for-service, which means claims are adjudicated by the state rather than by competing plans. That simplifies routing considerably, but it also means state policy changes hit every Medicaid claim at once rather than phasing in plan by plan.`
         : `${s.medicaid} operates a mixed model, with some populations in managed care and others remaining fee-for-service. Routing therefore depends on the member's eligibility category rather than on the state alone — and verifying which applies before the visit is what prevents the denial.`;
 
+  /**
+   * States sharing this MAC jurisdiction.
+   *
+   * Two states with the same contractor, the same Medicaid delivery model and
+   * the same expansion status previously generated near-identical prose —
+   * Vermont and Maine overlapped 94% on unique-word content, which is exactly
+   * the signal that gets a programmatic page crawled and left unindexed. The
+   * differentiating fields are the ones that genuinely vary per state:
+   * `note`, `payers`, `metros` and the Medicaid program name. The composition
+   * below leans on those rather than on the three shared classifiers.
+   */
+  const peers = states
+    .filter((o) => o.jurisdiction === s.jurisdiction && o.slug !== s.slug)
+    .map((o) => o.name);
+  const peerPhrase =
+    peers.length === 0
+      ? `${s.name} is the only state in Jurisdiction ${s.jurisdiction}, so its coverage determinations apply nowhere else.`
+      : `Jurisdiction ${s.jurisdiction} also covers ${peers.length === 1 ? peers[0] : `${peers.slice(0, -1).join(", ")} and ${peers[peers.length - 1]}`}, so determinations issued there apply to ${s.name} practices too.`;
+
   const faqs = [
+    {
+      question: `What is different about billing in ${s.name}?`,
+      answer: `${s.note} That is the fact worth building a workflow around here — more than any general best practice, because it changes who adjudicates the claim and under which rules.`,
+    },
     {
       question: `Do you bill ${s.medicaid}?`,
       answer: `Yes. ${s.medicaid} is ${s.name}'s Medicaid program. ${modelImplication} We maintain requirements at that level rather than treating Medicaid as a single generic payer, which is where most Medicaid denials originate.`,
     },
     {
       question: `Which Medicare contractor processes ${s.name} claims?`,
-      answer: `${s.name} Part B claims are adjudicated by ${s.mac} under Jurisdiction ${s.jurisdiction}. This matters more than most practices realize: each MAC issues its own Local Coverage Determinations, so a service payable in one jurisdiction can be denied for medical necessity in another with identical documentation.`,
+      answer: `${s.name} Part B claims are adjudicated by ${s.mac} under Jurisdiction ${s.jurisdiction}. ${peerPhrase} This matters more than most practices realize: each MAC issues its own Local Coverage Determinations, so a service payable in one jurisdiction can be denied for medical necessity in another with identical documentation. Alongside Medicare, ${s.payers[0]} is the commercial payer whose policy changes move the most volume for a typical ${s.name} practice.`,
     },
     {
       question: `Which commercial payers matter most in ${s.name}?`,
@@ -96,7 +119,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
     },
     {
       question: `Do you work with practices outside major ${s.name} metros?`,
-      answer: `Yes. We work with practices across ${s.name}, from ${s.metros.slice(0, 2).join(" and ")} through rural and independent practices. Billing is performed remotely, so location within the state does not affect service — though rural practices often have a different payer mix worth accounting for.`,
+      answer: `Yes. We work with practices across ${s.name} — ${s.metros.slice(0, -1).join(", ")} and ${s.metros[s.metros.length - 1]}, and rural and independent practices outside them. Billing is performed remotely, so location within the state does not affect service. Payer mix does: outside the ${s.metros[0]} area, ${s.medicaid} and ${s.payers[s.payers.length - 1]} typically carry a larger share of volume than they do in the metro.`,
     },
   ];
 
