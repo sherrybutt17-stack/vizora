@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, Calculator, Search, BarChart3, BookOpen, Scale, Newspaper } from "lucide-react";
+import { ArrowUpRight, BarChart3, BookOpen, Calculator, ClipboardCheck, Newspaper, Scale, Search } from "lucide-react";
 import { Container, Section, SectionHead, Eyebrow, Card } from "@/components/ui";
 import { ExternalLink } from "@/components/ui/ExternalLink";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
@@ -42,6 +42,13 @@ const OURS = [
     href: "/tools/denial-code-lookup",
     description:
       "CARC and RARC codes in plain English, each with what caused it, how to fix it, and how to stop it recurring.",
+  },
+  {
+    icon: ClipboardCheck,
+    label: "How to Choose a Medical Billing Company",
+    href: "/resources/choosing-a-medical-billing-company",
+    description:
+      "A buyer's guide: five provider models and who each suits, the numbers to demand before discussing rate, contract terms that matter more than price, and seven red flags.",
   },
   {
     icon: BarChart3,

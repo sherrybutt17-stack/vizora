@@ -100,7 +100,7 @@ const post: BlogPost = {
     {
       heading: "The contract terms that matter more than the rate",
       body: [
-        "A percentage point of difference is worth less than most of the terms below, and the terms are where a cheap quote becomes an expensive relationship.",
+        "A percentage point of difference is worth less than most of the terms below, and the terms are where a cheap quote becomes an expensive relationship. Our buyer\u2019s guide at /resources/choosing-a-medical-billing-company sets out the full evaluation sequence and the twelve questions worth sending before a first call.",
       ],
       list: [
         "What the percentage is calculated on \u2014 net collections received, not charges submitted or claims worked",

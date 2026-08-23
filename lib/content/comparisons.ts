@@ -624,6 +624,7 @@ export const comparisons: Comparison[] = [
     related: [
       { label: "Billing software vs billing service", href: "/compare/billing-software-vs-billing-service" },
       { label: "Pricing", href: "/pricing" },
+      { label: "How to choose a billing company", href: "/resources/choosing-a-medical-billing-company" },
       { label: "Medical billing services", href: "/services/medical-billing" },
     ],
   },
@@ -705,6 +706,7 @@ export const comparisons: Comparison[] = [
     related: [
       { label: "In-house vs outsourced billing", href: "/compare/in-house-vs-outsourced-medical-billing" },
       { label: "Denial management", href: "/services/denial-management" },
+      { label: "How to choose a billing company", href: "/resources/choosing-a-medical-billing-company" },
       { label: "Pricing", href: "/pricing" },
     ],
   },

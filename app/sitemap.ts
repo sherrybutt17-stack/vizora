@@ -29,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/tools/denial-code-lookup`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/resources`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources/rcm-benchmarks`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/resources/choosing-a-medical-billing-company`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.url}/glossary`, changeFrequency: "monthly", priority: 0.8 },
     // Comparison content is the highest-converting and most-cited format on the
     // site, so the hub carries the same priority as the service hub.

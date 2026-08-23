@@ -110,6 +110,18 @@ export default function PricingPage() {
                   Estimate your leak
                 </Button>
               </div>
+              <p className="mt-5 text-sm leading-relaxed text-faint">
+                Comparing vendors?{" "}
+                <Link
+                  href="/resources/choosing-a-medical-billing-company"
+                  data-tap
+                  className="text-accent hover:text-accent-2"
+                >
+                  Our buyer&rsquo;s guide
+                </Link>{" "}
+                lists the twelve questions worth asking — including the ones we would expect to
+                answer ourselves.
+              </p>
             </Card>
             </Reveal>
 
