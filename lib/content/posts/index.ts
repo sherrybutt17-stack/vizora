@@ -1,4 +1,7 @@
 import type { BlogPost } from "../blog-types";
+import pPod from "./podiatry-routine-foot-care-coverage";
+import pObg from "./obgyn-global-obstetric-package-billing";
+import pUro from "./urology-cystoscopy-and-urodynamics-billing";
 import pEnt from "./ent-billing-endoscopy-audiology-allergy";
 import pGi from "./gastroenterology-screening-vs-diagnostic-colonoscopy";
 import pRad from "./radiology-billing-professional-technical-component";
@@ -35,6 +38,9 @@ import p6 from "./understanding-medical-coding-updates";
  * ordering.
  */
 const all: BlogPost[] = [
+  pPod,
+  pObg,
+  pUro,
   pEnt,
   pGi,
   pRad,
