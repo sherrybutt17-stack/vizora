@@ -4,6 +4,9 @@ import { specialties } from "@/lib/content/specialties";
 import { states } from "@/lib/content/locations";
 import { comparisons } from "@/lib/content/comparisons";
 import { glossary } from "@/lib/content/glossary";
+import { denialCodes } from "@/lib/content/denial-codes";
+import { denialCodeDetails } from "@/lib/content/denial-code-details";
+import { modifiers } from "@/lib/content/modifiers";
 import { posts } from "@/lib/content/blog";
 import { LAST_UPDATED } from "@/lib/utils";
 
@@ -58,10 +61,29 @@ Machine-readable detail: /pricing.md
 ## Free tools and reference data (no signup, no email required)
 
 - [Revenue Leak Calculator](/tools/revenue-leak-calculator): estimates annual revenue lost to denials using published MGMA, Premier and Optum benchmarks
-- [Denial Code Lookup](/tools/denial-code-lookup): CARC and RARC codes explained, with the fix and the prevention for each
+- [Denial Code Lookup](/tools/denial-code-lookup): all ${denialCodes.length} CARC and RARC codes explained, with the fix and the prevention for each
+- [CPT Modifiers Explained](/modifiers): ${modifiers.length} modifiers, each with the misuse cases that cause denials — not only when they apply
 - [RCM Benchmarks](/resources/rcm-benchmarks): current industry benchmarks, every figure attributed to a named publisher, dataset and year
 - [Glossary](/glossary): ${glossary.length} medical billing terms defined
 - [Resources](/resources): primary sources — CMS, X12, MGMA, HHS — that govern how claims are paid
+
+## Denial codes in depth
+
+Long-form guides for the ${denialCodeDetails.length} most-searched codes — each with a worked
+example, the mechanism behind the code, and the modifiers that resolve it.
+The remaining codes are in the lookup tool above.
+
+${denialCodeDetails.map((d) => {
+  const c = denialCodes.find((x) => x.code === d.code);
+  return `- [${d.code}](/denial-codes/${d.code.toLowerCase()}): ${c ? c.title : ""}`;
+}).join("\n")}
+
+## CPT and HCPCS modifiers
+
+Each page covers when the modifier applies and, more usefully, when it does
+not — the misuse cases are what produce denials and audit findings.
+
+${modifiers.map((m) => `- [Modifier ${m.code}](/modifiers/${m.code.toLowerCase()}): ${m.name}`).join("\n")}
 
 ## Comparisons
 

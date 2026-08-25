@@ -7,6 +7,8 @@ import { glossary } from "@/lib/content/glossary";
 import { industry, performance } from "@/lib/content/stats";
 import { allFaqs } from "@/lib/content/faq";
 import { denialCodes } from "@/lib/content/denial-codes";
+import { getDenialDetail } from "@/lib/content/denial-code-details";
+import { modifiers } from "@/lib/content/modifiers";
 import { externalRefs } from "@/lib/content/external";
 import { LAST_UPDATED } from "@/lib/utils";
 
@@ -152,12 +154,29 @@ ${states
 ${denialCodes
   .map(
     (d) =>
-      `### ${d.code} — ${d.title}\nCategory: ${d.category}\nMeaning: ${d.meaning}\nFix: ${d.fix}\nPrevention: ${d.prevent}`,
+      `### ${d.code} — ${d.title}\nCategory: ${d.category}\nMeaning: ${d.meaning}\nFix: ${d.fix}\nPrevention: ${d.prevent}${
+        getDenialDetail(d.code)
+          ? `\nIn depth: ${site.url}/denial-codes/${d.code.toLowerCase()}`
+          : ""
+      }`,
   )
   .join("\n\n")}
 
 Authoritative code lists: https://x12.org/codes/claim-adjustment-reason-codes and
 https://x12.org/codes/remittance-advice-remark-codes`);
+
+  // ------------------------------------------------------------- modifiers
+  sections.push(`## CPT and HCPCS modifiers
+
+Each entry states when the modifier applies and when it does not. The misuse
+cases are the ones that produce denials and audit findings.
+
+${modifiers
+  .map(
+    (m) =>
+      `### Modifier ${m.code} — ${m.name}\nCategory: ${m.category}\n${m.summary}\nUse it when: ${m.whenToUse.join("; ")}\nDo not use it when: ${m.whenNotToUse.join("; ")}\nFull guide: ${site.url}/modifiers/${m.code.toLowerCase()}`,
+  )
+  .join("\n\n")}`);
 
   // ------------------------------------------------------------------ FAQ
   sections.push(`## Frequently asked questions
