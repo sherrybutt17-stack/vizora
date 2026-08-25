@@ -1,4 +1,12 @@
 import type { BlogPost } from "../blog-types";
+import pNep from "./nephrology-dialysis-monthly-capitation-billing";
+import pChi from "./chiropractic-billing-at-modifier-and-maintenance";
+import pWnd from "./wound-care-debridement-depth-and-documentation";
+import pDme from "./dme-billing-orders-documentation-and-kx";
+import pPed from "./pediatric-billing-vaccines-and-well-child-visits";
+import pIm from "./internal-medicine-wellness-visits-and-chronic-care";
+import pNeu from "./neurology-billing-nerve-studies-and-eeg";
+import pOph from "./ophthalmology-eye-codes-and-plan-routing";
 import pPod from "./podiatry-routine-foot-care-coverage";
 import pObg from "./obgyn-global-obstetric-package-billing";
 import pUro from "./urology-cystoscopy-and-urodynamics-billing";
@@ -38,6 +46,14 @@ import p6 from "./understanding-medical-coding-updates";
  * ordering.
  */
 const all: BlogPost[] = [
+  pNep,
+  pChi,
+  pWnd,
+  pDme,
+  pPed,
+  pIm,
+  pNeu,
+  pOph,
   pPod,
   pObg,
   pUro,
