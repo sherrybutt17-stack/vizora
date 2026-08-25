@@ -5,6 +5,7 @@ import { specialtySlugs } from "@/lib/content/specialties";
 import { stateSlugs } from "@/lib/content/locations";
 import { posts } from "@/lib/content/blog";
 import { glossarySlugs } from "@/lib/content/glossary";
+import { detailedCodes } from "@/lib/content/denial-code-details";
 import { comparisonSlugs } from "@/lib/content/comparisons";
 import { caseStudies } from "@/lib/content/case-studies";
 import { LAST_UPDATED } from "@/lib/utils";
@@ -65,6 +66,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.5,
   }));
 
+  // Only codes with written long-form content have a route, so the params
+  // come from `detailedCodes` rather than the full 190-code dataset.
+  const denialCodePages = detailedCodes.map((code) => ({
+    url: `${site.url}/denial-codes/${code.toLowerCase()}`,
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+
   const comparePages = comparisonSlugs.map((slug) => ({
     url: `${site.url}/compare/${slug}`,
     changeFrequency: "monthly" as const,
@@ -87,6 +96,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     ...core, ...services, ...specialties, ...locations,
     ...comparePages, ...glossaryPages, ...caseStudyPages, ...blog,
+    ...denialCodePages,
   ].map((entry) => ({
     lastModified: now,
     ...entry,

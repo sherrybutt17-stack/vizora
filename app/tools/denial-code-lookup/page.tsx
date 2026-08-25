@@ -1,9 +1,11 @@
+import Link from "next/link";
 import { Container, Section, SectionHead } from "@/components/ui";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { DenialCodeLookup } from "@/components/tools/DenialCodeLookup";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, itemListSchema } from "@/lib/schema";
-import { denialCodes } from "@/lib/content/denial-codes";
+import { denialCodes, getDenialCode } from "@/lib/content/denial-codes";
+import { detailedCodes } from "@/lib/content/denial-code-details";
 import { pageMeta } from "@/lib/seo";
 import { LAST_UPDATED, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
@@ -55,6 +57,32 @@ export default function DenialLookupPage() {
           <p className="mt-6 text-center text-sm text-faint">
             {denialCodes.length} codes · Last updated {formatDate(LAST_UPDATED)}
           </p>
+
+          {/* Surfaced above the search deliberately. These are the codes
+              billers look up most, and each has a full guide behind it — a
+              user who does not know what to search still lands somewhere
+              useful, and the detail pages get a contextual entry point
+              rather than existing only behind a filtered result. */}
+          <div className="mx-auto mt-12 max-w-4xl">
+            <h2 className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">
+              Most looked-up codes — full guides
+            </h2>
+            <div className="mt-4 flex flex-wrap gap-2">
+              {detailedCodes.map((code) => {
+                const c = getDenialCode(code);
+                return (
+                  <Link
+                    key={code}
+                    href={`/denial-codes/${code.toLowerCase()}`}
+                    title={c?.title}
+                    className="rounded-lg border border-border px-3 py-1.5 font-mono text-sm font-600 text-accent transition-colors hover:border-accent/40 hover:bg-accent/[0.05]"
+                  >
+                    {code}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
 
           <div className="mx-auto mt-12 max-w-4xl">
             <DenialCodeLookup />

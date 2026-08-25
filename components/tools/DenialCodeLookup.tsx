@@ -1,8 +1,10 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { Search, AlertTriangle } from "lucide-react";
+import Link from "next/link";
+import { Search, AlertTriangle, ArrowUpRight } from "lucide-react";
 import { denialCodes, denialCategories, type DenialCategory } from "@/lib/content/denial-codes";
+import { detailedCodes } from "@/lib/content/denial-code-details";
 import { Badge, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
@@ -79,6 +81,15 @@ export function DenialCodeLookup() {
                 )}
               </div>
               <p className="mt-3 text-[0.95rem] font-500 leading-snug text-ink">{d.title}</p>
+              {detailedCodes.includes(d.code) && (
+                <Link
+                  href={`/denial-codes/${d.code.toLowerCase()}`}
+                  className="mt-3 inline-flex items-center gap-1.5 text-sm font-500 text-accent hover:underline"
+                >
+                  Read the full {d.code} guide
+                  <ArrowUpRight className="h-3.5 w-3.5" />
+                </Link>
+              )}
               <dl className="mt-4 space-y-3 text-sm">
                 <div>
                   <dt className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">What it means</dt>
