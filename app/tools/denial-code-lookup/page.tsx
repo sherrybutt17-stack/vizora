@@ -64,9 +64,14 @@ export default function DenialLookupPage() {
               useful, and the detail pages get a contextual entry point
               rather than existing only behind a filtered result. */}
           <div className="mx-auto mt-12 max-w-4xl">
-            <h2 className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">
-              Most looked-up codes — full guides
-            </h2>
+            <div className="flex flex-wrap items-baseline justify-between gap-3">
+              <h2 className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">
+                Most looked-up codes — full guides
+              </h2>
+              <Link href="/modifiers" className="text-sm font-500 text-accent hover:underline">
+                CPT modifiers explained →
+              </Link>
+            </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {detailedCodes.map((code) => {
                 const c = getDenialCode(code);

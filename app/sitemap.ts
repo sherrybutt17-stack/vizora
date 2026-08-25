@@ -6,6 +6,7 @@ import { stateSlugs } from "@/lib/content/locations";
 import { posts } from "@/lib/content/blog";
 import { glossarySlugs } from "@/lib/content/glossary";
 import { detailedCodes } from "@/lib/content/denial-code-details";
+import { modifierCodes } from "@/lib/content/modifiers";
 import { comparisonSlugs } from "@/lib/content/comparisons";
 import { caseStudies } from "@/lib/content/case-studies";
 import { LAST_UPDATED } from "@/lib/utils";
@@ -28,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // Tools carry high priority — they are the link-earning assets.
     { url: `${site.url}/tools/revenue-leak-calculator`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/tools/denial-code-lookup`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/modifiers`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.url}/resources`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources/rcm-benchmarks`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources/choosing-a-medical-billing-company`, changeFrequency: "monthly", priority: 0.85 },
@@ -74,6 +76,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const modifierPages = modifierCodes.map((code) => ({
+    url: `${site.url}/modifiers/${code.toLowerCase()}`,
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+
   const comparePages = comparisonSlugs.map((slug) => ({
     url: `${site.url}/compare/${slug}`,
     changeFrequency: "monthly" as const,
@@ -97,6 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...core, ...services, ...specialties, ...locations,
     ...comparePages, ...glossaryPages, ...caseStudyPages, ...blog,
     ...denialCodePages,
+    ...modifierPages,
   ].map((entry) => ({
     lastModified: now,
     ...entry,
