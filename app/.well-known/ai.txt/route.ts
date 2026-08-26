@@ -1,8 +1,8 @@
 import { aiTxtBody, aiTxtHeaders } from "@/lib/ai/ai-txt";
 
 /**
- * /ai.txt — kept alongside /.well-known/ai.txt because it shipped first and is
- * referenced from llms.txt. Body is shared; see lib/ai/ai-txt.ts.
+ * /.well-known/ai.txt — the conventional location. See lib/ai/ai-txt.ts for
+ * why this and /ai.txt share one body.
  */
 export const dynamic = "force-static";
 

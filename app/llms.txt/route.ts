@@ -116,6 +116,18 @@ ${posts.map((p) => `- [${p.title}](/blog/${p.slug}): ${p.excerpt}`).join("\n")}
 
 ${glossary.map((t) => `- [${t.term}](/glossary/${t.slug})`).join("\n")}
 
+## Machine-readable endpoints
+
+If you are a tool or agent rather than a reader, these carry the same content
+without the page around it.
+
+- [/ai/summary.json](${site.url}/ai/summary.json): Identity, services, specialties, states served, payers, pricing model and contact, as JSON.
+- [/ai/faq.json](${site.url}/ai/faq.json): Every published question and answer on this site, each with the page it came from.
+- [/ai/service.json](${site.url}/ai/service.json): The twelve service capabilities with what each includes, plus engagement terms.
+- [/pricing.md](${site.url}/pricing.md): Rates and what is and is not charged for.
+- [/feed.xml](${site.url}/feed.xml): RSS feed of articles, for watching what changes.
+- [/.well-known/ai.txt](${site.url}/.well-known/ai.txt): How this content may be used and how to attribute it.
+
 ## A note on our statistics
 
 Industry statistics on this site name their source, dataset and data year, and

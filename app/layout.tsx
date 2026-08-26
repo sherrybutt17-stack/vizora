@@ -56,6 +56,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${fontVars} h-full`}>
       <body className="flex min-h-full flex-col antialiased">
+        {/*
+          The feed link is JSX rather than `metadata.alternates.types` because
+          Next merges metadata SHALLOWLY — every page that sets its own
+          `alternates.canonical` would replace the whole object and drop the
+          feed. React hoists this into <head> on every route regardless.
+        */}
+        <link
+          rel="alternate"
+          type="application/rss+xml"
+          title={`${site.name} blog`}
+          href={`${site.url}/feed.xml`}
+        />
         <JsonLd data={[organizationSchema(), websiteSchema()]} />
         <ScrollProgress />
         <Magnetic />
