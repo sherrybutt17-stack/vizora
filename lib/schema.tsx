@@ -37,6 +37,13 @@ export function organizationSchema() {
       areaServed: "US",
       availableLanguage: "English",
     },
+    foundingDate: site.founded,
+    // "50+" is a lower bound, so minValue alone is what it asserts. Publishing
+    // a single figure would state a precision the business has not given.
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      minValue: site.employeesMin,
+    },
     areaServed: { "@type": "Country", name: "United States" },
     knowsAbout: [
       "Medical billing", "Revenue cycle management", "Medical coding",
@@ -86,6 +93,13 @@ export function serviceSchema(s: {
     url: `${site.url}/services/${s.slug}`,
     serviceType: s.name,
     provider: { "@id": ORG_ID },
+    foundingDate: site.founded,
+    // "50+" is a lower bound, so minValue alone is what it asserts. Publishing
+    // a single figure would state a precision the business has not given.
+    numberOfEmployees: {
+      "@type": "QuantitativeValue",
+      minValue: site.employeesMin,
+    },
     areaServed: { "@type": "Country", name: "United States" },
   };
 }

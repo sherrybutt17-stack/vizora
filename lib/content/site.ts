@@ -29,11 +29,18 @@ export const site = {
     country: string;
   },
   /**
-   * Founding year intentionally absent. The inherited "2015" was dummy data and
-   * was published both as schema `foundingDate` and as a "Since 2015" badge —
-   * a verifiable claim about company age on a site whose product is trust.
-   * Re-add here and in organizationSchema() once the real year is known.
+   * Confirmed by the owner 2026-08-26. Replaces the inherited "2015", which was
+   * dummy data published as both schema `foundingDate` and a "Since 2015" badge.
+   * Emitted as `foundingDate` in organizationSchema.
    */
+  founded: "2024",
+  /**
+   * Team size, confirmed by the owner 2026-08-26 as "50+".
+   *
+   * Emitted as a QuantitativeValue with `minValue` only, which is what "50+"
+   * actually asserts. A single figure would state a precision we do not have.
+   */
+  employeesMin: 50,
   /**
    * Public profiles, emitted as schema `sameAs` — the property search engines
    * use to reconcile this business against entities they already know.
