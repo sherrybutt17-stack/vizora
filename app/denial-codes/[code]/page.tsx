@@ -44,7 +44,7 @@ export async function generateMetadata({ params }: { params: Promise<{ code: str
   const d = getDenialDetail(code);
   if (!c || !d) return {};
   return pageMeta({
-    title: `${c.code} Denial Code`,
+    title: `${c.code} Denial Code: ${d.shortLabel}`,
     description: truncate(`${c.title}. ${c.meaning}`, 155),
     path: `/denial-codes/${c.code.toLowerCase()}`,
     keywords: [

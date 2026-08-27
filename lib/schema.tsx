@@ -301,6 +301,17 @@ export function webPageSchema({
     description,
     isPartOf: { "@id": `${site.url}/#website` },
     publisher: { "@id": ORG_ID },
+    /**
+     * The organisation is the author of these reference pages, and saying so
+     * is both true and the thing consumers look for — a page with no author
+     * of any kind reads as unattributed.
+     *
+     * Deliberately the Organization rather than a Person: no named byline is
+     * published on this site, and inventing one to satisfy a checker would be
+     * exactly the kind of fabricated signal the rest of this file avoids.
+     * Blog posts carry their own `author` through articleSchema.
+     */
+    author: { "@id": ORG_ID },
     inLanguage: "en-US",
     ...(lastReviewed ? { lastReviewed, dateModified: lastReviewed } : {}),
     ...(about.length ? { about: about.map(thing) } : {}),

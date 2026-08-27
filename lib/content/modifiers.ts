@@ -20,6 +20,16 @@ export type Modifier = {
   code: string;
   /** Official-style descriptor. */
   name: string;
+  /**
+   * Compact descriptor for the page title.
+   *
+   * `name` is the official wording and runs from 16 to 129 characters, so it
+   * cannot drive a title. Without this the title was "Modifier 25 | Vizora" —
+   * 20 characters, which forfeits most of the SERP line and matches only the
+   * bare code query, not "when to use modifier 25" or "modifier 25 vs 59".
+   * Keep under 42 characters so the rendered title lands near 50.
+   */
+  shortName: string;
   category: ModifierCategory;
   /** Answer-first, self-contained for extraction. */
   summary: string;
@@ -41,6 +51,7 @@ export const modifiers: Modifier[] = [
   {
     code: "25",
     name: "Significant, separately identifiable evaluation and management service by the same physician on the same day of a procedure",
+    shortName: "Separately Identifiable E/M Service",
     category: "Evaluation and management",
     summary:
       "Modifier 25 reports an evaluation and management service performed on the same day as a procedure, where the evaluation went beyond the assessment inherent in performing that procedure. Every procedure includes some pre-service evaluation; modifier 25 asserts that additional, separately identifiable work occurred.",
@@ -80,6 +91,7 @@ export const modifiers: Modifier[] = [
   {
     code: "59",
     name: "Distinct procedural service",
+    shortName: "Distinct Procedural Service",
     category: "Evaluation and management",
     summary:
       "Modifier 59 identifies a procedure as distinct from another performed the same day, overriding an edit that would otherwise bundle them. It is the modifier of last resort — where a more specific X modifier or an anatomic modifier describes the distinction, that one should be used instead.",
@@ -119,6 +131,7 @@ export const modifiers: Modifier[] = [
   {
     code: "26",
     name: "Professional component",
+    shortName: "Professional Component of a Service",
     category: "Component",
     summary:
       "Modifier 26 reports the physician's interpretation and written report for a diagnostic service, separately from the equipment, supplies and technical staff that produced it. It applies when the interpreting physician does not own the equipment used.",
@@ -157,6 +170,7 @@ export const modifiers: Modifier[] = [
   {
     code: "TC",
     name: "Technical component",
+    shortName: "Technical Component of a Service",
     category: "Component",
     summary:
       "Modifier TC reports the equipment, supplies, technical staff and facility overhead used to produce a diagnostic service, separately from the physician's interpretation. It applies when the practice performs the study but the read is supplied by someone else.",
@@ -194,6 +208,7 @@ export const modifiers: Modifier[] = [
   {
     code: "50",
     name: "Bilateral procedure",
+    shortName: "Billing Bilateral Procedures",
     category: "Multiple and bilateral",
     summary:
       "Modifier 50 reports a procedure performed on both sides of the body during the same session, where the code itself describes a unilateral service. It does not apply to codes that are already inherently bilateral, and appending it to one overbills.",
@@ -230,6 +245,7 @@ export const modifiers: Modifier[] = [
   {
     code: "51",
     name: "Multiple procedures",
+    shortName: "Multiple Procedure Reduction",
     category: "Multiple and bilateral",
     summary:
       "Modifier 51 identifies the second and subsequent procedures performed during the same session, triggering multiple procedure payment reduction. Many payers now append it automatically during adjudication, which makes manual use unnecessary and occasionally harmful.",
@@ -267,6 +283,7 @@ export const modifiers: Modifier[] = [
   {
     code: "24",
     name: "Unrelated evaluation and management service by the same physician during a postoperative period",
+    shortName: "Unrelated E/M in a Global Period",
     category: "Global period",
     summary:
       "Modifier 24 reports an evaluation and management service during a surgical global period that is unrelated to the surgery. Routine postoperative care is included in the surgical payment; care for a different problem is not, and this modifier says so.",
@@ -304,6 +321,7 @@ export const modifiers: Modifier[] = [
   {
     code: "57",
     name: "Decision for surgery",
+    shortName: "Decision for Surgery",
     category: "Global period",
     summary:
       "Modifier 57 reports an evaluation and management service that resulted in the initial decision to perform major surgery. Without it, an E/M on the day of or the day before a major procedure is treated as part of the surgical package.",
@@ -340,6 +358,7 @@ export const modifiers: Modifier[] = [
   {
     code: "78",
     name: "Unplanned return to the operating or procedure room by the same physician for a related procedure during the postoperative period",
+    shortName: "Unplanned Return to the Operating Room",
     category: "Global period",
     summary:
       "Modifier 78 reports an unplanned return to the operating room during a global period to treat a complication of the original surgery. The return is paid at the intraoperative rate only, and it does not restart the global period.",
@@ -376,6 +395,7 @@ export const modifiers: Modifier[] = [
   {
     code: "79",
     name: "Unrelated procedure or service by the same physician during the postoperative period",
+    shortName: "Unrelated Procedure in a Global Period",
     category: "Global period",
     summary:
       "Modifier 79 reports a procedure during a surgical global period that is unrelated to the original surgery. Unlike a related return, it is paid at the full rate and starts its own global period.",
@@ -413,6 +433,7 @@ export const modifiers: Modifier[] = [
   {
     code: "76",
     name: "Repeat procedure or service by the same physician",
+    shortName: "Repeat Procedure, Same Physician",
     category: "Repeat",
     summary:
       "Modifier 76 reports a procedure repeated by the same physician on the same day, distinguishing a genuine repeat from a duplicate claim. Without it, the second claim adjudicates as a duplicate and denies.",
@@ -450,6 +471,7 @@ export const modifiers: Modifier[] = [
   {
     code: "91",
     name: "Repeat clinical diagnostic laboratory test",
+    shortName: "Repeat Clinical Diagnostic Lab Test",
     category: "Repeat",
     summary:
       "Modifier 91 reports a clinical diagnostic laboratory test repeated on the same day to obtain successive results. It applies only where repeat testing was clinically necessary, not where a test was rerun for quality control or because of equipment failure.",
@@ -488,6 +510,7 @@ export const modifiers: Modifier[] = [
   {
     code: "GA",
     name: "Waiver of liability statement issued as required by payer policy",
+    shortName: "Waiver of Liability, ABN on File",
     category: "Coverage attestation",
     summary:
       "Modifier GA attests that a valid Advance Beneficiary Notice is on file for a service expected to be denied as not medically necessary. It is what makes the balance billable to the patient once the denial arrives.",
@@ -525,6 +548,7 @@ export const modifiers: Modifier[] = [
   {
     code: "KX",
     name: "Requirements specified in the medical policy have been met",
+    shortName: "Medical Policy Requirements Met",
     category: "Coverage attestation",
     summary:
       "Modifier KX attests that the coverage criteria in the applicable medical policy are met and that supporting documentation is on file. It is a statement about the file, not a character that makes claims pay.",
@@ -562,6 +586,7 @@ export const modifiers: Modifier[] = [
   {
     code: "XS",
     name: "Separate structure — a service that is distinct because it was performed on a separate organ or structure",
+    shortName: "Separate Structure or Organ",
     category: "Evaluation and management",
     summary:
       "Modifier XS is the most-used of the four X modifiers. It states that two services were distinct because they were performed on separate organs or anatomic structures, replacing the generic distinct-service modifier with a specific reason payers can evaluate.",
@@ -600,6 +625,7 @@ export const modifiers: Modifier[] = [
   {
     code: "XE",
     name: "Separate encounter — a service that is distinct because it occurred during a separate encounter",
+    shortName: "Separate Encounter, Same Day",
     category: "Evaluation and management",
     summary:
       "Modifier XE states that two services were distinct because they took place at separate encounters on the same day. It is the cleanest of the X modifiers to support, because the separation is a matter of documented time rather than clinical judgement.",
@@ -637,6 +663,7 @@ export const modifiers: Modifier[] = [
   {
     code: "XP",
     name: "Separate practitioner — a service that is distinct because it was performed by a different practitioner",
+    shortName: "Separate Practitioner",
     category: "Evaluation and management",
     summary:
       "Modifier XP states that two services were distinct because different practitioners performed them. It resolves edits that assume one clinician performed both halves of a bundled pair when in fact two were involved.",
@@ -674,6 +701,7 @@ export const modifiers: Modifier[] = [
   {
     code: "XU",
     name: "Unusual non-overlapping service — a service that is distinct because it does not overlap the usual components of the main service",
+    shortName: "Unusual Non-Overlapping Service",
     category: "Evaluation and management",
     summary:
       "Modifier XU covers distinct services that do not fit the separate-site, separate-encounter or separate-practitioner categories. It states that the service did not overlap the usual components of the main procedure, and it is the hardest of the four to support.",
@@ -711,6 +739,7 @@ export const modifiers: Modifier[] = [
   {
     code: "77",
     name: "Repeat procedure or service by another physician",
+    shortName: "Repeat Procedure, Another Physician",
     category: "Repeat",
     summary:
       "Modifier 77 reports a procedure repeated on the same day by a different physician than the one who performed it originally. Without it, the second claim adjudicates as a duplicate even though a different clinician performed the work.",
@@ -748,6 +777,7 @@ export const modifiers: Modifier[] = [
   {
     code: "95",
     name: "Synchronous telemedicine service rendered via a real-time interactive audio and video telecommunications system",
+    shortName: "Synchronous Telemedicine Service",
     category: "Evaluation and management",
     summary:
       "Modifier 95 identifies a service delivered by real-time interactive audio and video rather than in person. It requires both audio and video — an audio-only encounter does not qualify and has its own separate coding path.",
@@ -786,6 +816,7 @@ export const modifiers: Modifier[] = [
   {
     code: "22",
     name: "Increased procedural services",
+    shortName: "Increased Procedural Services",
     category: "Multiple and bilateral",
     summary:
       "Modifier 22 reports a procedure that required substantially greater work than typical. It is one of the few modifiers that requests additional payment rather than describing a circumstance, which means it requires supporting documentation and a written explanation.",
@@ -824,6 +855,7 @@ export const modifiers: Modifier[] = [
   {
     code: "52",
     name: "Reduced services",
+    shortName: "Reduced Services",
     category: "Multiple and bilateral",
     summary:
       "Modifier 52 reports a service that was partially reduced or eliminated at the physician's discretion, without being discontinued. The procedure was completed as intended, but less of it was performed than the code describes.",
@@ -861,6 +893,7 @@ export const modifiers: Modifier[] = [
   {
     code: "53",
     name: "Discontinued procedure",
+    shortName: "Discontinued Procedure",
     category: "Multiple and bilateral",
     summary:
       "Modifier 53 reports a procedure started and then terminated, generally because continuing posed a risk to the patient. It applies after the procedure has begun — a case cancelled before it starts is not a discontinued procedure.",
@@ -898,6 +931,7 @@ export const modifiers: Modifier[] = [
   {
     code: "58",
     name: "Staged or related procedure or service by the same physician during the postoperative period",
+    shortName: "Staged or Related Procedure",
     category: "Global period",
     summary:
       "Modifier 58 reports a planned or staged procedure during a global period, or a more extensive procedure following an initial one. Unlike an unplanned return, it is paid at the full rate and starts a new global period.",

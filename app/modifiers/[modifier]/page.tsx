@@ -40,7 +40,7 @@ export async function generateMetadata({ params }: { params: Promise<{ modifier:
   const m = getModifier(modifier);
   if (!m) return {};
   return pageMeta({
-    title: `Modifier ${m.code}`,
+    title: `Modifier ${m.code}: ${m.shortName}`,
     description: truncate(m.summary, 155),
     path: `/modifiers/${m.code.toLowerCase()}`,
     keywords: [

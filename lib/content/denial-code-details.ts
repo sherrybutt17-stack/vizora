@@ -15,6 +15,15 @@
 
 export type DenialCodeDetail = {
   code: string;
+  /**
+   * Compact plain-English label for the page title.
+   *
+   * The official `title` in denial-codes.ts runs to 95 characters, so it
+   * cannot drive a title, and without this the title was "CO-97 Denial Code
+   * | Vizora" at 26 characters — matching the bare code query and nothing
+   * else. Keep under 40 characters so the rendered title lands near 55.
+   */
+  shortLabel: string;
   /** A concrete scenario showing the denial arising and being resolved. */
   example: string[];
   /** Additional depth beyond the meaning/fix/prevent triple. */
@@ -31,6 +40,7 @@ export type DenialCodeDetail = {
 export const denialCodeDetails: DenialCodeDetail[] = [
   {
     code: "CO-97",
+    shortLabel: "Bundled Into Another Service",
     example: [
       "A patient attends for a scheduled lesion excision. The physician also performs a brief evaluation before the procedure and the practice bills an office visit alongside the excision. The remittance returns CO-97 against the office visit line.",
       "The question to answer is whether the evaluation was genuinely separate from the pre-service work the excision already includes. Every procedure carries an inherent evaluation component — assessing the site, confirming the plan, obtaining consent — and that work is inside the procedure's value.",
@@ -53,6 +63,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-45",
+    shortLabel: "A Contractual Adjustment",
     example: [
       "A practice bills $340 for an office visit. The remittance shows an allowed amount of $118, with $222 adjusted under CO-45. Nothing was denied — the payer paid its contracted rate and wrote off the difference between the charge and the contract.",
       "This is the most frequently occurring code on any remittance and it usually requires no action. The exception is the one worth building a process around: if the contracted rate for that code is $131 and the payer allowed $118, the difference is an underpayment hiding inside a routine adjustment.",
@@ -75,6 +86,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-16",
+    shortLabel: "Read the Paired RARC",
     example: [
       "A batch of claims returns CO-16. The code itself identifies nothing — it means only that something required for adjudication is absent or invalid. The information is in the accompanying remark code.",
       "In this batch the paired RARC is N290, indicating a missing or invalid rendering provider identifier. Every affected claim came from one newly credentialed physician whose NPI was never added to the billing system's provider record.",
@@ -97,6 +109,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-50",
+    shortLabel: "Not Medically Necessary",
     example: [
       "An MRI of the lumbar spine is performed on an order reading \"low back pain\". The claim returns CO-50 — not medically necessary. The payer's coverage policy requires documented conservative therapy over a defined period, or specific neurological findings, before advanced imaging of the lumbar spine is covered.",
       "The service was clinically reasonable and is nonetheless unpayable, because the diagnosis submitted does not appear in the policy's covered indication list.",
@@ -119,6 +132,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-29",
+    shortLabel: "Timely Filing Limit Expired",
     example: [
       "A claim for a service performed fourteen months earlier is submitted after being discovered in an unworked queue. It returns CO-29 — the filing deadline has expired. The payer's limit was twelve months from the date of service.",
       "There is no clinical or coding defect. The service was provided, documented and correctly coded. The revenue is lost because of elapsed time alone.",
@@ -141,6 +155,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "PR-204",
+    shortLabel: "Not Covered by the Plan",
     example: [
       "A patient receives a service and the remittance returns PR-204 — not covered under the patient's current benefit plan. The PR prefix means the balance is patient responsibility rather than a provider write-off.",
       "Before transferring it, the first check is whether the service is genuinely excluded or whether the wrong plan was billed. Patients frequently hold more than one coverage, and a service excluded under one plan may be covered under another.",
@@ -163,6 +178,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-15",
+    shortLabel: "Authorization Missing or Invalid",
     example: [
       "A procedure requiring prior authorisation is performed and the authorisation number is entered on the claim. It returns CO-15 — the authorisation number is missing, invalid, or does not apply.",
       "The number was real. It was obtained for the same patient and the same procedure, but for a date three weeks earlier that was rescheduled. The authorisation's valid date range had expired by the time the procedure took place.",
@@ -185,6 +201,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-197",
+    shortLabel: "Precertification Absent",
     example: [
       "An advanced imaging study is performed on a referral marked urgent. The claim returns CO-197 — precertification, authorisation or notification absent.",
       "The referring practice believed it had initiated authorisation; the imaging centre assumed the referring practice had completed it. Neither confirmed, and the study went ahead on the strength of an assumption.",
@@ -207,6 +224,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-4",
+    shortLabel: "Modifier Missing or Inconsistent",
     example: [
       "A bilateral procedure is billed without a modifier indicating both sides were treated. The claim returns CO-4 — the procedure code is inconsistent with the modifier used, or a required modifier is missing.",
       "The payer's edit expected either modifier 50 or separate lines with LT and RT. Receiving neither, it could not determine what was performed and rejected the line rather than assuming.",
@@ -229,6 +247,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-11",
+    shortLabel: "Diagnosis Does Not Match",
     example: [
       "A diagnostic study is billed with a screening diagnosis. The claim returns CO-11 — the diagnosis is inconsistent with the procedure.",
       "The payer's policy lists which diagnoses support the procedure, and the one submitted is not among them. The service may have been entirely appropriate; the linkage on the claim does not establish it.",
@@ -251,6 +270,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-18",
+    shortLabel: "Exact Duplicate Claim",
     example: [
       "A claim is not paid after several weeks, so it is submitted again. The second submission returns CO-18 — exact duplicate claim or service.",
       "The original claim was in process, not lost. Resubmitting created a duplicate rather than prompting action, and the duplicate now has to be resolved before the original can be worked.",
@@ -273,6 +293,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-22",
+    shortLabel: "Another Payer Is Primary",
     example: [
       "A claim returns CO-22 — this care may be covered by another payer per coordination of benefits. The patient holds coverage through their own employer and is also a dependent on a spouse's plan, and the claim went to the wrong one first.",
       "Coordination of benefits rules determine which plan pays first, and they are not a matter of patient preference. For dependent children, many plans apply the birthday rule — the plan of the parent whose birthday falls earlier in the calendar year is primary, regardless of which parent is older.",
@@ -295,6 +316,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-27",
+    shortLabel: "Coverage Already Terminated",
     example: [
       "A patient attends for a follow-up visit. The claim returns CO-27 — expenses incurred after coverage terminated. Their employment ended six weeks earlier and the plan terminated at the end of that month.",
       "Eligibility had been verified, at the patient's first visit eight months previously. Nothing since. The patient did not mention the change, and from the practice's perspective nothing looked different.",
@@ -317,6 +339,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-31",
+    shortLabel: "Patient Not Found as Insured",
     example: [
       "A claim returns CO-31 — the patient cannot be identified as our insured. The member ID was transcribed by hand from a photograph of an insurance card and one character was read incorrectly.",
       "Nothing about the coverage was wrong. The patient is insured, the plan is active, and the service is covered. The claim simply did not match a record on the payer's system.",
@@ -339,6 +362,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-59",
+    shortLabel: "Multiple Procedure Reduction",
     example: [
       "Three procedures are performed in one session. The remittance shows full payment on the first, and reduced payment on the second and third under CO-59 — processed based on multiple or concurrent procedure rules.",
       "This is not a denial. Payers apply a published multiple procedure payment reduction on the basis that certain overheads — preparation, positioning, access — are not duplicated when procedures are performed together.",
@@ -361,6 +385,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-96",
+    shortLabel: "Non-Covered Charges",
     example: [
       "A claim returns CO-96 — non-covered charges — accompanied by a remark code identifying the specific exclusion. Reading the remark code is the whole first step; CO-96 alone does not say why.",
       "In this case the remark identifies a service excluded from the plan's benefit set. The exclusion is genuine and the service was performed knowing coverage was uncertain.",
@@ -383,6 +408,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-109",
+    shortLabel: "Wrong Payer or Contractor",
     example: [
       "A claim for a behavioural health visit is submitted to the patient's medical plan and returns CO-109 — not covered by this payer or contractor. The plan carves behavioural health out to a separate managed behavioural health organisation with its own payer ID.",
       "The patient's card shows the medical plan's name and logo, and often shows the carve-out administrator only in small print on the reverse, if at all.",
@@ -405,6 +431,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-119",
+    shortLabel: "Benefit Maximum Reached",
     example: [
       "A physical therapy claim returns CO-119 — the benefit maximum for this time period or occurrence has been reached. The plan covers a defined number of therapy visits per year and the patient has used them.",
       "The visits were clinically indicated and were provided. The plan's obligation simply ended, and no appeal changes that.",
@@ -427,6 +454,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-151",
+    shortLabel: "Units Not Supported",
     example: [
       "A claim returns CO-151 — the payer determines the information submitted does not support this many or this frequency of services. A series of visits was billed over a short period and the payer considers the volume unsupported by the documentation.",
       "This is not the same as a frequency limit expressed as a benefit maximum. It is an assessment that the documentation does not justify the quantity billed.",
@@ -449,6 +477,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-167",
+    shortLabel: "Diagnosis Not Covered",
     example: [
       "A claim returns CO-167 — this diagnosis is not covered. The plan excludes the condition itself, rather than questioning whether the service was appropriate for it.",
       "Diagnosis-level exclusions apply to a narrow set of situations: some cosmetic indications, certain work-related conditions that belong to workers compensation, and conditions specifically excluded by the plan document.",
@@ -471,6 +500,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-B15",
+    shortLabel: "Qualifying Service Not Billed",
     example: [
       "A claim returns CO-B15 — this service requires a qualifying service or procedure to have been received and covered. An add-on code was billed without the primary procedure it attaches to.",
       "Add-on codes are not independently billable by design. They describe additional work performed alongside a primary service, and their value assumes that primary service was performed and paid.",
@@ -493,6 +523,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "PR-1",
+    shortLabel: "Deductible Amount",
     example: [
       "A claim adjudicates with PR-1 — the amount applied to the patient's deductible. The plan is active, the service is covered, and nothing was denied. The patient simply has not yet met their annual deductible, so the allowed amount falls to them.",
       "The practice receives no payment from the payer on this claim and bills the patient for the allowed amount.",
@@ -515,6 +546,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "PR-2",
+    shortLabel: "Coinsurance Amount",
     example: [
       "A claim adjudicates with PR-2 — coinsurance. The patient has met their deductible, so the plan now shares cost at the stated percentage, commonly eighty per cent payer and twenty per cent patient.",
       "The practice receives the payer's share and bills the patient for the coinsurance portion of the allowed amount — not of the billed charge, which is a distinction patients frequently misunderstand.",
@@ -537,6 +569,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "PR-3",
+    shortLabel: "Copayment Amount",
     example: [
       "A claim adjudicates with PR-3 — copayment. A fixed amount applies to the visit under the patient's plan, and the payer pays the balance of the allowed amount.",
       "Copayments are the most collectable balance in the revenue cycle because the amount is fixed, known in advance, and printed on the insurance card. They are also among the most frequently uncollected, because collecting at the desk requires a process rather than a system.",
@@ -559,6 +592,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-140",
+    shortLabel: "Member ID and Name Do Not Match",
     example: [
       "A claim returns CO-140 — the patient or insured health identification number and name do not match. The member ID is correct and the name is not, or the reverse.",
       "A common cause is a dependent billed under their own name against a policy held in a subscriber's name, where the payer expects the subscriber's details in the insured fields and the patient's in the patient fields.",
