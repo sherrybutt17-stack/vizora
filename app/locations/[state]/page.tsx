@@ -319,6 +319,35 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
         links={topServices.map((r) => ({ label: r.name, href: `/services/${r.slug}`, description: r.blurb }))}
       />
 
+      {/* The Medicaid pillar. Every state page names a Medicaid program and a
+          delivery model, which makes 50 pages a topic cluster with nothing at
+          the centre of it — a topical authority sweep flagged exactly that.
+          The link runs cluster -> pillar, which is the direction that builds
+          the pillar's authority rather than diluting it. */}
+      <Section className="border-t border-border py-12">
+        <Container>
+          <p className="max-w-3xl text-sm leading-relaxed text-muted">
+            <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">
+              Billing {s.medicaid} —{" "}
+            </span>
+            {s.name} runs Medicaid as{" "}
+            {s.medicaidModel === "managed-care"
+              ? "managed care, so an MCO adjudicates the claim while the state sets policy"
+              : s.medicaidModel === "fee-for-service"
+                ? "fee-for-service, so the state agency adjudicates the claim directly"
+                : "a mixed model, so who adjudicates depends on the population and the service"}
+            . That decides the payer ID, the appeal route and the filing deadline —{" "}
+            <Link
+              href="/blog/medicaid-billing-state-programs-and-managed-care"
+              className="text-accent underline underline-offset-4 hover:text-accent-2"
+            >
+              how Medicaid billing differs state by state
+            </Link>{" "}
+            covers what changes and why.
+          </p>
+        </Container>
+      </Section>
+
       {/* Regional cross-links. Neighbouring states share MAC jurisdictions and
           regional payers far more often than distant ones, so this is a
           genuinely relevant next click rather than link padding. */}

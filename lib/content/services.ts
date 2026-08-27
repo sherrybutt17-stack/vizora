@@ -14,6 +14,17 @@ export type Service = {
   icon: LucideIcon;
   eyebrow: string;
   headline: string;
+  /**
+   * SERP title, where `headline` would collide with another page.
+   *
+   * `headline` is the H1 and reads correctly on the page. The problem is
+   * cross-page: "Medical Billing & Coding Services" competes with the
+   * /services hub for the same head term AND with /services/medical-coding
+   * for "medical coding services". A coherence sweep put those pairs at 91%
+   * and 86% title similarity — which is cannibalisation, not consistency.
+   * Set this only where a real collision exists.
+   */
+  metaTitle?: string;
   /** Answer-first summary, 40–60 words, self-contained for AI extraction. */
   summary: string;
   /** One-liner for grids. */
@@ -36,6 +47,7 @@ export const services: Service[] = [
     icon: Receipt,
     eyebrow: "Core Service",
     headline: "Medical Billing & Coding Services",
+    metaTitle: "Outsourced Medical Billing and Coding",
     summary:
       "Medical billing is the process of translating care delivered into coded claims, submitting them to payers, and pursuing payment until the balance is resolved. Vizora handles that end to end — coding, scrubbing, submission, payer follow-up, payment posting and denial rework — so your staff never touches a claim.",
     blurb: "Complete billing and coding built to maximize reimbursement and reduce denials.",

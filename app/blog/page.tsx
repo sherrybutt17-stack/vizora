@@ -11,7 +11,9 @@ import { formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
-  title: "Medical Billing Resources & Insights",
+  // Was "Medical Billing Resources & Insights", which collided with
+  // /resources ("Medical Billing Resources and Tools") at 85% similarity.
+  title: "Medical Billing Articles and Guides",
   description:
     "Practical guides on denial management, revenue cycle management, clean claim rates, credentialing, AR aging and coding updates — with cited industry data.",
   path: "/blog",
