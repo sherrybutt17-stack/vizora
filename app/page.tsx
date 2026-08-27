@@ -24,7 +24,10 @@ import { LAST_UPDATED } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
-  title: "Medical Billing Services That Reduce Denials and Recover Revenue",
+  // 59 characters. The homepage gets no " | Vizora" suffix — Next does not
+  // apply `title.template` to the page in the same segment as the layout that
+  // defines it — so the whole 60-character budget is spent here.
+  title: "Medical Billing Services That Cut Denials and Speed Payment",
   description:
     "Vizora is a medical billing and RCM company for healthcare practices. We cut denial rates, shorten AR days, and recover revenue most practices write off. Free billing audit.",
   path: "/",

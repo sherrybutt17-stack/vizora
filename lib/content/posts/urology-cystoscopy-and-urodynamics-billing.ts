@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "urology-cystoscopy-and-urodynamics-billing",
   title: "Urology billing: cystoscopy bundling, urodynamics components and PSA coverage",
+  metaTitle: "Urology billing: cystoscopy and urodynamics",
   excerpt:
     "Urology runs a diagnostic procedure that is included in almost every therapeutic one, and a test suite billed in components that must each be separately documented.",
   category: "Specialty Billing",
@@ -114,6 +115,7 @@ const post: BlogPost = {
         "Typically a documented prostate volume within a stated range, a symptom score above a threshold, and documented failure or intolerance of medical therapy over a defined period. The criteria are published in payer medical policy and have to be documented in the policy's terms — a recorded symptom score satisfies it, while a note describing bothersome symptoms does not.",
     },
   ],
+  sources: ["ncci-policy-manual", "mue-tables", "medicare-coverage-database"],
   relatedServices: ["prior-authorization", "medical-coding", "denial-management"],
   relatedSpecialties: ["urology"],
 };

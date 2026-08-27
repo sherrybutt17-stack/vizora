@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "pain-management-injection-billing",
   title: "Pain management billing: frequency limits, imaging guidance and diagnostic blocks",
+  metaTitle: "Pain management billing: frequency limits",
   excerpt:
     "Interventional pain is governed by payer medical policy more tightly than almost any specialty — and the policy is published, which makes most denials predictable.",
   category: "Specialty Billing",
@@ -105,6 +106,7 @@ const post: BlogPost = {
         "Because the authorisation did not match what was performed — approved for one level when two were done, one side when the other was treated, or within a date range that expired before the procedure. Storing authorisations against the specific codes, levels and laterality approved, rather than against the patient, is what prevents it.",
     },
   ],
+  sources: ["medicare-coverage-database", "ncci-policy-manual", "oig-work-plan"],
   relatedServices: ["prior-authorization", "denial-management", "medical-coding"],
   relatedSpecialties: ["pain-management"],
 };

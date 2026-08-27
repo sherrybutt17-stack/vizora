@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "general-surgery-assistant-and-team-billing",
   title: "General surgery billing: assistants, co-surgeons and converted procedures",
+  metaTitle: "General surgery billing: assistants at surgery",
   excerpt:
     "When more than one surgeon is involved, or the procedure changes mid-case, the modifier decides whether the work gets paid at all.",
   category: "Specialty Billing",
@@ -107,6 +108,7 @@ const post: BlogPost = {
         "Usually not — the reduction is correct, since approach and closure are not duplicated across procedures in one session. The difficulty is that genuine underpayments look identical on the remittance. Telling them apart means comparing the payment against the contracted rate and the applicable reduction, which is variance work rather than denial work.",
     },
   ],
+  sources: ["global-surgery-booklet", "physician-fee-schedule", "claims-processing-manual"],
   relatedServices: ["medical-coding", "denial-management", "medical-billing"],
   relatedSpecialties: ["general-surgery"],
 };

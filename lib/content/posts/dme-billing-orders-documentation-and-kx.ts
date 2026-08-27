@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "dme-billing-orders-documentation-and-kx",
   title: "DME billing: written orders, medical necessity files and the KX modifier",
+  metaTitle: "DME billing: orders and the KX modifier",
   excerpt:
     "Durable medical equipment is denied on paperwork more than on eligibility. The equipment is usually appropriate; the file supporting it usually is not complete before delivery.",
   category: "Specialty Billing",
@@ -93,6 +94,7 @@ const post: BlogPost = {
         "Because the defect is usually something that had to exist before delivery. A missing prior-to-delivery order cannot be cured retroactively, and a medical record that does not support the item cannot be supplemented with documentation created for the appeal. The overturn rate on documentation denials is much lower than the general average.",
     },
   ],
+  sources: ["dmepos-supplier-standards", "medicare-coverage-database", "hcpcs-level-ii"],
   relatedServices: ["eligibility-verification", "denial-management", "claims-management"],
   relatedSpecialties: ["dme"],
 };

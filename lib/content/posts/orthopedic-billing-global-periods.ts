@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "orthopedic-billing-global-periods",
   title: "Surgical global periods and why orthopedic claims deny",
+  metaTitle: "Surgical global periods in orthopedics",
   excerpt:
     "Global periods, modifier selection and NCCI bundling make orthopedics the specialty where correct surgery is most often billed incorrectly — usually downward.",
   category: "Specialty Billing",
@@ -115,6 +116,7 @@ const post: BlogPost = {
         "Because it is invisible. An undercoded claim pays, the remittance looks clean, and nothing prompts review. Orthopedic coding depends on operative detail — approach, laterality, levels or compartments addressed, primary versus revision — so thin documentation leads a generalist coder to code conservatively. That is correct practice and a permanent revenue loss no denial report will ever surface.",
     },
   ],
+  sources: ["global-surgery-booklet", "ncci-policy-manual", "claims-processing-manual"],
   relatedServices: ["medical-coding", "denial-management", "medical-billing"],
   relatedSpecialties: ["orthopedics"],
 };

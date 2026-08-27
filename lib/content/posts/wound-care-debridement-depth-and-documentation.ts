@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "wound-care-debridement-depth-and-documentation",
   title: "Wound care billing: debridement by depth and area, and the measurements that prove it",
+  metaTitle: "Wound care billing: debridement depth and area",
   excerpt:
     "Debridement codes are selected by the deepest tissue removed and the surface area treated. Both are numbers, and a note without them selects the lowest-paying code by default.",
   category: "Specialty Billing",
@@ -101,6 +102,7 @@ const post: BlogPost = {
         "Because payers expect measurable improvement and apply scrutiny at intervals. Serial measurements at each visit produce the trend that demonstrates progress. Where a wound is not improving, the record should show a reassessment and a changed plan rather than an unchanged course continuing indefinitely.",
     },
   ],
+  sources: ["ncci-policy-manual", "medicare-coverage-database", "ama-cpt"],
   relatedServices: ["medical-coding", "denial-management", "prior-authorization"],
   relatedSpecialties: ["wound-care"],
 };

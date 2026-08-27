@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "behavioral-health-billing-denials",
   title: "Why behavioral health claims deny, and what fixes them",
+  metaTitle: "Why behavioral health claims deny",
   excerpt:
     "Time-based session codes, carved-out payers and visit limits make behavioral health the specialty where correct clinical work most often bills incorrectly.",
   category: "Specialty Billing",
@@ -106,6 +107,7 @@ const post: BlogPost = {
         "Record the authorised visit count and expiry date at the point of approval, then track sessions consumed against it and trigger re-authorisation with two or three visits remaining. Because behavioral health treatment is continuous, the session after an authorisation is exhausted gets delivered as a matter of course by a clinician who cannot see the count — so the control has to sit outside the chart.",
     },
   ],
+  sources: ["medicare-benefit-policy-manual", "medicare-coverage-database", "telehealth-billing"],
   relatedServices: ["medical-billing", "prior-authorization", "credentialing"],
   relatedSpecialties: ["mental-health"],
 };

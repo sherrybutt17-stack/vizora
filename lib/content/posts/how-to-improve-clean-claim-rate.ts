@@ -147,6 +147,7 @@ const post: BlogPost = {
         "Rarely, and pursuing it is usually a poor allocation of effort. Some denial causes are outside the practice\u2019s control \u2014 payer system errors, retroactive eligibility changes, coverage terminations reported after the fact. Past roughly 97% the remaining cases get harder for diminishing return, and attention generally produces more revenue in denial recovery than in further prevention.",
     },
   ],
+  sources: ["caqh-index", "x12-carc", "nucc-cms-1500"],
   relatedServices: ["claims-management", "eligibility-verification", "denial-management"],
 };
 

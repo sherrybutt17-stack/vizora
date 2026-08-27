@@ -77,6 +77,20 @@ export function websiteSchema() {
     url: site.url,
     name: site.name,
     publisher: { "@id": ORG_ID },
+    /**
+     * Points at the denial code lookup, which is the site's actual search.
+     * There is no site-wide search here, and pointing this at a URL that does
+     * not resolve would advertise a capability we do not have — so it names
+     * the one that does, and that tool accepts `?q=` for exactly this reason.
+     */
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${site.url}/tools/denial-code-lookup?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
   };
 }
 
@@ -126,6 +140,45 @@ export function breadcrumbSchema(items: { name: string; path: string }[]) {
       name: item.name,
       item: `${site.url}${item.path}`,
     })),
+  };
+}
+
+/**
+ * TechArticle for the denial-code and modifier reference pages.
+ *
+ * These are not blog posts and they are not thin product pages. Each is 800
+ * to 990 words of written analysis — what the code means, a worked example,
+ * how to fix it and how to prevent it — which is what schema.org describes as
+ * a technical article: "how-to (task) topics, step-by-step, procedural
+ * troubleshooting, specifications".
+ *
+ * Applied ONLY where that is true. Glossary terms are definitions and stay
+ * `DefinedTerm`; specialty pages are service offerings and stay `Service`.
+ * Declaring Article on those to collect a point would be schema stuffing.
+ */
+export function techArticleSchema(p: {
+  headline: string;
+  description: string;
+  path: string;
+  updated: string;
+  section: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    "@id": `${site.url}${p.path}#article`,
+    headline: p.headline,
+    description: p.description,
+    url: `${site.url}${p.path}`,
+    datePublished: p.updated,
+    dateModified: p.updated,
+    articleSection: p.section,
+    image: `${site.url}/og.png`,
+    author: { "@id": ORG_ID },
+    publisher: { "@id": ORG_ID },
+    isPartOf: { "@id": `${site.url}/#website` },
+    mainEntityOfPage: `${site.url}${p.path}`,
+    inLanguage: "en-US",
   };
 }
 

@@ -4,6 +4,7 @@ import { Container, Section, Badge, DataTable, Eyebrow } from "@/components/ui";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { RelatedContent } from "@/components/sections/RelatedContent";
+import { PrimarySources } from "@/components/sections/PrimarySources";
 import { JsonLd, articleSchema, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { getPost, postSlugs, posts, author } from "@/lib/content/blog";
 import { getService } from "@/lib/content/services";
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = getPost(slug);
   if (!p) return {};
-  return pageMeta({ title: p.title, description: p.excerpt, path: `/blog/${p.slug}` });
+  return pageMeta({ title: p.metaTitle ?? p.title, description: p.excerpt, path: `/blog/${p.slug}` });
 }
 
 export default async function PostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -150,6 +151,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                   </dl>
                 </section>
               ) : null}
+
+              <PrimarySources
+                ids={post.sources ?? []}
+                heading="Sources"
+                note="The primary sources behind the rules described above."
+              />
 
               <footer className="mt-14 rounded-xl border border-border bg-surface p-6">
                 <Eyebrow>About the author</Eyebrow>

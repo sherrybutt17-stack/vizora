@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "ophthalmology-eye-codes-and-plan-routing",
   title: "Ophthalmology billing: eye codes versus E/M and medical versus vision plans",
+  metaTitle: "Ophthalmology billing: eye codes versus E/M",
   excerpt:
     "Eye care is the only specialty with a parallel code set to evaluation and management, and a parallel insurance system to route claims through. Both choices are made per visit.",
   category: "Specialty Billing",
@@ -103,6 +104,7 @@ const post: BlogPost = {
         "Separately from the injection procedure, in the units the drug's code defines — not per injection and not per vial. Wastage from a single-use vial is reportable where the payer permits it, with the discarded amount and reason documented at administration. Authorisation is granted for a named drug, so switching agents, including to a biosimilar, generally requires a new one.",
     },
   ],
+  sources: ["ama-cpt", "medicare-coverage-database", "physician-fee-schedule"],
   relatedServices: ["medical-coding", "prior-authorization", "eligibility-verification"],
   relatedSpecialties: ["ophthalmology"],
 };

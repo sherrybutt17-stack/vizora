@@ -137,6 +137,7 @@ const post: BlogPost = {
         "Most practices target under 15% to 20% of total AR sitting beyond 90 days. The trend matters more than the absolute figure: a rising over-90 percentage alongside a falling days-in-AR indicates that recent claims are being worked while older ones are being left, which typically resolves into a large write-off later.",
     },
   ],
+  sources: ["mgma-data", "hfma-map-keys", "optum-denials-index"],
   relatedServices: ["ar-management", "denial-management", "practice-analytics"],
 };
 

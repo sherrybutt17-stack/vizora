@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "radiology-billing-professional-technical-component",
   title: "Radiology billing: component splits, orders and medical necessity denials",
+  metaTitle: "Radiology billing: professional and technical",
   excerpt:
     "Radiology is the specialty where you bill for a patient you never met, using an order someone else wrote. That structure produces a denial profile unlike any other specialty.",
   category: "Specialty Billing",
@@ -131,6 +132,7 @@ const post: BlogPost = {
         "The referring practice is nominally responsible, but the radiology group is the party that goes unpaid when authorisation was not obtained. Many plans delegate imaging authorisation to a radiology benefit manager with separate criteria and turnaround times. Confirming authorisation is actually on file, rather than assumed, is worth doing independently at scheduling.",
     },
   ],
+  sources: ["physician-fee-schedule", "place-of-service-codes", "ncci-policy-manual"],
   relatedServices: ["eligibility-verification", "prior-authorization", "denial-management"],
   relatedSpecialties: ["radiology"],
 };

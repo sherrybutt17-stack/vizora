@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "obgyn-global-obstetric-package-billing",
   title: "OB-GYN billing: the global obstetric package and what falls outside it",
+  metaTitle: "OB-GYN billing: the global obstetric package",
   excerpt:
     "One code covers nine months of care. Knowing precisely what it does not cover is where obstetric practices find the revenue they are already earning.",
   category: "Specialty Billing",
@@ -110,6 +111,7 @@ const post: BlogPost = {
         "A preventive visit is a comprehensive age-appropriate examination with no presenting complaint; a problem visit addresses a complaint. Both are reportable when both genuinely occur, with modifier 25 on the problem service. Medicare does not cover a general preventive physical the way commercial plans do — it covers a screening pelvic and breast examination on a set frequency, with Pap collection billed separately.",
     },
   ],
+  sources: ["global-surgery-booklet", "ama-cpt", "medicaid-directory"],
   relatedServices: ["medical-coding", "claims-management", "prior-authorization"],
   relatedSpecialties: ["obgyn"],
 };

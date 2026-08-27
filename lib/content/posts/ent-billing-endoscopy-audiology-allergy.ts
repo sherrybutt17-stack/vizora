@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "ent-billing-endoscopy-audiology-allergy",
   title: "ENT billing: endoscopy bundling, audiology coverage and allergy dose units",
+  metaTitle: "ENT billing: endoscopy, audiology, allergy",
   excerpt:
     "An otolaryngology practice runs four different billing models under one roof. Most ENT revenue loss happens at the seams between them.",
   category: "Specialty Billing",
@@ -123,6 +124,7 @@ const post: BlogPost = {
         "Each sinus entered and each side treated, named explicitly. Bilateral procedures need the bilateral indicator and multiple sinuses follow multiple-procedure reduction rules, so imprecise documentation is either denied or underpaid. For balloon procedures, payer policy often also requires documented failure of medical management and specific imaging findings before authorisation.",
     },
   ],
+  sources: ["ncci-policy-manual", "mue-tables", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "denial-management", "prior-authorization"],
   relatedSpecialties: ["ent"],
 };

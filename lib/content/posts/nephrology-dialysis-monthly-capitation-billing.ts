@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "nephrology-dialysis-monthly-capitation-billing",
   title: "Nephrology billing: monthly capitation for dialysis and what sits outside it",
+  metaTitle: "Nephrology billing: dialysis capitation",
   excerpt:
     "Dialysis management is paid monthly rather than per visit, and the code depends on the patient's age and how many times they were seen. Almost everything else nephrology does is billed normally.",
   category: "Specialty Billing",
@@ -106,6 +107,7 @@ const post: BlogPost = {
         "Generally not when the imaging was performed to gain access for the intervention — that is included. Where a genuinely diagnostic study led to a decision not to intervene, or imaged a separate site, separate billing is supportable, but the note has to establish the sequence rather than a modifier assert it.",
     },
   ],
+  sources: ["medicare-benefit-policy-manual", "physician-fee-schedule", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "claims-management", "practice-analytics"],
   relatedSpecialties: ["nephrology"],
 };

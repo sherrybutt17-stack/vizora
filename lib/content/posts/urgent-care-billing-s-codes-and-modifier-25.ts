@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "urgent-care-billing-s-codes-and-modifier-25",
   title: "Urgent care billing: S-codes, modifier 25 and the walk-in eligibility problem",
+  metaTitle: "Urgent care billing: S-codes and modifier 25",
   excerpt:
     "No scheduled appointment means no window to verify coverage — which puts urgent care at the sharp end of the largest denial category in healthcare.",
   category: "Specialty Billing",
@@ -92,6 +93,7 @@ const post: BlogPost = {
         "Some do, reviewing retrospectively and reducing payment where they judge the condition did not warrant urgent care. It is worth appealing, on the grounds that the determination should rest on the presenting complaint and information available at the time rather than the final diagnosis. That argument depends on documentation recording the presenting complaint and its severity.",
     },
   ],
+  sources: ["place-of-service-codes", "no-surprises-act", "em-documentation-guidelines"],
   relatedServices: ["eligibility-verification", "medical-coding", "denial-management"],
   relatedSpecialties: ["urgent-care"],
 };

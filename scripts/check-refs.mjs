@@ -1,4 +1,4 @@
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 
 /**
  * Static check that every citation mapping in lib/content/citations.ts points
@@ -68,6 +68,19 @@ for (const [, list] of src.matchAll(/:\s*\[([^\]]*)\]/g)) {
   }
 }
 
+// Blog post `sources` are ref ids too, spread across 34 files.
+const postsDir = new URL("../lib/content/posts/", import.meta.url);
+let postsWithSources = 0;
+for (const f of readdirSync(postsDir)) {
+  if (!f.endsWith(".ts") || f === "index.ts") continue;
+  const body = readFileSync(new URL(f, postsDir), "utf8");
+  const m = body.match(/^\s*sources:\s*\[([^\]]*)\]/m);
+  if (!m) continue;
+  postsWithSources++;
+  for (const id of all(m[1], /"([^"]+)"/g))
+    if (!refIds.has(id)) problems.push(`posts/${f}: unknown ref id in sources: ${id}`);
+}
+
 const keysOf = (name) => {
   const m = src.match(new RegExp(`const ${name}[^=]*=\\s*\\{([\\s\\S]*?)\\n\\};`));
   if (!m) return [];
@@ -83,6 +96,7 @@ for (const k of keysOf("glossaryOverrides"))
 for (const k of keysOf("specialtyOverrides"))
   if (!specialtySlugs.has(k)) problems.push(`specialtyOverrides key not a specialty slug: ${k}`);
 
+console.log(`posts with sources: ${postsWithSources}`);
 console.log(
   `refs=${refIds.size} denials=${denialCodes.size} modifiers=${modifierCodes.size} ` +
     `glossary=${glossarySlugs.size} specialties=${specialtySlugs.size}`,

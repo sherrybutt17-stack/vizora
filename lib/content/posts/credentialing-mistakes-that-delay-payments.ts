@@ -150,6 +150,7 @@ const post: BlogPost = {
         "Sometimes, but not reliably. Medicare generally permits physicians limited retrospective billing up to 30 days before the enrollment effective date. Commercial payers set their own rules and many allow none at all, so revenue for services delivered before the effective date is frequently unrecoverable. Submitting applications at offer-signing rather than at start date is the only dependable protection.",
     },
   ],
+  sources: ["pecos", "nppes", "caqh-proview"],
   relatedServices: ["credentialing", "revenue-cycle-management", "denial-management"],
   relatedSpecialties: ["mental-health"],
 };

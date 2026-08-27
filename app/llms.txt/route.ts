@@ -98,7 +98,7 @@ ${services.map((s) => `- [${s.name}](/services/${s.slug}): ${s.blurb}`).join("\n
 Each page carries the CPT codes that specialty actually bills, its
 characteristic denial reasons, payer-mix notes and specialty benchmarks.
 
-${specialties.map((s) => `- [${s.name}](/specialties/${s.slug})`).join("\n")}
+${specialties.map((s) => `- [${s.name}](/specialties/${s.slug}): ${s.blurb}`).join("\n")}
 
 ## Locations
 
@@ -114,7 +114,11 @@ ${posts.map((p) => `- [${p.title}](/blog/${p.slug}): ${p.excerpt}`).join("\n")}
 
 ## Glossary
 
-${glossary.map((t) => `- [${t.term}](/glossary/${t.slug})`).join("\n")}
+Definitions are reproduced in full rather than linked bare, because a
+definition is short enough to be useful in an index and is the thing most
+often quoted. Each is written to stand alone at 40-60 words.
+
+${glossary.map((t) => `- [${t.term}](/glossary/${t.slug}): ${t.answer}`).join("\n")}
 
 ## Machine-readable endpoints
 

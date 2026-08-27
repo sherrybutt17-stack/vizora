@@ -152,6 +152,7 @@ const post: BlogPost = {
         "With the front end, and with clusters rather than individual claims. Sort a month of denials by payer, code, provider and CPT: denials arrive in groups produced by single upstream causes, such as a changed authorization requirement or a fee schedule loaded incorrectly. Removing one cause prevents more future denials than reworking claims individually recovers.",
     },
   ],
+  sources: ["optum-denials-index", "x12-carc", "kff-denials"],
   relatedServices: ["denial-management", "eligibility-verification", "claims-management"],
 };
 

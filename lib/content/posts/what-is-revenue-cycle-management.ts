@@ -162,6 +162,7 @@ const post: BlogPost = {
         "Generally when the practice is at a capacity threshold rather than a cost one \u2014 volume has outgrown one biller but does not yet justify two, specialty knowledge for appeals is missing, or the function has no cross-trained backup and stalls whenever one person is unavailable. Outsourced pricing scales continuously with collections, whereas in-house capacity moves in whole headcount steps.",
     },
   ],
+  sources: ["hfma-map-keys", "mgma-data", "caqh-index"],
   relatedServices: ["revenue-cycle-management", "practice-analytics", "medical-billing"],
 };
 

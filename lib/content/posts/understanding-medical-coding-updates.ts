@@ -140,6 +140,7 @@ const post: BlogPost = {
         "Deleted codes and specificity changes, rather than new codes. A missing new code is visible immediately because there is nothing to bill. A code that was split into more specific options still exists in the system and still submits, so claims deny for lack of specificity while appearing to have been coded correctly \u2014 which delays discovery by weeks.",
     },
   ],
+  sources: ["ama-cpt", "icd-10-cm", "hcpcs-level-ii"],
   relatedServices: ["medical-coding", "claims-management", "denial-management"],
 };
 

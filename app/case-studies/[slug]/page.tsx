@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const c = caseStudyMap.get(slug);
   if (!c) return {};
   return pageMeta({
-    title: `${c.specialty} Billing Case Study: ${c.headlineMetric.value} ${c.headlineMetric.label}`,
+    title: `${c.specialty} Case Study: ${c.headlineMetric.value} ${c.headlineMetric.label}`,
     description: clampDescription(
       `${c.size} ${c.specialty.toLowerCase()} practice in ${c.location}. ${c.challenge}`,
     ),

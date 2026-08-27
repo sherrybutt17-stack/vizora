@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "gastroenterology-screening-vs-diagnostic-colonoscopy",
   title: "Gastroenterology billing: screening versus diagnostic colonoscopy",
+  metaTitle: "GI billing: screening versus diagnostic scope",
   excerpt:
     "One distinction drives most gastroenterology denials and nearly every patient billing complaint: whether the colonoscopy was screening or diagnostic, and what happens when it starts as one and becomes the other.",
   category: "Specialty Billing",
@@ -131,6 +132,7 @@ const post: BlogPost = {
         "Almost always one of three causes: a polyp was removed and the preventive modifier was omitted, the screening interval had not yet elapsed by month count, or the anesthesia claim was coded as diagnostic while the endoscopy claim was coded as screening. All three are preventable before the procedure rather than after the bill.",
     },
   ],
+  sources: ["medicare-benefit-policy-manual", "hcpcs-level-ii", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "denial-management", "prior-authorization"],
   relatedSpecialties: ["gastroenterology"],
 };

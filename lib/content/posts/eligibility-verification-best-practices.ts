@@ -139,6 +139,7 @@ const post: BlogPost = {
         "Retain the payer\u2019s electronic response itself, the date and time it was returned, and the specific benefits it confirmed \u2014 not merely a note reading \u201Cverified.\u201D Where verification happened by phone, record the representative\u2019s name and call reference number. Payers frequently honour a documented verification even when their own downstream adjudication contradicts it, but only if the documentation can be produced.",
     },
   ],
+  sources: ["msp-manual", "caqh-index", "claims-processing-manual"],
   relatedServices: ["eligibility-verification", "prior-authorization", "patient-collections"],
 };
 

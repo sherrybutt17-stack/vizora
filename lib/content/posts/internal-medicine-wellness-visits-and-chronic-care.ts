@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "internal-medicine-wellness-visits-and-chronic-care",
   title: "Internal medicine billing: wellness visits, chronic care and E/M selection",
+  metaTitle: "Internal medicine billing: wellness and CCM",
   excerpt:
     "Medicare does not cover an annual physical. It covers something adjacent with a different name, different content and different codes — and the confusion between them is expensive.",
   category: "Specialty Billing",
@@ -107,6 +108,7 @@ const post: BlogPost = {
         "Two or more chronic conditions expected to last at least a year or until death and placing the patient at significant risk, a comprehensive care plan available to the care team, documented patient consent including cost-sharing, and tracked time. The work is usually already happening — the tracking is what most practices lack.",
     },
   ],
+  sources: ["em-documentation-guidelines", "medicare-benefit-policy-manual", "oig-work-plan"],
   relatedServices: ["medical-coding", "practice-analytics", "claims-management"],
   relatedSpecialties: ["internal-medicine"],
 };

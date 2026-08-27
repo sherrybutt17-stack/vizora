@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "chiropractic-billing-at-modifier-and-maintenance",
   title: "Chiropractic billing: active treatment, the AT modifier and maintenance care",
+  metaTitle: "Chiropractic billing: the AT modifier",
   excerpt:
     "Medicare covers exactly one chiropractic service, and only while the patient is improving. Everything else in the practice is the patient's own cost — which makes the conversation as important as the coding.",
   category: "Specialty Billing",
@@ -102,6 +103,7 @@ const post: BlogPost = {
         "Usually a visit count per plan year, sometimes with a dollar limit. Visits used at other providers count toward the same cap, and caps run per plan year rather than per episode. The remaining benefit is available in the eligibility response for most payers, which makes this a counting problem rather than an information problem.",
     },
   ],
+  sources: ["medicare-benefit-policy-manual", "abn-forms", "medicare-coverage-database"],
   relatedServices: ["eligibility-verification", "medical-coding", "patient-collections"],
   relatedSpecialties: ["chiropractic"],
 };

@@ -137,6 +137,7 @@ const post: BlogPost = {
         "The appeal right expires and the denial becomes a write-off, regardless of how strong the clinical case was. Windows vary by payer and plan type and generally run from the date on the denial notice rather than the date it was received, so tracking three dates per denial \u2014 peer-to-peer, first-level appeal, and external review \u2014 is what prevents recoverable revenue expiring unworked.",
     },
   ],
+  sources: ["cms-0057-f", "medicare-appeals", "caqh-index"],
   relatedServices: ["prior-authorization", "denial-management", "eligibility-verification"],
 };
 

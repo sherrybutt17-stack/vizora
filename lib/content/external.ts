@@ -290,11 +290,11 @@ export const externalRefs: ExternalRef[] = [
   },
   {
     id: "medicaid-directory",
-    label: "State Medicaid programs and agency directory",
-    url: "https://www.medicaid.gov/about-us/contact-us/index.html",
+    label: "State Medicaid program overviews",
+    url: "https://www.medicaid.gov/state-overviews",
     publisher: "Medicaid.gov",
     description:
-      "Program contacts and policy by state. Our state pages summarize delivery model and program name; this is the authoritative directory behind them.",
+      "Program structure, delivery model and waivers by state. Our state pages summarise the program name and delivery model; this is the authoritative source behind them.",
     category: "payers",
   },
 

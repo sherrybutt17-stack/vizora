@@ -9,6 +9,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PrimarySources } from "@/components/sections/PrimarySources";
 import {
   JsonLd, breadcrumbSchema, faqSchema, webPageSchema, ENTITIES,
+  techArticleSchema,
 } from "@/lib/schema";
 import { getDenialCode } from "@/lib/content/denial-codes";
 import { refsForDenialCode } from "@/lib/content/citations";
@@ -91,6 +92,13 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
           lastReviewed: LAST_UPDATED,
           speakableSelectors: ["[data-answer]"],
+        }),
+        techArticleSchema({
+          headline: `${c.code} Denial Code: ${d.shortLabel}`,
+          description: `${c.title}. ${c.meaning}`,
+          path: `/denial-codes/${c.code.toLowerCase()}`,
+          updated: LAST_UPDATED,
+          section: c.category,
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

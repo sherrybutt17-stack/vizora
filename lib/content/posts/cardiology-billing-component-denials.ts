@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "cardiology-billing-component-denials",
   title: "Cardiology billing: component splits, global periods and monitoring intervals",
+  metaTitle: "Cardiology billing: splits and monitoring",
   excerpt:
     "Three denial patterns account for most cardiology write-offs, and all three come from billing correct work under the wrong structure.",
   category: "Specialty Billing",
@@ -106,6 +107,7 @@ const post: BlogPost = {
         "Nearly always. Premier Inc. puts the average cost of working a denied claim at $57.23 while roughly 70% of denials are eventually overturned, and cardiology claim values are high enough that the economics favour appealing almost everything. Practices that write these off are usually constrained by staffing hours rather than by whether the appeal would pay for itself.",
     },
   ],
+  sources: ["physician-fee-schedule", "ncci-policy-manual", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "denial-management", "prior-authorization"],
   relatedSpecialties: ["cardiology"],
 };

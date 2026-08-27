@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "dermatology-lesion-billing-and-medical-necessity",
   title: "Dermatology billing: lesion measurement, pathology timing and cosmetic denials",
+  metaTitle: "Dermatology billing: lesion size and pathology",
   excerpt:
     "Dermatology codes are selected on a measurement taken before the excision and a pathology result that arrives after it. That sequence causes most of the specialty's revenue loss.",
   category: "Specialty Billing",
@@ -125,6 +126,7 @@ const post: BlogPost = {
         "A documented symptom or clinical concern: bleeding, repeated irritation, inflammation, change in size or colour, obstruction of vision, or suspicion of malignancy. The distinction lives entirely in whether the note records it. A note that describes the procedure perfectly but never states why removal was warranted reads, on review, as cosmetic.",
     },
   ],
+  sources: ["ncci-policy-manual", "ama-cpt", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "denial-management", "claims-management"],
   relatedSpecialties: ["dermatology"],
 };

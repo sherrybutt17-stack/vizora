@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "neurology-billing-nerve-studies-and-eeg",
   title: "Neurology billing: nerve conduction study counts, EEG and botulinum policy",
+  metaTitle: "Neurology billing: nerve studies and EEG",
   excerpt:
     "Neurology's diagnostic testing is billed by counting studies, and payers audit those counts more closely than almost anything else in outpatient medicine.",
   category: "Specialty Billing",
@@ -108,6 +109,7 @@ const post: BlogPost = {
         "By the code's stated drug unit, not by vial count — a frequent and material error. Wastage from a single-use vial is generally reportable where the payer permits it, provided the discarded amount and the reason are documented. The drug and its administration are separate charges and some payers authorise them separately.",
     },
   ],
+  sources: ["mue-tables", "medicare-coverage-database", "ncci-policy-manual"],
   relatedServices: ["medical-coding", "prior-authorization", "denial-management"],
   relatedSpecialties: ["neurology"],
 };

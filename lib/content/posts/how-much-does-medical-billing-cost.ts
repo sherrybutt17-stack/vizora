@@ -149,6 +149,7 @@ const post: BlogPost = {
         "Implementation and data migration fees, per-statement and postage charges, clearinghouse pass-throughs, credentialing priced per provider per payer, and the terms governing exit \u2014 specifically who owns the data, in what format it is returned, and whether outstanding AR continues to be worked after notice is served. Exit terms are the most commonly overlooked and the most expensive to discover late.",
     },
   ],
+  sources: ["mgma-data", "caqh-index", "hfma-map-keys"],
   relatedServices: ["medical-billing", "revenue-cycle-management", "denial-management"],
 };
 

@@ -684,7 +684,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-40",
-    shortLabel: "Not an Emergency by Payer Criteria",
+    shortLabel: "Emergency Criteria Not Met",
     example: [
       "A patient presents to an urgent care with crushing chest pain. Workup is negative and the final diagnosis is costochondritis. The claim is billed at a high level of service and returns CO-40: the payer judged the presentation not to meet its criteria for emergent care.",
       "The payer applied the diagnosis retrospectively. Chest wall inflammation is not an emergency, so the visit was reclassified. That reasoning is what the prudent layperson standard exists to prevent.",
@@ -707,7 +707,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "PR-B7",
-    shortLabel: "Provider Not Enrolled on That Date",
+    shortLabel: "Provider Not Yet Enrolled",
     example: [
       "A practice hires a new physician who starts seeing patients on the first of the month. Claims go out normally for six weeks. Then a batch returns PR-B7: the provider was not certified or eligible to be paid for these services on those dates.",
       "Credentialing was submitted, but the payer's enrolment effective date is three weeks after the start date. Every claim in that window is denied, and because the denial is about enrolment rather than the claim, correcting and resubmitting changes nothing.",
@@ -822,7 +822,7 @@ export const denialCodeDetails: DenialCodeDetail[] = [
   },
   {
     code: "CO-62",
-    shortLabel: "Pre-Certification Absent or Exceeded",
+    shortLabel: "Precert Absent or Exceeded",
     example: [
       "An inpatient admission is pre-certified for three days. The patient's recovery is slower than expected and the stay runs to six. The claim returns CO-62 against the additional days.",
       "Pre-certification approved a length of stay, not an admission. Days four through six were delivered outside the approved scope, and the payer's position is that continued stay review should have happened while the patient was still admitted.",

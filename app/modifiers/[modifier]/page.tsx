@@ -7,7 +7,7 @@ import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PrimarySources } from "@/components/sections/PrimarySources";
-import { JsonLd, breadcrumbSchema, faqSchema, webPageSchema, ENTITIES } from "@/lib/schema";
+import { JsonLd, breadcrumbSchema, faqSchema, webPageSchema, techArticleSchema, ENTITIES } from "@/lib/schema";
 import { modifiers, getModifier } from "@/lib/content/modifiers";
 import { refsForModifier } from "@/lib/content/citations";
 import { getDenialCode } from "@/lib/content/denial-codes";
@@ -86,6 +86,13 @@ export default async function ModifierPage({ params }: { params: Promise<{ modif
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
           lastReviewed: LAST_UPDATED,
           speakableSelectors: ["[data-answer]"],
+        }),
+        techArticleSchema({
+          headline: `Modifier ${m.code}: ${m.shortName}`,
+          description: m.summary,
+          path: `/modifiers/${m.code.toLowerCase()}`,
+          updated: LAST_UPDATED,
+          section: m.category,
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

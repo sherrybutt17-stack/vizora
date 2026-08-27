@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "oncology-drug-units-and-infusion-billing",
   title: "Oncology billing: drug units, wastage and the infusion hierarchy",
+  metaTitle: "Oncology billing: drug units and wastage",
   excerpt:
     "A unit miscalculation on a biologic can exceed the value of an entire clinic day, in either direction — and it rarely shows up as a denial.",
   category: "Specialty Billing",
@@ -107,6 +108,7 @@ const post: BlogPost = {
         "Because oncology authorisations approve a specific regimen — named drugs, doses and cycle structure — rather than the patient generally. A changed regimen falls outside the existing approval, and denies the entire infusion encounter including the drug. Under buy-and-bill the practice has already purchased and administered it, which makes this the largest single-claim exposure in the specialty.",
     },
   ],
+  sources: ["hcpcs-level-ii", "mue-tables", "medicare-coverage-database"],
   relatedServices: ["prior-authorization", "medical-coding", "denial-management"],
   relatedSpecialties: ["oncology"],
 };

@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "anesthesia-billing-units-and-medical-direction",
   title: "Anesthesia billing: base units, time units and medical direction",
+  metaTitle: "Anesthesia billing: base and time units",
   excerpt:
     "Anesthesia is the only specialty where payment is calculated rather than looked up — and every input to that calculation is a place revenue leaks.",
   category: "Specialty Billing",
@@ -112,6 +113,7 @@ const post: BlogPost = {
         "Because payment is calculated rather than looked up, so an error in any input produces a lower payment on a claim that adjudicates cleanly. A wrong cross-walk, surgical time billed instead of anesthesia time, or an omitted physical status modifier all pay — just less. Only variance work comparing expected against received payment finds them; denial reports never will.",
     },
   ],
+  sources: ["claims-processing-manual", "physician-fee-schedule", "ama-cpt"],
   relatedServices: ["medical-coding", "medical-billing", "practice-analytics"],
   relatedSpecialties: ["anesthesia"],
 };

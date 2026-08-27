@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "family-medicine-em-and-preventive-denials",
   title: "Family medicine billing: E/M levels, wellness visits and care management",
+  metaTitle: "Family medicine billing: E/M and wellness",
   excerpt:
     "Primary care loses more revenue to undercoding than to denials, and the biggest single confusion is between a Medicare wellness visit and a physical.",
   category: "Specialty Billing",
@@ -106,6 +107,7 @@ const post: BlogPost = {
         "Most commonly for missing documented patient consent. Chronic care management also requires two or more chronic conditions expected to last twelve months or until death, a comprehensive care plan, and a threshold of clinical staff time within the calendar month. The care is usually delivered correctly; what is missing is the documentation of a condition that had to be met beforehand.",
     },
   ],
+  sources: ["em-documentation-guidelines", "medicare-benefit-policy-manual", "ama-cpt"],
   relatedServices: ["medical-coding", "medical-billing", "denial-management"],
   relatedSpecialties: ["family-medicine"],
 };

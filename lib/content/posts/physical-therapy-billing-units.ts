@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "physical-therapy-billing-units",
   title: "The 8-minute rule and physical therapy billing units",
+  metaTitle: "The 8-minute rule in physical therapy",
   excerpt:
     "Timed codes, untimed codes and the unit arithmetic between them. Where therapy practices lose revenue that was clinically earned and correctly delivered.",
   category: "Specialty Billing",
@@ -114,6 +115,7 @@ const post: BlogPost = {
         "No. Only direct one-on-one skilled treatment time counts. Unsupervised exercise, rest between sets, and unattended modalities occupy the appointment but contribute no timed minutes. This is why documenting the appointment length supports nothing — the record has to establish minutes of direct treatment per intervention plus a stated session total.",
     },
   ],
+  sources: ["claims-processing-manual", "mue-tables", "medicare-benefit-policy-manual"],
   relatedServices: ["medical-billing", "medical-coding", "denial-management"],
   relatedSpecialties: ["physical-therapy"],
 };

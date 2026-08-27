@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "podiatry-routine-foot-care-coverage",
   title: "Podiatry billing: the routine foot care exclusion and Q modifiers",
+  metaTitle: "Podiatry billing: routine foot care coverage",
   excerpt:
     "Medicare excludes routine foot care by statute, then covers it anyway when specific systemic findings are documented. Nearly all podiatry revenue turns on that exception.",
   category: "Specialty Billing",
@@ -121,6 +122,7 @@ const post: BlogPost = {
         "A certification from the physician managing the patient's diabetes — not the podiatrist supplying the shoes — stating that the patient has diabetes, is under a comprehensive care plan, and has a qualifying foot condition. The supplier needs separate documentation of the prescription and fitting. Most denials in this line are a certification signed by the wrong physician or missing a required statement.",
     },
   ],
+  sources: ["medicare-benefit-policy-manual", "abn-forms", "medicare-coverage-database"],
   relatedServices: ["medical-coding", "denial-management", "eligibility-verification"],
   relatedSpecialties: ["podiatry"],
 };

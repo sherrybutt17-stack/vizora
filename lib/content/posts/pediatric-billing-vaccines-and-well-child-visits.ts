@@ -3,6 +3,7 @@ import type { BlogPost } from "../blog-types";
 const post: BlogPost = {
   slug: "pediatric-billing-vaccines-and-well-child-visits",
   title: "Pediatric billing: vaccine administration units and same-day sick visits",
+  metaTitle: "Pediatric billing: vaccines and sick visits",
   excerpt:
     "Pediatrics bills low-value encounters at high volume, which means a small per-visit error compounds faster here than anywhere else in medicine.",
   category: "Specialty Billing",
@@ -107,6 +108,7 @@ const post: BlogPost = {
         "Because the specialty bills high volumes of low-value encounters. An under-billed vaccine administration produces no denial and no remittance line — nothing signals that anything went wrong. And at an average appeal cost of $57.23, fighting individual pediatric denials is often uneconomic, which makes prevention and reconciliation the higher-return activity.",
     },
   ],
+  sources: ["hcpcs-level-ii", "medicaid-directory", "ama-cpt"],
   relatedServices: ["medical-coding", "claims-management", "practice-analytics"],
   relatedSpecialties: ["pediatrics"],
 };

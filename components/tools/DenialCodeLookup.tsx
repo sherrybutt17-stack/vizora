@@ -1,15 +1,29 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { Search, AlertTriangle, ArrowUpRight } from "lucide-react";
 import { denialCodes, denialCategories, type DenialCategory } from "@/lib/content/denial-codes";
 import { detailedCodes } from "@/lib/content/denial-code-details";
 import { Badge, Card } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
-export function DenialCodeLookup() {
-  const [query, setQuery] = useState("");
+/**
+ * Deep-linkable via `?q=`.
+ *
+ * Two reasons. It lets an AI answer or an article point straight at a result —
+ * /tools/denial-code-lookup?q=CO-16 — instead of at a search box the reader
+ * then has to use. And it gives the site a real search endpoint, which is what
+ * the `SearchAction` in `websiteSchema()` refers to; declaring one without a
+ * working endpoint behind it would be a fabricated capability.
+ *
+ * The query seeds initial state rather than controlling it, so typing after
+ * arrival behaves normally and does not fight the URL.
+ */
+function LookupInner() {
+  const initialQuery = useSearchParams().get("q") ?? "";
+  const [query, setQuery] = useState(initialQuery);
   const [category, setCategory] = useState<DenialCategory | "All">("All");
 
   const results = useMemo(() => {
@@ -109,5 +123,13 @@ export function DenialCodeLookup() {
         </div>
       )}
     </div>
+  );
+}
+
+export function DenialCodeLookup() {
+  return (
+    <Suspense fallback={null}>
+      <LookupInner />
+    </Suspense>
   );
 }
