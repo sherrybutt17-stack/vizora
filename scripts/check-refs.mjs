@@ -32,8 +32,34 @@ const glossarySlugs = new Set(
   all(read("lib/content/glossary.ts"), /^    term: "([^"]+)"/gm).map(slugify),
 );
 
+const serviceSlugs = new Set(all(read("lib/content/services.ts"), /^\s{2,4}slug: "([^"]+)"/gm));
+
 const src = read("lib/content/citations.ts");
 const problems = [];
+
+// The cross-reference arrays on each denial code and modifier entry. These are
+// hand-written slugs and every category of them has been wrong at least once,
+// which is why they are checked rather than trusted.
+const crossRefs = [
+  ["denial-code-details.ts", "lib/content/denial-code-details.ts"],
+  ["modifiers.ts", "lib/content/modifiers.ts"],
+];
+for (const [label, path] of crossRefs) {
+  const body = read(path);
+  const field = (name) =>
+    [...body.matchAll(new RegExp(`^    ${name}: \\[([^\\]]*)\\]`, "gm"))].flatMap((m) =>
+      all(m[1], /"([^"]+)"/g),
+    );
+  for (const t of new Set(field("relatedTerms")))
+    if (!glossarySlugs.has(t)) problems.push(`${label}: relatedTerms not a glossary slug: ${t}`);
+  for (const sv of new Set(field("relatedServices")))
+    if (!serviceSlugs.has(sv)) problems.push(`${label}: relatedServices not a service slug: ${sv}`);
+  for (const c of new Set(field("relatedCodes")))
+    if (!denialCodes.has(c) && !modifierCodes.has(c))
+      problems.push(`${label}: relatedCodes not a known code: ${c}`);
+  for (const m of new Set(field("relatedModifiers")))
+    if (!modifierCodes.has(m)) problems.push(`${label}: relatedModifiers not a modifier: ${m}`);
+}
 
 // Every quoted id inside a ref-id array position must resolve.
 for (const [, list] of src.matchAll(/:\s*\[([^\]]*)\]/g)) {

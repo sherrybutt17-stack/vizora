@@ -534,7 +534,7 @@ export const modifiers: Modifier[] = [
       "ABN validity is where most of this fails. The notice must be issued before the service, identify the specific service, state the specific expected reason for denial, give an estimated cost, and carry a signature with an option selected. CMS treats routine blanket issuance as no issuance at all.",
       "Related modifiers distinguish different situations. Where a notice was not obtained but the practice knows the service is non-covered, a different modifier applies, and it does not make the balance billable. Choosing between them is a judgement about what is actually in the file.",
     ],
-    relatedModifiers: ["KX", "AT", "25"],
+    relatedModifiers: ["KX", "25"],
     relatedCodes: ["CO-50", "CO-96", "PR-204"],
     relatedTerms: ["medical-necessity", "patient-responsibility", "denial"],
     relatedServices: ["denial-management", "patient-collections", "eligibility-verification"],
