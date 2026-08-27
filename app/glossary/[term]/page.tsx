@@ -5,12 +5,14 @@ import { Container, Section, Badge, Eyebrow, Card, Prose } from "@/components/ui
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PrimarySources } from "@/components/sections/PrimarySources";
 import {
   JsonLd, breadcrumbSchema, definedTermSchema, webPageSchema, faqSchema, ENTITIES,
 } from "@/lib/schema";
 import {
   getTerm, glossarySlugs, glossaryCategories, resolveRelated, termsInCategory,
 } from "@/lib/content/glossary";
+import { refsForGlossaryTerm } from "@/lib/content/citations";
 import { pageMeta } from "@/lib/seo";
 import { LAST_UPDATED, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
@@ -143,6 +145,11 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ t
                 </ul>
               </div>
             ) : null}
+
+            <PrimarySources
+              ids={refsForGlossaryTerm(t.slug, t.category)}
+              note={`Where "${t.term}" is defined by the bodies that set the rules, rather than by us.`}
+            />
 
             <p className="mt-8 text-xs text-faint">Last reviewed {formatDate(LAST_UPDATED)}</p>
           </div>

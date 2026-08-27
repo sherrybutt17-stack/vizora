@@ -6,8 +6,10 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PrimarySources } from "@/components/sections/PrimarySources";
 import { JsonLd, breadcrumbSchema, faqSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { modifiers, getModifier } from "@/lib/content/modifiers";
+import { refsForModifier } from "@/lib/content/citations";
 import { getDenialCode } from "@/lib/content/denial-codes";
 import { getDenialDetail } from "@/lib/content/denial-code-details";
 import { getTerm } from "@/lib/content/glossary";
@@ -216,6 +218,11 @@ export default async function ModifierPage({ params }: { params: Promise<{ modif
                 ))}
               </p>
             )}
+
+            <PrimarySources
+              ids={refsForModifier(m.code, m.category)}
+              note={`What the payers and code-set maintainers actually publish about modifier ${m.code}.`}
+            />
           </div>
         </Container>
       </Section>

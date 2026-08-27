@@ -6,10 +6,12 @@ import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
 import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
+import { PrimarySources } from "@/components/sections/PrimarySources";
 import {
   JsonLd, breadcrumbSchema, faqSchema, webPageSchema, ENTITIES,
 } from "@/lib/schema";
 import { getDenialCode } from "@/lib/content/denial-codes";
+import { refsForDenialCode } from "@/lib/content/citations";
 import { denialCodeDetails, getDenialDetail } from "@/lib/content/denial-code-details";
 import { getTerm } from "@/lib/content/glossary";
 import { getService } from "@/lib/content/services";
@@ -205,6 +207,11 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
                 ))}
               </p>
             )}
+
+            <PrimarySources
+              ids={refsForDenialCode(c.code, c.category)}
+              note={`The rules behind ${c.code}, at the bodies that publish them.`}
+            />
 
             <p className="mt-8 text-sm text-faint">
               Looking for a different code?{" "}

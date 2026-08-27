@@ -8,11 +8,13 @@ import { PageTransition } from "@/components/motion/ViewTransition";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { RelatedContent } from "@/components/sections/RelatedContent";
+import { PrimarySources } from "@/components/sections/PrimarySources";
 import { JsonLd, breadcrumbSchema, faqSchema, serviceSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { getSpecialty, specialtySlugs } from "@/lib/content/specialties";
 import { getService } from "@/lib/content/services";
 import { getCaseStudiesForSpecialty } from "@/lib/content/case-studies";
 import { getPostsForSpecialty } from "@/lib/content/blog";
+import { refsForSpecialty } from "@/lib/content/citations";
 import { pageMeta } from "@/lib/seo";
 import { LAST_UPDATED, formatDate } from "@/lib/utils";
 
@@ -275,7 +277,13 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
               <p className="mt-4 text-sm text-faint">Last updated {formatDate(LAST_UPDATED)}</p>
               <Badge className="mt-4">Reviewed by a certified coding lead</Badge>
             </div>
-            <FAQList items={s.faqs} />
+            <div>
+              <FAQList items={s.faqs} />
+              <PrimarySources
+                ids={refsForSpecialty(s.slug)}
+                note={`Coverage, rates and local policy for ${s.name.toLowerCase()}, at the source.`}
+              />
+            </div>
           </div>
         </Container>
       </Section>
