@@ -7,6 +7,7 @@ import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PrimarySources } from "@/components/sections/PrimarySources";
+import { CodeIndex } from "@/components/sections/CodeIndex";
 import { JsonLd, breadcrumbSchema, faqSchema, webPageSchema, techArticleSchema, ENTITIES } from "@/lib/schema";
 import { modifiers, getModifier } from "@/lib/content/modifiers";
 import { refsForModifier } from "@/lib/content/citations";
@@ -67,6 +68,16 @@ export default async function ModifierPage({ params }: { params: Promise<{ modif
   ];
 
   const related = m.relatedModifiers.map(getModifier).filter(Boolean);
+  /**
+   * The full modifier index, grouped by category. Same reasoning as the denial
+   * code pages: `relatedModifiers` is a short editorial list, this is the index
+   * a coder browses when the modifier in front of them is not the right one.
+   */
+  const allModifierIndex = modifiers.map((x) => ({
+    code: x.code,
+    label: x.shortName,
+    category: x.category,
+  }));
   const codes = m.relatedCodes
     .map((c) => ({ code: c, data: getDenialCode(c), detail: getDenialDetail(c) }))
     .filter((r) => r.data);
@@ -225,6 +236,13 @@ export default async function ModifierPage({ params }: { params: Promise<{ modif
                 ))}
               </p>
             )}
+
+            <CodeIndex
+              items={allModifierIndex}
+              currentCode={m.code}
+              basePath="/modifiers"
+              title="Every CPT and HCPCS modifier with a guide"
+            />
 
             <PrimarySources
               ids={refsForModifier(m.code, m.category)}

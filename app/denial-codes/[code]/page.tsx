@@ -7,6 +7,7 @@ import { AnswerBlock } from "@/components/sections/AnswerBlock";
 import { FAQList } from "@/components/sections/FAQ";
 import { FinalCTA } from "@/components/sections/FinalCTA";
 import { PrimarySources } from "@/components/sections/PrimarySources";
+import { CodeIndex } from "@/components/sections/CodeIndex";
 import {
   JsonLd, breadcrumbSchema, faqSchema, webPageSchema, ENTITIES,
   techArticleSchema,
@@ -78,6 +79,22 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
     .filter((r) => r.data);
   const relatedTerms = d.relatedTerms.map(getTerm).filter(Boolean);
   const relatedServices = d.relatedServices.map(getService).filter(Boolean);
+
+  /**
+   * Every code that has a page, grouped by category for the index at the foot.
+   *
+   * `relatedCodes` above is three editorially chosen codes and stays that way —
+   * it is the "you probably meant one of these" list. This is the full index,
+   * presented as one, because a biller working a remittance is usually holding
+   * more than one code and category siblings alone are too few to help.
+   *
+   * It also closes a measured gap: the pages outranking ours carry 70+ internal
+   * links to sibling codes while ours carried three. The data was already here.
+   */
+  const allCodeIndex = denialCodeDetails
+    .map((x) => ({ code: x.code, label: x.shortLabel, data: getDenialCode(x.code) }))
+    .filter((x) => x.data)
+    .map((x) => ({ code: x.code, label: x.label, category: x.data!.category }));
 
   return (
     <PageTransition>
@@ -219,6 +236,13 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
             <PrimarySources
               ids={refsForDenialCode(c.code, c.category)}
               note={`The rules behind ${c.code}, at the bodies that publish them.`}
+            />
+
+            <CodeIndex
+              items={allCodeIndex}
+              currentCode={c.code}
+              basePath="/denial-codes"
+              title="Every denial code with a guide"
             />
 
             <p className="mt-8 text-sm text-faint">
