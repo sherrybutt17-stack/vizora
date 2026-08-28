@@ -345,6 +345,34 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
             </Link>{" "}
             covers what changes and why.
           </p>
+
+          {/* The Medicare half of the same problem. Every state page names a
+              MAC and a jurisdiction, which makes 50 pages a cluster around
+              Part B and around local coverage policy — both of which had no
+              central page until these two. Cluster -> pillar, same direction
+              as the Medicaid link above. */}
+          <p className="mt-4 max-w-3xl text-sm leading-relaxed text-muted">
+            <span className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">
+              Billing Medicare in {s.name} —{" "}
+            </span>
+            {s.mac} adjudicates Part B claims for {s.jurisdiction}, and publishes its own local
+            coverage determinations for that jurisdiction. That is why an identical claim can pay
+            in one state and deny in another. See{" "}
+            <Link
+              href="/blog/medicare-part-b-billing-and-your-mac"
+              className="text-accent underline underline-offset-4 hover:text-accent-2"
+            >
+              what your MAC decides
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/blog/lcds-ncds-and-how-coverage-is-decided"
+              className="text-accent underline underline-offset-4 hover:text-accent-2"
+            >
+              how LCDs and NCDs work
+            </Link>
+            .
+          </p>
         </Container>
       </Section>
 

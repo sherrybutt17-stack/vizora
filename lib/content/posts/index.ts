@@ -1,4 +1,6 @@
 import type { BlogPost } from "../blog-types";
+import pMedB from "./medicare-part-b-billing-and-your-mac";
+import pLcd from "./lcds-ncds-and-how-coverage-is-decided";
 import pMcd from "./medicaid-billing-state-programs-and-managed-care";
 import pNep from "./nephrology-dialysis-monthly-capitation-billing";
 import pChi from "./chiropractic-billing-at-modifier-and-maintenance";
@@ -47,6 +49,8 @@ import p6 from "./understanding-medical-coding-updates";
  * ordering.
  */
 const all: BlogPost[] = [
+  pLcd,
+  pMedB,
   pMcd,
   pNep,
   pChi,
