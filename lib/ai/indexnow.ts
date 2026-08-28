@@ -7,9 +7,21 @@
  * nowhere in the results for that query at all. The page is not weaker than
  * theirs; it had never been submitted anywhere, so nothing knew it existed.
  *
- * IndexNow closes that gap without an account or a verification step: hosting
- * the key file at a URL on this host IS the ownership proof. Bing, Yandex,
- * Seznam and Naver all consume the same ping.
+ * CORRECTION (2026-08-28): an earlier version of this comment, and the commit
+ * that introduced it, claimed the site had never been submitted to Bing. That
+ * was wrong. It is verified in Bing Webmaster Tools and the sitemap has been
+ * submitted since 2026-08-20. The mistake was inferring "no Bing account" from
+ * `site.verification.bing` being empty — that field only covers HTML meta-tag
+ * verification, and this domain was verified by another method.
+ *
+ * The real gap is staleness, not absence. Bing last crawled the sitemap on
+ * 2026-08-25 and had discovered 217 URLs; the sitemap now carries 278. Every
+ * page shipped since — the 25 new denial codes and all three pillars — is
+ * invisible to it until it re-crawls on its own schedule.
+ *
+ * IndexNow is what removes that wait. It needs no account and no separate
+ * verification step: hosting the key file at a URL on this host IS the
+ * ownership proof. Bing, Yandex, Seznam and Naver all consume the same ping.
  *
  * The key is public by design — do not treat it as a secret. Its only job is
  * to prove that whoever submitted the URLs controls this host, which is

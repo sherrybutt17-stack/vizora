@@ -4,9 +4,9 @@ import { readFileSync } from "node:fs";
  * Submit every sitemap URL to IndexNow.
  *
  * Run after a deploy that adds or materially changes pages. Bing is the index
- * behind ChatGPT search, and until a page is in it, no amount of on-page work
- * can get the page cited — which is exactly the state a 2026-08-28 citation
- * check found this site in.
+ * behind ChatGPT search, and it crawls a sitemap on its own schedule — on
+ * 2026-08-25 it had discovered 217 of what by 2026-08-28 were 278 URLs. Until
+ * a page is in the index it cannot be cited, however good it is.
  *
  *   node scripts/indexnow-submit.mjs                  # submit everything
  *   node scripts/indexnow-submit.mjs --only /blog/    # submit a path prefix
