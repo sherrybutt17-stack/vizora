@@ -9,9 +9,20 @@ import { detailedCodes } from "@/lib/content/denial-code-details";
 import { modifierCodes } from "@/lib/content/modifiers";
 import { comparisonSlugs } from "@/lib/content/comparisons";
 import { caseStudies } from "@/lib/content/case-studies";
-import { LAST_UPDATED } from "@/lib/utils";
+import lastmod from "@/lib/content/lastmod.json";
 
-const now = new Date(LAST_UPDATED);
+/**
+ * Real per-group modification dates, generated from git by
+ * `scripts/gen-lastmod.mjs`.
+ *
+ * This used to be one hardcoded constant applied to every URL. On 2026-08-30
+ * that constant read 2026-08-20, so 278 pages claimed no change across ten days
+ * of daily shipping, and pages created on the 27th claimed a date from before
+ * they existed. A demonstrably wrong lastmod is worse than none — it is a
+ * reason for a crawler to ignore the field across the whole sitemap, which is
+ * the opposite of what a site fighting for indexation wants.
+ */
+const at = (group: keyof typeof lastmod) => new Date(lastmod[group]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const core: MetadataRoute.Sitemap = [
@@ -46,24 +57,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const services = serviceSlugs.map((slug) => ({
     url: `${site.url}/services/${slug}`,
+    lastModified: at("services"),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const specialties = specialtySlugs.map((slug) => ({
     url: `${site.url}/specialties/${slug}`,
+    lastModified: at("specialties"),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
   const locations = stateSlugs.map((slug) => ({
     url: `${site.url}/locations/${slug}`,
+    lastModified: at("locations"),
     changeFrequency: "monthly" as const,
     priority: 0.6,
   }));
 
   const glossaryPages = glossarySlugs.map((slug) => ({
     url: `${site.url}/glossary/${slug}`,
+    lastModified: at("glossary"),
     changeFrequency: "yearly" as const,
     priority: 0.5,
   }));
@@ -72,31 +87,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // come from `detailedCodes` rather than the full 190-code dataset.
   const denialCodePages = detailedCodes.map((code) => ({
     url: `${site.url}/denial-codes/${code.toLowerCase()}`,
+    lastModified: at("denialCodes"),
     changeFrequency: "yearly" as const,
     priority: 0.7,
   }));
 
   const modifierPages = modifierCodes.map((code) => ({
     url: `${site.url}/modifiers/${code.toLowerCase()}`,
+    lastModified: at("modifiers"),
     changeFrequency: "yearly" as const,
     priority: 0.7,
   }));
 
   const comparePages = comparisonSlugs.map((slug) => ({
     url: `${site.url}/compare/${slug}`,
+    lastModified: at("compare"),
     changeFrequency: "monthly" as const,
     priority: 0.85,
   }));
 
   const caseStudyPages = caseStudies.map((c) => ({
     url: `${site.url}/case-studies/${c.slug}`,
+    lastModified: at("caseStudies"),
     changeFrequency: "yearly" as const,
     priority: 0.75,
   }));
 
   const blog = posts.map((p) => ({
     url: `${site.url}/blog/${p.slug}`,
-    lastModified: new Date(p.updated),
+    // The editorial review date, unless the template changed more recently.
+    lastModified: new Date(Math.max(Date.parse(p.updated), at("blogTemplate").getTime())),
     changeFrequency: "monthly" as const,
     priority: 0.7,
   }));
@@ -107,7 +127,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...denialCodePages,
     ...modifierPages,
   ].map((entry) => ({
-    lastModified: now,
+    // Core pages fall back to the site-wide date; every collection above
+    // sets its own, so this only applies to the hand-listed routes.
+    lastModified: at("core"),
     ...entry,
   }));
 }
