@@ -722,7 +722,7 @@ export const cptCodes: CptCode[] = [
     context: [
       "The hierarchy exists because a single encounter routinely involves several infusions through one line, and without a rule every one of them would be billed as an initial service. Understanding that the rule is about the encounter rather than the sequence is what makes the rest of drug administration coding tractable.",
       "Medically unlikely edits sit on the drug supply codes and cap the units payable per date of service. Oncology units are unit-dense by nature, so a correct high-dose administration can exceed the edit and deny — recoverable, but only with documentation of the dose and the clinical rationale attached.",
-      "This code carries measured search demand for this site with no page previously existing, which is the reason it appears in the first tranche of this reference. Specific administration codes are queried by billers working a remittance, not by buyers, and that is exactly the audience a reference page should serve.",
+      "The chemotherapy administration codes are not confined to cancer treatment, and assuming they are is a persistent source of under-billing. Selection follows the nature of the agent and the supervision its administration demands rather than the diagnosis being treated, so monoclonal antibodies and other biologic agents infused for rheumatologic, gastrointestinal or neurologic conditions belong on these codes rather than on the lower-paying therapeutic infusion codes. A practice defaulting to the therapeutic codes for biologic infusions is paid less for identical work on every claim, and nothing in the remittance flags it.",
     ],
     relatedCpt: ["96415", "96365", "96372"],
     relatedModifiers: ["59", "XE", "XU"],
