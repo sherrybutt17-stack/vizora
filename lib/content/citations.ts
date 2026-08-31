@@ -82,6 +82,10 @@ const denialOverrides: Record<string, string[]> = {
   "CO-147": ["physician-fee-schedule", "no-surprises-act", "claims-processing-manual"],
   "CO-222": ["mue-tables", "medicare-coverage-database", "claims-processing-manual"],
   "CO-19": ["owcp-workers-comp", "msp-manual", "claims-processing-manual"],
+  "CO-24": ["claims-processing-manual", "medicare-benefit-policy-manual"],
+  "CO-23": ["msp-manual", "claims-processing-manual", "x12-carc"],
+  "CO-170": ["pecos", "claims-processing-manual", "medicare-benefit-policy-manual"],
+  "CO-242": ["no-surprises-act", "pecos", "medicare-coverage-database"],
 };
 
 export const refsForDenialCode = (code: string, category: DenialCategory): string[] =>

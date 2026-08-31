@@ -1188,6 +1188,98 @@ export const denialCodeDetails: DenialCodeDetail[] = [
       { question: "How do you prevent CO-19?", answer: "Ask whether the injury happened at work, at registration, for every injury presentation. It takes seconds and it is the only reliable prevention, because nothing in an eligibility check reveals causation." },
     ],
   },
+  {
+    code: "CO-24",
+    shortLabel: "Covered Under Capitation",
+    example: [
+      "A primary care practice bills an office visit for an established patient and the claim returns CO-24: charges are covered under a capitation agreement.",
+      "The patient is assigned to the practice under a capitated contract. The practice is already paid a fixed monthly amount per assigned member, and that payment covers this visit whether or not it happened.",
+      "There is nothing to appeal and nothing to bill the patient. What is worth checking is whether the assignment is correct — a patient wrongly attributed to a capitated panel produces a denial for a practice receiving no capitation payment for them.",
+    ],
+    context: [
+      "Capitation inverts the economics of a visit. Under fee-for-service every encounter generates a claim and a payment. Under capitation the payment arrives monthly per assigned member regardless of utilisation, so a claim for a covered service is a report of activity, not a request for money.",
+      "That is why CO-24 is not a denial in any useful sense, and why treating it as one wastes the time of whoever works the queue. The only real question is attribution: is this patient genuinely on our capitated panel for this month, and are we receiving the capitation payment for them.",
+      "The failure worth guarding against is the reverse — a patient who left the panel but is still flagged capitated internally, so their billable visits are never submitted fee-for-service. That loses revenue silently, and unlike a denial it produces no remittance line to notice.",
+    ],
+    relatedCodes: ["CO-234", "CO-45", "CO-109"],
+    relatedTerms: ["contractual-adjustment", "eligibility-verification", "allowed-amount"],
+    relatedServices: ["eligibility-verification", "practice-analytics", "revenue-cycle-management"],
+    faqs: [
+      { question: "What does CO-24 mean?", answer: "The service falls under a capitation agreement, so no fee-for-service payment is due. The practice is paid a fixed monthly amount per assigned member that already covers the visit. The claim is a report of activity rather than a request for payment." },
+      { question: "Can a CO-24 balance be billed to the patient?", answer: "No. The CO prefix makes it a contractual obligation, and the capitation payment is the payment. Billing the patient for a service already covered by capitation generally breaches the agreement." },
+      { question: "Should CO-24 be appealed?", answer: "Only where the patient is not genuinely on your capitated panel. That does happen — attribution errors assign patients to the wrong practice. Confirm the assignment and whether you are receiving capitation for that member before adjusting." },
+      { question: "What is the risk with capitated patients?", answer: "The expensive error runs the other way: a patient who has left the panel but is still flagged capitated internally, whose billable visits are never submitted fee-for-service. That produces no denial and no remittance line, so nothing surfaces it." },
+    ],
+  },
+  {
+    code: "CO-23",
+    shortLabel: "Prior Payer Adjudication",
+    example: [
+      "A secondary claim is submitted after Medicare paid as primary. The remittance from the secondary payer shows CO-23 against part of the balance.",
+      "This is the secondary payer accounting for what the primary already did. It is not refusing to pay; it is showing its working, reducing the amount it considers by what has already been paid or adjusted upstream.",
+      "The action is arithmetic, not appeal. Confirm the secondary applied the primary's payment and adjustments correctly. Where the maths is right, the line closes with no further work.",
+    ],
+    context: [
+      "CO-23 appears almost exclusively on secondary and tertiary claims, and it is one of the codes most often miscategorised as a denial. A queue full of CO-23 lines usually means coordination-of-benefits remittances are being routed to denial management rather than payment posting.",
+      "The situation that does need attention is a secondary payer that has misread the primary's explanation of benefits — commonly by treating a contractual adjustment as a payment, which understates the remaining balance. That is a genuine underpayment wearing the clothes of a routine adjustment.",
+      "Prevention is upstream and mechanical: submit complete primary EOB data with the secondary claim. Incomplete crossover data is the single largest cause of secondary claims being adjudicated on assumptions rather than on what the primary actually did.",
+    ],
+    relatedCodes: ["CO-22", "CO-45", "CO-109"],
+    relatedTerms: ["coordination-of-benefits", "contractual-adjustment", "allowed-amount"],
+    relatedServices: ["claims-management", "practice-analytics", "ar-management"],
+    faqs: [
+      { question: "Is CO-23 a denial?", answer: "Generally not. It is the secondary payer accounting for what the primary already paid or adjusted, which is a normal part of coordination of benefits. It appears on secondary and tertiary claims and usually requires no action beyond confirming the arithmetic." },
+      { question: "When is CO-23 worth disputing?", answer: "When the secondary payer has misread the primary's explanation of benefits — most often by treating a contractual adjustment as a payment, which understates what remains. That is an underpayment presented as a routine adjustment." },
+      { question: "Can a CO-23 balance be billed to the patient?", answer: "No. The CO prefix marks it a contractual obligation absorbed by the provider. Patient responsibility on a secondary claim arrives under PR codes, not this one." },
+      { question: "How do you prevent CO-23 problems?", answer: "Submit complete primary EOB data with every secondary claim. Incomplete crossover data is the main reason a secondary payer adjudicates on assumptions rather than on what the primary actually did." },
+    ],
+  },
+  {
+    code: "CO-170",
+    shortLabel: "Provider Type Not Eligible",
+    example: [
+      "A clinic bills a diagnostic procedure performed by a nurse practitioner. The claim returns CO-170: payment denied when performed or billed by this type of provider.",
+      "The practitioner is licensed and enrolled. What the payer is saying is narrower — this provider type is not eligible to bill this particular service under this plan, regardless of enrolment.",
+      "The first thing to check is whether the claim went out under the right NPI at all. Where the provider is correct, the question becomes whether the service is payable under a supervising physician instead, and whether the encounter genuinely met that arrangement's requirements.",
+    ],
+    context: [
+      "CO-170 is about scope rather than credentials, which is why re-checking enrolment usually finds nothing wrong. Enrolment establishes that a provider may bill the payer; scope establishes which services they may bill for, and payers set that independently of state licensure.",
+      "It concentrates around non-physician providers and around specialty designations. A payer may pay a nurse practitioner for evaluation and management and decline the same practitioner for a procedure, or decline a service because the enrolled specialty on file does not match the service billed.",
+      "The dangerous response is rebilling under a supervising physician to clear the denial. Incident-to and supervision arrangements have specific requirements — an established patient, an existing plan of care, direct supervision — and asserting them after the fact, when they were not met, converts a payment problem into a compliance one.",
+    ],
+    relatedCodes: ["CO-185", "PR-B7", "CO-242"],
+    relatedTerms: ["credentialing", "npi", "cpt-code"],
+    relatedServices: ["credentialing", "denial-management", "medical-coding"],
+    faqs: [
+      { question: "What is the difference between CO-170 and CO-185?", answer: "Both concern provider eligibility, but CO-185 usually means the rendering provider is not enrolled or eligible at all, while CO-170 means this type of provider is not eligible for this particular service. One is a credentialing gap; the other is a scope limitation." },
+      { question: "Why is an enrolled provider denied for a service?", answer: "Because enrolment and scope are separate. Enrolment says a provider may bill the payer; scope says which services they may bill for. Payers set scope independently of state licensure, so a licensed and enrolled practitioner can still be outside scope for a specific procedure." },
+      { question: "Can the claim be rebilled under a supervising physician?", answer: "Only where the encounter genuinely met that arrangement's requirements at the time — an established patient, an existing plan of care and direct supervision. Asserting incident-to after a denial, when the conditions were not met, is a compliance exposure rather than a fix." },
+      { question: "How do you prevent CO-170?", answer: "Confirm scope of service per provider per payer during credentialing, not after the first denial, and load it so a claim cannot go out under a provider the payer will not pay for that service." },
+    ],
+  },
+  {
+    code: "CO-242",
+    shortLabel: "Provider Out of Network",
+    example: [
+      "A patient is seen by a specialist whose practice participates with the carrier. The claim returns CO-242: services not provided by network providers.",
+      "The practice does participate with the carrier — but not with this specific plan. Carriers operate many networks, and participation in one does not imply participation in another, particularly for narrow-network and marketplace products.",
+      "Where an in-network provider was genuinely unavailable, a network-adequacy appeal is the route. Where the practice simply is not in this plan's network, the balance follows the plan's out-of-network rules, and what may be billed to the patient depends on whether the No Surprises Act applies.",
+    ],
+    context: [
+      "The distinction that causes most CO-242 is carrier-level versus plan-level participation. An eligibility check that confirms the patient has coverage with a carrier the practice participates with answers a question that is not the one the claim depends on.",
+      "Narrow networks make this materially worse. Marketplace and employer plans increasingly build restricted panels from a subset of the carrier's contracted providers, so a practice can be in-network for the carrier's flagship product and out for its narrow one, with no change in contract status.",
+      "The patient exposure is the part that needs handling before service rather than after. Out-of-network care changes cost-sharing substantially, and for emergency care and certain facility-based services the No Surprises Act limits what may be billed regardless of network status. A patient who learns their specialist was out of network from a bill has been failed at registration.",
+    ],
+    relatedCodes: ["CO-38", "CO-170", "PR-B7"],
+    relatedTerms: ["out-of-network", "eligibility-verification", "patient-responsibility"],
+    relatedServices: ["eligibility-verification", "credentialing", "patient-collections"],
+    faqs: [
+      { question: "Why is a participating provider denied as out of network?", answer: "Because participation is per plan, not per carrier. Carriers operate multiple networks, and narrow-network and marketplace products are frequently built from a subset of contracted providers. A practice can be in-network for one product and out for another with no change in contract." },
+      { question: "Can CO-242 be appealed?", answer: "Yes, where no in-network provider was reasonably available — a network-adequacy argument. Also where the network status on file is simply wrong, which happens after contract changes that the payer's directory has not caught up with." },
+      { question: "Can the patient be billed when the provider is out of network?", answer: "It depends on the plan's out-of-network benefit and on whether the No Surprises Act applies. For emergency care and certain facility-based services it limits balance billing regardless of network status. Where it does not apply, the plan's out-of-network cost-sharing governs." },
+      { question: "How do you prevent CO-242?", answer: "Verify network participation at the plan level during eligibility checks, not at the carrier level. That single change removes most of this denial, and it is also what lets you tell a patient their cost before the visit rather than after." },
+    ],
+  },
 ];
 
 export const detailedCodes = denialCodeDetails.map((d) => d.code);

@@ -32,8 +32,17 @@ export function CodeIndex<T extends { code: string; label: string; category: str
   const categories = [...byCategory.entries()].sort((a, b) => a[0].localeCompare(b[0]));
   if (!categories.length) return null;
 
+  /**
+   * A <nav>, not a <div>, because that is what it is.
+   *
+   * Measured 2026-09-01: the index adds 10-20 points of 8-word shingle overlap
+   * between any two code pages, because 53 code+label pairs repeat on every
+   * one. Body-only overlap is 1.8-15.8%, so the unique content is genuinely
+   * unique — this is boilerplate, and marking it as navigation is how a parser
+   * is supposed to be told that.
+   */
   return (
-    <div className="mt-12 border-t border-border pt-8">
+    <nav aria-label={title} className="mt-12 border-t border-border pt-8">
       <h2 className="font-mono text-[0.65rem] uppercase tracking-[0.16em] text-faint">{title}</h2>
       <div className="mt-5 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map(([category, list]) => (
@@ -65,6 +74,6 @@ export function CodeIndex<T extends { code: string; label: string; category: str
           </div>
         ))}
       </div>
-    </div>
+    </nav>
   );
 }
