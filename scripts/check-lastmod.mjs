@@ -40,6 +40,24 @@ const lastCommit = (p) => {
   }
 };
 
+// The generator reads committed history, so running it before `git commit`
+// records the PREVIOUS commit's date — a one-commit lag that is exactly the
+// silent staleness this check exists to catch. Regenerate and amend, or commit
+// the refreshed map separately.
+const dirty = (() => {
+  try {
+    return execFileSync("git", ["status", "--porcelain", "--", ...Object.values(SOURCES).flat()], {
+      encoding: "utf8",
+    }).trim();
+  } catch {
+    return "";
+  }
+})();
+if (dirty) {
+  console.error("✗ uncommitted changes to dated sources — commit first, then regenerate:\n" + dirty);
+  process.exit(1);
+}
+
 const stale = [];
 for (const [group, paths] of Object.entries(SOURCES)) {
   const actual = paths.map(lastCommit).filter(Boolean).sort().pop();
