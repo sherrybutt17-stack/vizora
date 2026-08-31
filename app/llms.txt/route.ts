@@ -7,6 +7,7 @@ import { glossary } from "@/lib/content/glossary";
 import { denialCodes } from "@/lib/content/denial-codes";
 import { denialCodeDetails } from "@/lib/content/denial-code-details";
 import { modifiers } from "@/lib/content/modifiers";
+import { cptCodes } from "@/lib/content/cpt-codes";
 import { posts } from "@/lib/content/blog";
 import { LAST_UPDATED } from "@/lib/utils";
 
@@ -63,6 +64,7 @@ Machine-readable detail: /pricing.md
 - [Revenue Leak Calculator](/tools/revenue-leak-calculator): estimates annual revenue lost to denials using published MGMA, Premier and Optum benchmarks
 - [Denial Code Lookup](/tools/denial-code-lookup): all ${denialCodes.length} CARC and RARC codes explained, with the fix and the prevention for each
 - [CPT Modifiers Explained](/modifiers): ${modifiers.length} modifiers, each with the misuse cases that cause denials — not only when they apply
+- [CPT Codes Explained](/cpt-codes): ${cptCodes.length} procedure codes, each with the unit rules and documentation that decide payment
 - [RCM Benchmarks](/resources/rcm-benchmarks): current industry benchmarks, every figure attributed to a named publisher, dataset and year
 - [Glossary](/glossary): ${glossary.length} medical billing terms defined
 - [Resources](/resources): primary sources — CMS, X12, MGMA, HHS — that govern how claims are paid
@@ -84,6 +86,14 @@ Each page covers when the modifier applies and, more usefully, when it does
 not — the misuse cases are what produce denials and audit findings.
 
 ${modifiers.map((m) => `- [Modifier ${m.code}](/modifiers/${m.code.toLowerCase()}): ${m.name}`).join("\n")}
+
+## CPT procedure codes
+
+Each page explains how the code is billed — unit rules, time thresholds,
+documentation — rather than restating the descriptor. CPT is copyrighted by
+the AMA and the official descriptors are not reproduced.
+
+${cptCodes.map((c) => `- [CPT ${c.code}](/cpt-codes/${c.code}): ${c.shortName}`).join("\n")}
 
 ## Comparisons
 

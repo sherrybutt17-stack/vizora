@@ -67,6 +67,11 @@ const GROUPS = {
     "app/modifiers/[modifier]/page.tsx",
     "components/sections/CodeIndex.tsx",
   ],
+  cptCodes: [
+    "lib/content/cpt-codes.ts",
+    "app/cpt-codes/[code]/page.tsx",
+    "components/sections/CodeIndex.tsx",
+  ],
   compare: ["lib/content/comparisons.ts", "app/compare/[slug]/page.tsx"],
   caseStudies: ["lib/content/case-studies.ts", "app/case-studies/[slug]/page.tsx"],
   // Blog posts carry their own editorial `updated` date, which is a human

@@ -1,5 +1,6 @@
 import type { DenialCategory } from "./denial-codes";
 import type { ModifierCategory } from "./modifiers";
+import type { CptCategory } from "./cpt-codes";
 import type { GlossaryCategory } from "./glossary";
 
 /**
@@ -115,6 +116,46 @@ const modifierOverrides: Record<string, string[]> = {
 
 export const refsForModifier = (code: string, category: ModifierCategory): string[] =>
   modifierOverrides[code] ?? modifierByCategory[category];
+
+/**
+ * CPT pages cite the code-set maintainer and the payment or policy document
+ * that actually governs the code's unit rules — the fee schedule for
+ * component splits, the MUE tables where units are capped, the NCCI manual
+ * where bundling decides the outcome.
+ *
+ * The AMA reference is present on nearly every entry for a reason beyond
+ * relevance: these pages deliberately do not reproduce CPT descriptors, and
+ * pointing at the authoritative source is the honest way to handle that.
+ */
+const cptByCategory: Record<CptCategory, string[]> = {
+  "Evaluation and management": ["em-documentation-guidelines", "ama-cpt", "physician-fee-schedule"],
+  "Behavioral health": ["medicare-benefit-policy-manual", "medicare-coverage-database", "ama-cpt"],
+  Chiropractic: ["medicare-benefit-policy-manual", "abn-forms", "medicare-coverage-database"],
+  "Physical medicine": ["medicare-benefit-policy-manual", "mue-tables", "claims-processing-manual"],
+  "Drug administration": ["claims-processing-manual", "mue-tables", "hcpcs-level-ii"],
+  "Cardiovascular diagnostics": ["physician-fee-schedule", "medicare-coverage-database", "claims-processing-manual"],
+  Procedures: ["ncci-policy-manual", "physician-fee-schedule", "ama-cpt"],
+  "Care management": ["claims-processing-manual", "medicare-benefit-policy-manual", "physician-fee-schedule"],
+};
+
+const cptOverrides: Record<string, string[]> = {
+  "99213": ["em-documentation-guidelines", "ama-cpt", "oig-work-plan"],
+  "99214": ["em-documentation-guidelines", "oig-work-plan", "ama-cpt"],
+  "99215": ["em-documentation-guidelines", "oig-work-plan", "physician-fee-schedule"],
+  "97110": ["medicare-benefit-policy-manual", "mue-tables", "physician-fee-schedule"],
+  "97140": ["ncci-policy-manual", "ncci-edits", "medicare-benefit-policy-manual"],
+  "97597": ["medicare-coverage-database", "ncci-policy-manual", "oig-work-plan"],
+  "11042": ["ncci-policy-manual", "oig-work-plan", "medicare-coverage-database"],
+  "98941": ["medicare-benefit-policy-manual", "abn-forms", "oig-work-plan"],
+  "98942": ["medicare-benefit-policy-manual", "abn-forms", "oig-work-plan"],
+  "93000": ["physician-fee-schedule", "claims-processing-manual", "medicare-coverage-database"],
+  "93010": ["physician-fee-schedule", "claims-processing-manual"],
+  "20610": ["ncci-policy-manual", "physician-fee-schedule", "hcpcs-level-ii"],
+  "96372": ["claims-processing-manual", "ncci-policy-manual", "hcpcs-level-ii"],
+};
+
+export const refsForCptCode = (code: string, category: CptCategory): string[] =>
+  cptOverrides[code] ?? cptByCategory[category];
 
 const glossaryByCategory: Record<GlossaryCategory, string[]> = {
   claims: ["nucc-cms-1500", "claims-processing-manual", "caqh-index"],

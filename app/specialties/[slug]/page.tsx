@@ -15,6 +15,7 @@ import { getService } from "@/lib/content/services";
 import { getCaseStudiesForSpecialty } from "@/lib/content/case-studies";
 import { getPostsForSpecialty } from "@/lib/content/blog";
 import { refsForSpecialty } from "@/lib/content/citations";
+import { hasCptPage } from "@/lib/content/cpt-codes";
 import { pageMeta } from "@/lib/seo";
 import { LAST_UPDATED, formatDate } from "@/lib/utils";
 
@@ -160,8 +161,23 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
           <Reveal className="mt-10">
             <DataTable
               headers={["Code", "Description"]}
+              /* Codes with a written guide link to it. 132 distinct CPT codes
+                 are named across this file and until /cpt-codes existed none of
+                 them led anywhere — the largest internal-link gap on the site.
+                 Codes without a guide stay plain text rather than linking to a
+                 page that would have to be generated thin. */
               rows={s.codes.map((c) => [
-                <span key={c.code} className="font-mono font-600 text-accent">{c.code}</span>,
+                hasCptPage(c.code) ? (
+                  <Link
+                    key={c.code}
+                    href={`/cpt-codes/${c.code}`}
+                    className="font-mono font-600 text-accent hover:underline"
+                  >
+                    {c.code}
+                  </Link>
+                ) : (
+                  <span key={c.code} className="font-mono font-600 text-accent">{c.code}</span>
+                ),
                 c.label,
               ])}
             />

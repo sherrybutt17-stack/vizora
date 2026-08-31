@@ -26,6 +26,7 @@ const SOURCES = {
   glossary: ["lib/content/glossary.ts", "app/glossary/[term]/page.tsx", "components/sections/PrimarySources.tsx"],
   denialCodes: ["lib/content/denial-code-details.ts", "lib/content/denial-codes.ts", "app/denial-codes/[code]/page.tsx", "components/sections/CodeIndex.tsx"],
   modifiers: ["lib/content/modifiers.ts", "app/modifiers/[modifier]/page.tsx", "components/sections/CodeIndex.tsx"],
+  cptCodes: ["lib/content/cpt-codes.ts", "app/cpt-codes/[code]/page.tsx", "components/sections/CodeIndex.tsx"],
   compare: ["lib/content/comparisons.ts", "app/compare/[slug]/page.tsx"],
   caseStudies: ["lib/content/case-studies.ts", "app/case-studies/[slug]/page.tsx"],
   blogTemplate: ["app/blog/[slug]/page.tsx"],

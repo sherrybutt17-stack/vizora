@@ -7,6 +7,7 @@ import { posts } from "@/lib/content/blog";
 import { glossarySlugs } from "@/lib/content/glossary";
 import { detailedCodes } from "@/lib/content/denial-code-details";
 import { modifierCodes } from "@/lib/content/modifiers";
+import { cptCodeList } from "@/lib/content/cpt-codes";
 import { comparisonSlugs } from "@/lib/content/comparisons";
 import { caseStudies } from "@/lib/content/case-studies";
 import lastmod from "@/lib/content/lastmod.json";
@@ -41,6 +42,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${site.url}/tools/revenue-leak-calculator`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/tools/denial-code-lookup`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${site.url}/modifiers`, changeFrequency: "monthly", priority: 0.85 },
+    { url: `${site.url}/cpt-codes`, changeFrequency: "monthly", priority: 0.85 },
     { url: `${site.url}/resources`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources/rcm-benchmarks`, changeFrequency: "monthly", priority: 0.8 },
     { url: `${site.url}/resources/choosing-a-medical-billing-company`, changeFrequency: "monthly", priority: 0.85 },
@@ -99,6 +101,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  // Same coupling as the denial codes: params come from the written-content
+  // array, so a code without a guide cannot appear in the sitemap.
+  const cptCodePages = cptCodeList.map((code) => ({
+    url: `${site.url}/cpt-codes/${code}`,
+    lastModified: at("cptCodes"),
+    changeFrequency: "yearly" as const,
+    priority: 0.7,
+  }));
+
   const comparePages = comparisonSlugs.map((slug) => ({
     url: `${site.url}/compare/${slug}`,
     lastModified: at("compare"),
@@ -126,6 +137,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...comparePages, ...glossaryPages, ...caseStudyPages, ...blog,
     ...denialCodePages,
     ...modifierPages,
+    ...cptCodePages,
   ].map((entry) => ({
     // Core pages fall back to the site-wide date; every collection above
     // sets its own, so this only applies to the hand-listed routes.

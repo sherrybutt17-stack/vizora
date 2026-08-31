@@ -9,6 +9,7 @@ import { allFaqs } from "@/lib/content/faq";
 import { denialCodes } from "@/lib/content/denial-codes";
 import { getDenialDetail } from "@/lib/content/denial-code-details";
 import { modifiers } from "@/lib/content/modifiers";
+import { cptCodes } from "@/lib/content/cpt-codes";
 import { externalRefs } from "@/lib/content/external";
 import { LAST_UPDATED } from "@/lib/utils";
 
@@ -175,6 +176,20 @@ ${modifiers
   .map(
     (m) =>
       `### Modifier ${m.code} — ${m.name}\nCategory: ${m.category}\n${m.summary}\nUse it when: ${m.whenToUse.join("; ")}\nDo not use it when: ${m.whenNotToUse.join("; ")}\nFull guide: ${site.url}/modifiers/${m.code.toLowerCase()}`,
+  )
+  .join("\n\n")}`);
+
+  // ------------------------------------------------------------ cpt codes
+  sections.push(`## CPT procedure codes
+
+Each entry covers how the code is billed and what the record must show. CPT is
+a code set copyrighted by the American Medical Association; the official
+descriptors are not reproduced here.
+
+${cptCodes
+  .map(
+    (c) =>
+      `### CPT ${c.code} — ${c.shortName}\nCategory: ${c.category}\n${c.summary}\nBilling rules: ${c.billingRules.join("; ")}\nDocumentation: ${c.documentation.join("; ")}\nFull guide: ${site.url}/cpt-codes/${c.code}`,
   )
   .join("\n\n")}`);
 

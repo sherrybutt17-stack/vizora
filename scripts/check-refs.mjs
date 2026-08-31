@@ -23,6 +23,7 @@ const refsArray = externalSrc.slice(externalSrc.indexOf("export const externalRe
 const refIds = new Set(all(refsArray, /^    id: "([^"]+)"/gm));
 const denialCodes = new Set(all(read("lib/content/denial-codes.ts"), /\{ code: "([^"]+)"/g));
 const modifierCodes = new Set(all(read("lib/content/modifiers.ts"), /^    code: "([^"]+)"/gm));
+const cptCodes = new Set(all(read("lib/content/cpt-codes.ts"), /^    code: "([^"]+)"/gm));
 const specialtySlugs = new Set(all(read("lib/content/specialties.ts"), /^    slug: "([^"]+)"/gm));
 
 // Glossary slugs are derived from `term` via slugify(), same rule as lib/utils.
@@ -43,6 +44,7 @@ const problems = [];
 const crossRefs = [
   ["denial-code-details.ts", "lib/content/denial-code-details.ts"],
   ["modifiers.ts", "lib/content/modifiers.ts"],
+  ["cpt-codes.ts", "lib/content/cpt-codes.ts"],
 ];
 for (const [label, path] of crossRefs) {
   const body = read(path);
@@ -59,6 +61,10 @@ for (const [label, path] of crossRefs) {
       problems.push(`${label}: relatedCodes not a known code: ${c}`);
   for (const m of new Set(field("relatedModifiers")))
     if (!modifierCodes.has(m)) problems.push(`${label}: relatedModifiers not a modifier: ${m}`);
+  for (const cp of new Set(field("relatedCpt")))
+    if (!cptCodes.has(cp)) problems.push(`${label}: relatedCpt not a CPT code with a page: ${cp}`);
+  for (const sp of new Set(field("relatedSpecialties")))
+    if (!specialtySlugs.has(sp)) problems.push(`${label}: relatedSpecialties not a specialty slug: ${sp}`);
 }
 
 // Every quoted id inside a ref-id array position must resolve.
@@ -91,6 +97,8 @@ for (const k of keysOf("denialOverrides"))
   if (!denialCodes.has(k)) problems.push(`denialOverrides key not a denial code: ${k}`);
 for (const k of keysOf("modifierOverrides"))
   if (!modifierCodes.has(k)) problems.push(`modifierOverrides key not a modifier: ${k}`);
+for (const k of keysOf("cptOverrides"))
+  if (!cptCodes.has(k)) problems.push(`cptOverrides key not a CPT code: ${k}`);
 for (const k of keysOf("glossaryOverrides"))
   if (!glossarySlugs.has(k)) problems.push(`glossaryOverrides key not a glossary slug: ${k}`);
 for (const k of keysOf("specialtyOverrides"))
@@ -99,7 +107,7 @@ for (const k of keysOf("specialtyOverrides"))
 console.log(`posts with sources: ${postsWithSources}`);
 console.log(
   `refs=${refIds.size} denials=${denialCodes.size} modifiers=${modifierCodes.size} ` +
-    `glossary=${glossarySlugs.size} specialties=${specialtySlugs.size}`,
+    `cpt=${cptCodes.size} glossary=${glossarySlugs.size} specialties=${specialtySlugs.size}`,
 );
 if (problems.length) {
   console.error(`\n${problems.length} problem(s):`);

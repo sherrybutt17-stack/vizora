@@ -29,6 +29,7 @@ export const toolsNav: NavLink[] = [
   { label: "Denial Code Lookup", href: "/tools/denial-code-lookup", description: "Plain-English CARC and RARC explanations" },
   { label: "RCM Benchmarks", href: "/resources/rcm-benchmarks", description: "Cited industry benchmarks with sources" },
   { label: "CPT Modifiers Explained", href: "/modifiers", description: "When each modifier applies — and when it does not" },
+  { label: "CPT Codes Explained", href: "/cpt-codes", description: "Unit rules, thresholds and what the note must show" },
   { label: "Medical Billing Glossary", href: "/glossary", description: "Every term defined, with the distinction that matters" },
 ];
 
@@ -70,6 +71,7 @@ export const footerNav: { title: string; links: NavLink[] }[] = [
       { label: "Denial Code Lookup", href: "/tools/denial-code-lookup" },
       { label: "RCM Benchmarks", href: "/resources/rcm-benchmarks" },
       { label: "CPT Modifiers", href: "/modifiers" },
+      { label: "CPT Codes", href: "/cpt-codes" },
       { label: "Glossary", href: "/glossary" },
       { label: "Comparisons", href: "/compare" },
       { label: "All resources", href: "/resources" },
