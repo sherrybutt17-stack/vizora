@@ -1,16 +1,18 @@
 import Link from "next/link";
 
 /**
- * The full index of reference pages, grouped by category.
+ * An index of sibling reference pages, grouped by category.
  *
  * Presented as what it is — an index — rather than dressed up as "related
  * codes". A reference site earns its keep by letting someone who arrived
- * looking for one code reach any other in a click, and a biller working a
- * remittance is usually holding more than one code.
+ * looking for one code reach a neighbouring one in a click, and a biller
+ * working a remittance is usually holding more than one code.
  *
- * It also closes a measured gap: the pages outranking ours carry 70+ internal
- * links to sibling codes while ours carried three. Category siblings alone did
- * not get there, because the categories are small.
+ * Callers decide the scope, and that decision has a measured cost. Modifiers
+ * pass all 24 because the whole set is small. Denial codes pass one category
+ * rather than all 190: at full scope the block ran to 1,338 words on a
+ * 2,440-word page and pushed cross-page shingle overlap to 56.5%. See the
+ * comment at the call site in app/denial-codes/[code]/page.tsx.
  */
 export function CodeIndex<T extends { code: string; label: string; category: string }>({
   items,
@@ -36,10 +38,10 @@ export function CodeIndex<T extends { code: string; label: string; category: str
    * A <nav>, not a <div>, because that is what it is.
    *
    * Measured 2026-09-01: the index adds 10-20 points of 8-word shingle overlap
-   * between any two code pages, because 53 code+label pairs repeat on every
-   * one. Body-only overlap is 1.8-15.8%, so the unique content is genuinely
-   * unique — this is boilerplate, and marking it as navigation is how a parser
-   * is supposed to be told that.
+   * between any two code pages sharing a scope, because the code+label pairs
+   * repeat across them. Body-only overlap is 1.8-15.8%, so the unique content
+   * is genuinely unique — this is boilerplate, and marking it as navigation is
+   * how a parser is supposed to be told that.
    */
   return (
     <nav aria-label={title} className="mt-12 border-t border-border pt-8">

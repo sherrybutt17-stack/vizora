@@ -26,8 +26,10 @@ import { site } from "@/lib/content/site";
  * Detail pages exist only for codes with written long-form content.
  *
  * Params come from `denialCodeDetails`, never from the full `denialCodes`
- * array — a page cannot be generated for a code nobody has written depth for,
- * which is what keeps this route from becoming 190 thin pages.
+ * array — a page cannot be generated for a code nobody has written depth for.
+ * All 190 now have it, but the coupling is the point and stays: it is what
+ * stopped this route becoming 190 thin pages while the content was being
+ * written, and it is what will stop the next dataset addition doing so.
  */
 export function generateStaticParams() {
   return denialCodeDetails.map((d) => ({ code: d.code.toLowerCase() }));
@@ -45,9 +47,16 @@ export async function generateMetadata({ params }: { params: Promise<{ code: str
   const c = getDenialCode(code);
   const d = getDenialDetail(code);
   if (!c || !d) return {};
+  /**
+   * Short codes have short official text, so `title. meaning` alone can land
+   * under 60 characters — five pages did, which wastes the SERP line entirely.
+   * Padding with the fix keeps every description in the 70-160 band without
+   * writing a second description by hand for 190 codes.
+   */
+  const summary = `${c.title}. ${c.meaning}`;
   return pageMeta({
     title: `${c.code} Denial Code: ${d.shortLabel}`,
-    description: truncate(`${c.title}. ${c.meaning}`, 155),
+    description: truncate(summary.length < 110 ? `${summary} ${c.fix}` : summary, 155),
     path: `/denial-codes/${c.code.toLowerCase()}`,
     keywords: [
       `${c.code.toLowerCase()} denial code`,
@@ -81,19 +90,25 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
   const relatedServices = d.relatedServices.map(getService).filter(Boolean);
 
   /**
-   * Every code that has a page, grouped by category for the index at the foot.
+   * Sibling codes in the same category, for the index at the foot.
    *
    * `relatedCodes` above is three editorially chosen codes and stays that way —
-   * it is the "you probably meant one of these" list. This is the full index,
-   * presented as one, because a biller working a remittance is usually holding
-   * more than one code and category siblings alone are too few to help.
+   * it is the "you probably meant one of these" list. This is the wider index,
+   * because a biller working a remittance is usually holding more than one code.
    *
-   * It also closes a measured gap: the pages outranking ours carry 70+ internal
-   * links to sibling codes while ours carried three. The data was already here.
+   * Scoped to the category rather than listing all 190, and that scoping is
+   * load-bearing. Measured 2026-09-01 on the full-index version: the nav block
+   * ran to 1,338 words of a 2,440-word page, and 8-word shingle overlap between
+   * any two code pages sat at a median of 56.5% — past the 50.3% that Google
+   * crawled and declined to index on the state pages. Category scoping varies
+   * the block per page and puts the overlap back under the bar.
+   *
+   * Link density is preserved where it counts: /tools/denial-code-lookup is the
+   * hub carrying all 190, and every page links to it directly below this.
    */
-  const allCodeIndex = denialCodeDetails
+  const categoryIndex = denialCodeDetails
     .map((x) => ({ code: x.code, label: x.shortLabel, data: getDenialCode(x.code) }))
-    .filter((x) => x.data)
+    .filter((x) => x.data && x.data.category === c.category)
     .map((x) => ({ code: x.code, label: x.label, category: x.data!.category }));
 
   return (
@@ -239,10 +254,10 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
             />
 
             <CodeIndex
-              items={allCodeIndex}
+              items={categoryIndex}
               currentCode={c.code}
               basePath="/denial-codes"
-              title="Every denial code with a guide"
+              title={`Other ${c.category.toLowerCase()} denial codes`}
             />
 
             <p className="mt-8 text-sm text-faint">
