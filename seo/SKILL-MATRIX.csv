@@ -1,0 +1,17 @@
+SEO_TASK,BEST_SKILL,ALTERNATIVE_SKILL,WHY_SELECTED,QUALITY_SCORE,STATUS
+TECHNICAL_SEO,scripts/seo-audit.mjs (in-house),claude-seo seo-technical,"Audits the site's own 445-URL sitemap and knows its templates; a generic crawler re-derives less accurately what this already measures",44,ACTIVE
+INDEXATION,claude-seo gsc_inspect.py,scripts/check-visibility.mjs (in-house),"URL Inspection API returns whether a page is actually indexed; nothing in this repo can measure that, it can only infer it",44,BLOCKED_ON_GOOGLE_AUTH
+KEYWORD_RESEARCH,claude-seo gsc_query.py,none,"Real impressions and positions for queries this domain already ranks for; volume estimates are what produced the reversed decision in commit 786a5fd",44,BLOCKED_ON_GOOGLE_AUTH
+SERP_INTELLIGENCE,none enabled,DataForSEO / SE Ranking (paid),"Deferred by decision — no paid vendor. Build order is set by measured position, not by SERP scraping",0,DEFERRED
+CONTENT_STRATEGY,lib/content data modules + thin-content-audit.sh,programmatic-seo (marketingskills),"The anti-thin-content coupling is enforced in code: generateStaticParams reads the written-content array, so a page cannot exist without substance",43,ACTIVE
+PROGRAMMATIC_SEO,scripts/thin-content-audit.sh + shingle check,claude-seo seo-programmatic,"Measured 8-word shingle overlap is the bar that has actually gated three page-type launches on this site",44,ACTIVE
+E_E_A_T,claude-seo seo-content,seo-audit (marketingskills),"Content-quality and citation-readiness analysis this repo has no equivalent for; note the ceiling below is entity, not content",44,ACTIVE
+SCHEMA,lib/schema.tsx (in-house),claude-seo seo-schema (validate only),"Schema is generated from the same typed content modules that render the page, so it cannot drift. Use the skill to validate, never to generate",44,ACTIVE
+INTERNAL_LINKING,scripts/link-audit.mjs (in-house),claude-seo seo-technical,"Reports orphans, click depth and reachability against the real graph; confirmed 0 orphans across 445 URLs after the CPT build",44,ACTIVE
+BACKLINKS,none enabled,claude-seo commoncrawl_graph.py (free),"Available and free, but outside the Google-APIs-only scope agreed for this phase. First candidate if link intelligence becomes the constraint",44,AVAILABLE_NOT_ENABLED
+GEO,geo-optimizer CLI,claude-seo seo-geo (advisory only),"Holds the measured 83-to-91 baseline. Two scoring systems on one site produce an unfalsifiable number — see the conflict policy",41,ACTIVE
+AEO,AnswerBlock + FAQ pattern (in-house),ai-seo (marketingskills),"Answer-first blocks and FAQPage schema ship on every service, specialty, state, denial, modifier and CPT page already",43,ACTIVE
+ENTITY_SEO,none — blocked outside code,claude-seo seo-local,"site.social is empty so organizationSchema emits no sameAs. No skill can fix this; it needs two live public profiles",0,BLOCKED_ON_OWNER
+DIGITAL_PR,none,public-relations (marketingskills),"Not started. Sits behind the same entity problem as brand search",43,NOT_STARTED
+CRO,cro (marketingskills),none,"Lead forms have no backend by design; conversion work is premature until the traffic exists",43,NOT_STARTED
+ANALYTICS,claude-seo gsc_query.py,manual GSC export,"Currently read by hand from an export dated 2026-08-31; the API removes the manual step",44,BLOCKED_ON_GOOGLE_AUTH
