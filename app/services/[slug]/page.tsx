@@ -57,7 +57,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     <PageTransition>
       <JsonLd data={[
         breadcrumbSchema(crumbs),
-        serviceSchema({ name: service.name, summary: service.summary, slug: service.slug }),
+        serviceSchema({ name: service.name, summary: service.summary, path: `/services/${service.slug}` }),
         faqSchema(service.faqs),
         howToSchema({
           name: `How ${service.name.toLowerCase()} works at Vizora`,

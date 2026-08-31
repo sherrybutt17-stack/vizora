@@ -69,7 +69,7 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
     <PageTransition>
       <JsonLd data={[
         breadcrumbSchema(crumbs),
-        serviceSchema({ name: `${s.name} Medical Billing`, summary: s.summary, slug: `../specialties/${s.slug}` }),
+        serviceSchema({ name: `${s.name} Medical Billing`, summary: s.summary, path: `/specialties/${s.slug}` }),
         faqSchema(s.faqs),
         webPageSchema({
           name: `${s.name} Medical Billing Services`,

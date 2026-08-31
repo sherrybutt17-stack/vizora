@@ -134,7 +134,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
         serviceSchema({
           name: `Medical Billing Services in ${s.name}`,
           summary: `Medical billing and revenue cycle management for practices in ${s.name}, including ${s.medicaid} and ${s.mac} Jurisdiction ${s.jurisdiction} claims.`,
-          slug: `../locations/${s.slug}`,
+          path: `/locations/${s.slug}`,
         }),
         webPageSchema({
           name: `Medical Billing Services in ${s.name}`,
@@ -143,7 +143,6 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.medicaid, ENTITIES.medicare, ENTITIES.rcm],
           lastReviewed: LAST_UPDATED,
-          speakableSelectors: ["[data-answer]"],
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

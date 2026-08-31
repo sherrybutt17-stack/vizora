@@ -67,7 +67,6 @@ export default function BenchmarksPage() {
           about: [ENTITIES.rcm, ENTITIES.medicalBilling],
           mentions: [ENTITIES.medicare, ENTITIES.healthInsurance],
           lastReviewed: LAST_UPDATED,
-          speakableSelectors: ["[data-answer]"],
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

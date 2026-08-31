@@ -97,23 +97,31 @@ export function websiteSchema() {
 export function serviceSchema(s: {
   name: string;
   summary: string;
-  slug: string;
+  /**
+   * The page's own path, e.g. `/services/medical-coding`.
+   *
+   * This used to be a bare `slug` that the function pasted into a hardcoded
+   * `/services/` template. Specialty and location pages reuse this schema, so
+   * they escaped that template by passing `../specialties/cardiology`, and the
+   * emitted url read `https://vizora.co/services/../specialties/cardiology` on
+   * all 75 of them — a string only a consumer performing dot-segment
+   * normalisation would resolve, and one that never matches the page's own
+   * canonical on a literal comparison.
+   */
+  path: string;
 }) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
     name: s.name,
     description: s.summary,
-    url: `${site.url}/services/${s.slug}`,
+    url: `${site.url}${s.path}`,
     serviceType: s.name,
     provider: { "@id": ORG_ID },
-    foundingDate: site.founded,
-    // "50+" is a lower bound, so minValue alone is what it asserts. Publishing
-    // a single figure would state a precision the business has not given.
-    numberOfEmployees: {
-      "@type": "QuantitativeValue",
-      minValue: site.employeesMin,
-    },
+    // `foundingDate` and `numberOfEmployees` used to be asserted here too. They
+    // are Organization properties, not Service ones, and the Organization node
+    // on every page already carries both — so this was the same fact stated
+    // twice on one page, once on a type that has no such property.
     areaServed: { "@type": "Country", name: "United States" },
   };
 }
@@ -536,7 +544,10 @@ export function offerCatalogSchema(tiers: {
       priceSpecification: {
         "@type": "PriceSpecification",
         ...(t.price ? { price: t.price } : {}),
-        priceCurrency: t.priceCurrency ?? "USD",
+        // Currency only alongside an actual price. A bare `priceCurrency: USD`
+        // on a percentage-of-collections offer asserts a dollar figure that
+        // does not exist.
+        ...(t.price ? { priceCurrency: t.priceCurrency ?? "USD" } : {}),
         ...(t.unit ? { unitText: t.unit } : {}),
         valueAddedTaxIncluded: false,
       },

@@ -60,7 +60,6 @@ export default function ChoosingPage() {
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.rcm],
           lastReviewed: LAST_UPDATED,
-          speakableSelectors: ["[data-answer]"],
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

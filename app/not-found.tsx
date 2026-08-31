@@ -1,6 +1,19 @@
 import Link from "next/link";
 import { Button, Container, Section } from "@/components/ui";
 
+/**
+ * Without this the page shipped two conflicting robots tags.
+ *
+ * Next emits `noindex` for the not-found boundary, but the root layout's
+ * `index, follow` was merged alongside it rather than overridden, so every
+ * 404 on the site told crawlers both things at once. Measured 2026-09-02 on
+ * four distinct route shapes. Declaring robots here replaces the inherited
+ * value instead of appending to it.
+ */
+export const metadata = {
+  robots: { index: false, follow: false },
+};
+
 export default function NotFound() {
   return (
     <Section className="pt-24">
