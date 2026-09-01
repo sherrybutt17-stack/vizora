@@ -8,7 +8,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, itemListSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { externalCategories, refsByCategory, externalRefs } from "@/lib/content/external";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -96,7 +96,7 @@ export default function ResourcesPage() {
           path: "/resources",
           about: [ENTITIES.medicalBilling, ENTITIES.rcm],
           mentions: [ENTITIES.medicare, ENTITIES.medicaid, ENTITIES.hipaa],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("resources"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -191,7 +191,7 @@ export default function ResourcesPage() {
           <p className="mt-14 max-w-3xl text-xs leading-relaxed text-faint">
             These links are provided as references only. Vizora is not affiliated with, endorsed
             by, or acting on behalf of any organisation listed above, and inclusion here is not an
-            endorsement of Vizora by them. Last reviewed {formatDate(LAST_UPDATED)}.
+            endorsement of Vizora by them. Last reviewed {formatDate(lastUpdated("resources"))}.
           </p>
         </Container>
       </Section>

@@ -11,7 +11,7 @@ import { caseStudies, caseStudyMap } from "@/lib/content/case-studies";
 import { getSpecialty } from "@/lib/content/specialties";
 import { pageMeta } from "@/lib/seo";
 import { clampDescription } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export function generateStaticParams() {
@@ -73,7 +73,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
           quote: c.quote,
           clientName: c.client.name,
           clientRole: c.client.role,
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("caseStudies"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

@@ -14,7 +14,7 @@ import {
 } from "@/lib/content/glossary";
 import { refsForGlossaryTerm } from "@/lib/content/citations";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 import { site } from "@/lib/content/site";
 
@@ -87,7 +87,7 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ t
           path: `/glossary/${t.slug}`,
           about: [{ name: t.term, url: `${site.url}/glossary/${t.slug}` }],
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("glossary"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -151,7 +151,7 @@ export default async function GlossaryTermPage({ params }: { params: Promise<{ t
               note={`Where "${t.term}" is defined by the bodies that set the rules, rather than by us.`}
             />
 
-            <p className="mt-8 text-xs text-faint">Last reviewed {formatDate(LAST_UPDATED)}</p>
+            <p className="mt-8 text-xs text-faint">Last reviewed {formatDate(lastUpdated("glossary"))}</p>
           </div>
         </Container>
       </Section>

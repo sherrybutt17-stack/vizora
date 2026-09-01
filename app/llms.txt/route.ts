@@ -9,7 +9,7 @@ import { denialCodeDetails } from "@/lib/content/denial-code-details";
 import { modifiers } from "@/lib/content/modifiers";
 import { cptCodes } from "@/lib/content/cpt-codes";
 import { posts } from "@/lib/content/blog";
-import { LAST_UPDATED } from "@/lib/utils";
+import { SITE_UPDATED } from "@/lib/utils";
 
 /**
  * /llms.txt — the llmstxt.org convention.
@@ -31,7 +31,7 @@ export function GET() {
 > would otherwise write off. Pricing starts at ${site.pricing.startingRate} of net
 > collections (typically ${site.pricing.typicalRange}). ${specialties.length} specialty pages,
 > ${states.length} state pages, ${services.length} services.
-> Last reviewed: ${LAST_UPDATED}
+> Last reviewed: ${SITE_UPDATED}
 
 ## What Vizora does
 

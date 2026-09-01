@@ -18,7 +18,7 @@ import { denialCodeDetails, getDenialDetail } from "@/lib/content/denial-code-de
 import { getTerm } from "@/lib/content/glossary";
 import { getService } from "@/lib/content/services";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 import { site } from "@/lib/content/site";
 
@@ -122,14 +122,14 @@ export default async function DenialCodePage({ params }: { params: Promise<{ cod
           path: `/denial-codes/${c.code.toLowerCase()}`,
           about: [{ name: `${c.code} denial code`, url: `${site.url}/denial-codes/${c.code.toLowerCase()}` }],
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("denialCodes"),
           speakableSelectors: ["[data-answer]"],
         }),
         techArticleSchema({
           headline: `${c.code} Denial Code: ${d.shortLabel}`,
           description: `${c.title}. ${c.meaning}`,
           path: `/denial-codes/${c.code.toLowerCase()}`,
-          updated: LAST_UPDATED,
+          updated: lastUpdated("denialCodes"),
           section: c.category,
         }),
       ]} />

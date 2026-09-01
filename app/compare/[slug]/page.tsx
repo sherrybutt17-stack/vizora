@@ -11,7 +11,7 @@ import {
 } from "@/lib/schema";
 import { getComparison, comparisonSlugs, comparisons } from "@/lib/content/comparisons";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export function generateStaticParams() {
@@ -55,7 +55,7 @@ export default async function ComparisonPage({ params }: { params: Promise<{ slu
     <PageTransition>
       <JsonLd data={[
         breadcrumbSchema(crumbs),
-        comparisonSchema({ ...c, lastReviewed: LAST_UPDATED }),
+        comparisonSchema({ ...c, lastReviewed: lastUpdated("compare") }),
         // The headline question joins the FAQ list rather than being emitted
         // as a separate QAPage. QAPage is for user-submitted answers; a single
         // site-written answer is explicitly outside its scope, and emitting
@@ -67,7 +67,7 @@ export default async function ComparisonPage({ params }: { params: Promise<{ slu
           path: `/compare/${c.slug}`,
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.rcm, ENTITIES.medicalCoding],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("compare"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -174,7 +174,7 @@ export default async function ComparisonPage({ params }: { params: Promise<{ slu
             <div className="mt-6">
               <FAQList items={c.faqs} />
             </div>
-            <p className="mt-8 text-xs text-faint">Last reviewed {formatDate(LAST_UPDATED)}</p>
+            <p className="mt-8 text-xs text-faint">Last reviewed {formatDate(lastUpdated("compare"))}</p>
           </div>
         </Container>
       </Section>

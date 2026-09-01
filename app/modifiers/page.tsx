@@ -6,7 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, itemListSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { modifiers, modifierCategories } from "@/lib/content/modifiers";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -43,7 +43,7 @@ export default function ModifiersPage() {
             "Guides to the CPT and HCPCS modifiers that decide whether claims pay, including the misuse cases that cause denials.",
           path: "/modifiers",
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("modifiersHub"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -56,7 +56,7 @@ export default function ModifiersPage() {
             lead="A modifier is two characters that change how a claim adjudicates. Most references list only when each one applies — the half that is easy to guess. These also cover the misuse cases, which is where the denials and the audit findings actually come from."
           />
           <p className="mt-6 text-center text-sm text-faint">
-            {modifiers.length} modifiers · Last updated {formatDate(LAST_UPDATED)}
+            {modifiers.length} modifiers · Last updated {formatDate(lastUpdated("modifiersHub"))}
           </p>
 
           <div className="mx-auto mt-14 max-w-4xl space-y-12">

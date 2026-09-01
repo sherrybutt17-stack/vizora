@@ -13,7 +13,7 @@ import {
   guideAnswer, providerCategories, evaluationSteps, askThese, redFlags, guideFaqs,
 } from "@/lib/content/buyers-guide";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -59,7 +59,7 @@ export default function ChoosingPage() {
           path: "/resources/choosing-a-medical-billing-company",
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("buyersGuide"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -71,7 +71,7 @@ export default function ChoosingPage() {
             <h1 className="mt-5 text-[clamp(2.1rem,4.6vw,3.1rem)] font-600 leading-[1.08]">
               How to choose a medical billing company
             </h1>
-            <p className="mt-5 text-sm text-faint">Updated {formatDate(LAST_UPDATED)}</p>
+            <p className="mt-5 text-sm text-faint">Updated {formatDate(lastUpdated("buyersGuide"))}</p>
 
             <div
               data-answer
@@ -211,7 +211,7 @@ export default function ChoosingPage() {
               <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.4rem)] font-600 leading-[1.1]">
                 Common questions
               </h2>
-              <p className="mt-4 text-sm text-faint">Updated {formatDate(LAST_UPDATED)}</p>
+              <p className="mt-4 text-sm text-faint">Updated {formatDate(lastUpdated("buyersGuide"))}</p>
             </div>
             <FAQList items={guideFaqs} />
           </div>

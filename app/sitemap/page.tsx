@@ -10,7 +10,7 @@ import { glossary } from "@/lib/content/glossary";
 import { comparisons } from "@/lib/content/comparisons";
 import { caseStudies } from "@/lib/content/case-studies";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -70,7 +70,7 @@ export default function SitemapPage() {
           description: "A complete index of every page on vizora.co.",
           path: "/sitemap",
           about: [ENTITIES.medicalBilling],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("sitemapPage"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -179,7 +179,7 @@ export default function SitemapPage() {
           />
 
           <p className="border-t border-border pt-8 text-xs text-faint">
-            Last reviewed {formatDate(LAST_UPDATED)}
+            Last reviewed {formatDate(lastUpdated("sitemapPage"))}
           </p>
         </Container>
       </Section>

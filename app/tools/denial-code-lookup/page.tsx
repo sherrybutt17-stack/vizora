@@ -7,7 +7,7 @@ import { JsonLd, breadcrumbSchema, itemListSchema } from "@/lib/schema";
 import { denialCodes, getDenialCode } from "@/lib/content/denial-codes";
 import { detailedCodes } from "@/lib/content/denial-code-details";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -55,7 +55,7 @@ export default function DenialLookupPage() {
             lead="Claim adjustment reason codes tell you why a claim was denied — in language written for adjudication systems, not people. This translates the ones you actually see, with the fix and the prevention for each."
           />
           <p className="mt-6 text-center text-sm text-faint">
-            {denialCodes.length} codes · Last updated {formatDate(LAST_UPDATED)}
+            {denialCodes.length} codes · Last updated {formatDate(lastUpdated("denialLookup"))}
           </p>
 
           {/* Surfaced above the search deliberately. These are the codes

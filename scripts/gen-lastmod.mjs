@@ -44,13 +44,14 @@ const newest = (paths) => {
 // included where they materially change the page body.
 const GROUPS = {
   home: ["app/page.tsx"],
-  services: ["lib/content/services.ts", "app/services/[slug]/page.tsx"],
+  services: ["lib/content/services.ts", "app/services/[slug]/page.tsx", "app/services/page.tsx"],
   specialties: [
     "lib/content/specialties.ts",
     "app/specialties/[slug]/page.tsx",
+    "app/specialties/page.tsx",
     "components/sections/PrimarySources.tsx",
   ],
-  locations: ["lib/content/locations.ts", "app/locations/[state]/page.tsx"],
+  locations: ["lib/content/locations.ts", "app/locations/[state]/page.tsx", "app/locations/page.tsx"],
   glossary: [
     "lib/content/glossary.ts",
     "app/glossary/[term]/page.tsx",
@@ -73,7 +74,35 @@ const GROUPS = {
     "components/sections/CodeIndex.tsx",
   ],
   compare: ["lib/content/comparisons.ts", "app/compare/[slug]/page.tsx"],
-  caseStudies: ["lib/content/case-studies.ts", "app/case-studies/[slug]/page.tsx"],
+  caseStudies: ["lib/content/case-studies.ts", "app/case-studies/[slug]/page.tsx", "app/case-studies/page.tsx"],
+  // Hubs and standalone pages get their own entries rather than falling under
+  // `core`. Before this they inherited the site.ts/layout.tsx date, which is
+  // the same class of wrong the sitemap fix removed: /resources/rcm-benchmarks
+  // has not been touched since launch but claimed today's date on both its
+  // sitemap entry and its on-page schema.
+  glossaryHub: ["lib/content/glossary.ts", "app/glossary/page.tsx"],
+  modifiersHub: ["lib/content/modifiers.ts", "app/modifiers/page.tsx"],
+  cptHub: ["lib/content/cpt-codes.ts", "app/cpt-codes/page.tsx"],
+  compareHub: ["lib/content/comparisons.ts", "app/compare/page.tsx"],
+  faq: ["lib/content/faq.ts", "app/faq/page.tsx"],
+  pricing: ["lib/content/site.ts", "app/pricing/page.tsx"],
+  referral: ["app/referral/page.tsx"],
+  resources: ["lib/content/external.ts", "app/resources/page.tsx"],
+  rcmBenchmarks: ["lib/content/stats.ts", "app/resources/rcm-benchmarks/page.tsx"],
+  buyersGuide: ["lib/content/buyers-guide.ts", "app/resources/choosing-a-medical-billing-company/page.tsx"],
+  sitemapPage: ["app/sitemap/page.tsx"],
+  denialLookup: ["lib/content/denial-codes.ts", "app/tools/denial-code-lookup/page.tsx"],
+  about: ["app/about/page.tsx", "lib/content/testimonials.ts"],
+  contact: ["app/contact/page.tsx"],
+  blogHub: ["lib/content/blog.ts", "app/blog/page.tsx"],
+  calculator: ["app/tools/revenue-leak-calculator/page.tsx", "lib/content/stats.ts"],
+  legal: [
+    "components/sections/LegalPage.tsx",
+    "app/privacy/page.tsx",
+    "app/terms/page.tsx",
+    "app/hipaa/page.tsx",
+    "app/baa/page.tsx",
+  ],
   // Blog posts carry their own editorial `updated` date, which is a human
   // review date and a better signal than a commit timestamp. Not derived here.
   blogTemplate: ["app/blog/[slug]/page.tsx"],

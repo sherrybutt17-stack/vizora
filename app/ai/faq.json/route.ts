@@ -4,7 +4,7 @@ import { services } from "@/lib/content/services";
 import { specialties } from "@/lib/content/specialties";
 import { denialCodeDetails } from "@/lib/content/denial-code-details";
 import { modifiers } from "@/lib/content/modifiers";
-import { LAST_UPDATED } from "@/lib/utils";
+import { SITE_UPDATED } from "@/lib/utils";
 import { aiJsonHeaders } from "@/lib/ai/json-headers";
 
 /**
@@ -72,7 +72,7 @@ export function GET() {
       description: `Every published question and answer from ${site.name}, covering medical billing, revenue cycle management, denial codes, CPT modifiers and specialty billing.`,
       count: entries.length,
       attribution: `${site.name} (${site.url})`,
-      updated: LAST_UPDATED,
+      updated: SITE_UPDATED,
       faqs: entries,
     },
     { headers: aiJsonHeaders },

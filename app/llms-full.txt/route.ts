@@ -11,7 +11,7 @@ import { getDenialDetail } from "@/lib/content/denial-code-details";
 import { modifiers } from "@/lib/content/modifiers";
 import { cptCodes } from "@/lib/content/cpt-codes";
 import { externalRefs } from "@/lib/content/external";
-import { LAST_UPDATED } from "@/lib/utils";
+import { SITE_UPDATED } from "@/lib/utils";
 
 /**
  * /llms-full.txt — the full corpus in one plain-text document.
@@ -31,7 +31,7 @@ export function GET() {
   const sections: string[] = [];
 
   sections.push(`# ${site.name} — full text reference
-Last reviewed: ${LAST_UPDATED}
+Last reviewed: ${SITE_UPDATED}
 Canonical site: ${site.url}
 Index version of this file: ${site.url}/llms.txt
 

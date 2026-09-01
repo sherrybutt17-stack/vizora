@@ -17,7 +17,7 @@ import { getPostsForSpecialty } from "@/lib/content/blog";
 import { refsForSpecialty } from "@/lib/content/citations";
 import { hasCptPage } from "@/lib/content/cpt-codes";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 
 export function generateStaticParams() {
   return specialtySlugs.map((slug) => ({ slug }));
@@ -77,7 +77,7 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
           path: `/specialties/${s.slug}`,
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.medicalCoding, ENTITIES.cpt, ENTITIES.icd10, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("specialties"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -290,7 +290,7 @@ export default async function SpecialtyPage({ params }: { params: Promise<{ slug
               <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.4rem)] font-600 leading-[1.1]">
                 {s.name} billing FAQ
               </h2>
-              <p className="mt-4 text-sm text-faint">Last updated {formatDate(LAST_UPDATED)}</p>
+              <p className="mt-4 text-sm text-faint">Last updated {formatDate(lastUpdated("specialties"))}</p>
               <Badge className="mt-4">Reviewed by a certified coding lead</Badge>
             </div>
             <div>

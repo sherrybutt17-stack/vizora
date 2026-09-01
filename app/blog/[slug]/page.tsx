@@ -71,7 +71,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           slug: post.slug,
           published: post.published,
           updated: post.updated,
-          authorName: author.name,
         }),
         // Only emitted when the post actually renders a visible FAQ block.
         // FAQPage markup describing questions absent from the page is a

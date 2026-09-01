@@ -20,7 +20,7 @@ import { homeFaqs } from "@/lib/content/faq";
 import { industry, performance } from "@/lib/content/stats";
 import { site, payers } from "@/lib/content/site";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -68,7 +68,7 @@ export default function HomePage() {
           path: "/",
           about: [ENTITIES.medicalBilling, ENTITIES.rcm],
           mentions: [ENTITIES.medicalCoding, ENTITIES.medicare, ENTITIES.medicaid, ENTITIES.hipaa],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("home"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />

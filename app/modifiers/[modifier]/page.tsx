@@ -16,7 +16,7 @@ import { getDenialDetail } from "@/lib/content/denial-code-details";
 import { getTerm } from "@/lib/content/glossary";
 import { getService } from "@/lib/content/services";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 import { site } from "@/lib/content/site";
 
@@ -95,14 +95,14 @@ export default async function ModifierPage({ params }: { params: Promise<{ modif
           path: `/modifiers/${m.code.toLowerCase()}`,
           about: [{ name: `CPT modifier ${m.code}`, url: `${site.url}/modifiers/${m.code.toLowerCase()}` }],
           mentions: [ENTITIES.medicalBilling, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("modifiers"),
           speakableSelectors: ["[data-answer]"],
         }),
         techArticleSchema({
           headline: `Modifier ${m.code}: ${m.shortName}`,
           description: m.summary,
           path: `/modifiers/${m.code.toLowerCase()}`,
-          updated: LAST_UPDATED,
+          updated: lastUpdated("modifiers"),
           section: m.category,
         }),
       ]} />

@@ -9,7 +9,7 @@ import {
 } from "@/lib/schema";
 import { glossary, glossaryCategories, termsInCategory } from "@/lib/content/glossary";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -42,7 +42,7 @@ export default function GlossaryPage() {
           path: "/glossary",
           about: [ENTITIES.medicalBilling, ENTITIES.rcm],
           mentions: [ENTITIES.cpt, ENTITIES.icd10, ENTITIES.medicalCoding],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("glossaryHub"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -65,7 +65,7 @@ export default function GlossaryPage() {
           </AnswerBlock>
 
           <p className="mt-6 text-center text-sm text-faint">
-            Last reviewed {formatDate(LAST_UPDATED)}
+            Last reviewed {formatDate(lastUpdated("glossaryHub"))}
           </p>
         </Container>
       </Section>

@@ -6,7 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, datasetSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { industry } from "@/lib/content/stats";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -49,7 +49,7 @@ export default function BenchmarksPage() {
           description:
             "Curated revenue cycle benchmarks — denial rates, days in AR, cost to contest a denial, administrative burden — each attributed to a named publisher, dataset and data year.",
           path: "/resources/rcm-benchmarks",
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("rcmBenchmarks"),
           citations: Array.from(
             new Set(Object.values(industry).map((s) => s.url).filter((u): u is string => Boolean(u))),
           ),
@@ -66,7 +66,7 @@ export default function BenchmarksPage() {
           path: "/resources/rcm-benchmarks",
           about: [ENTITIES.rcm, ENTITIES.medicalBilling],
           mentions: [ENTITIES.medicare, ENTITIES.healthInsurance],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("rcmBenchmarks"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -79,7 +79,7 @@ export default function BenchmarksPage() {
             lead="What a normal denial rate actually is, what a denial actually costs, and where practices actually sit on days in AR — with every figure traceable to a named publisher, dataset and year."
           />
           <p className="mt-6 text-center text-sm text-faint">
-            Last reviewed {formatDate(LAST_UPDATED)}
+            Last reviewed {formatDate(lastUpdated("rcmBenchmarks"))}
           </p>
         </Container>
       </Section>

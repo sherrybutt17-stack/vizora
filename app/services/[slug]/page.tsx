@@ -12,7 +12,7 @@ import { services, getService, serviceSlugs } from "@/lib/content/services";
 import { specialties } from "@/lib/content/specialties";
 import { termsLinkingTo } from "@/lib/content/glossary";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export function generateStaticParams() {
@@ -71,7 +71,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           path: `/services/${service.slug}`,
           about: [ENTITIES.medicalBilling, ENTITIES.rcm],
           mentions: [ENTITIES.medicalCoding, ENTITIES.cpt, ENTITIES.icd10],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("services"),
           speakableSelectors: ["[data-answer]"],
         }),
       ]} />
@@ -222,7 +222,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
                 {service.short} FAQ
               </h2>
               <p className="mt-4 text-sm text-faint">
-                Last updated {formatDate(LAST_UPDATED)}
+                Last updated {formatDate(lastUpdated("services"))}
               </p>
               <Badge className="mt-4">Reviewed by a certified coding lead</Badge>
             </div>

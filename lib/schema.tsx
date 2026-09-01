@@ -196,7 +196,17 @@ export function articleSchema(p: {
   slug: string;
   published: string;
   updated: string;
-  authorName: string;
+  /**
+   * Removed from the emitted graph, kept out of the signature deliberately.
+   *
+   * This used to be accepted and then silently ignored — the function has
+   * always emitted `author: { "@id": ORG_ID }`. Rather than wire a parameter
+   * into an author claim, the organisation stays the author, which is what is
+   * actually true: posts carry a team byline, not a named individual. Naming a
+   * credentialed reviewer is an open editorial decision, and when it is made
+   * the author belongs here as a real Person, not as a string threaded through
+   * from a template.
+   */
 }) {
   return {
     "@context": "https://schema.org",

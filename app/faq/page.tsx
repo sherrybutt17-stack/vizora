@@ -5,7 +5,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, faqSchema } from "@/lib/schema";
 import { faqCategories, allFaqs } from "@/lib/content/faq";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -39,7 +39,7 @@ export default function FaqPage() {
             lead="Straight answers on pricing, denial rates, onboarding and compliance. Where a question turns on industry data, the source is named."
           />
           <p className="mt-6 text-center text-sm text-faint">
-            Last updated {formatDate(LAST_UPDATED)}
+            Last updated {formatDate(lastUpdated("faq"))}
           </p>
 
           <div className="mx-auto mt-16 max-w-4xl space-y-14">

@@ -14,7 +14,7 @@ import { specialties } from "@/lib/content/specialties";
 import { services } from "@/lib/content/services";
 import { industry } from "@/lib/content/stats";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export function generateStaticParams() {
@@ -142,7 +142,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
           path: `/locations/${s.slug}`,
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.medicaid, ENTITIES.medicare, ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("locations"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -306,7 +306,7 @@ export default async function StatePage({ params }: { params: Promise<{ state: s
               <h2 className="mt-4 text-[clamp(1.8rem,3.6vw,2.4rem)] font-600 leading-[1.1]">
                 Billing in {s.name}
               </h2>
-              <p className="mt-4 text-sm text-faint">Last updated {formatDate(LAST_UPDATED)}</p>
+              <p className="mt-4 text-sm text-faint">Last updated {formatDate(lastUpdated("locations"))}</p>
             </div>
             <FAQList items={faqs} />
           </div>

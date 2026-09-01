@@ -27,34 +27,34 @@ const at = (group: keyof typeof lastmod) => new Date(lastmod[group]);
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const core: MetadataRoute.Sitemap = [
-    { url: site.url, changeFrequency: "weekly", priority: 1 },
-    { url: `${site.url}/services`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/specialties`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/locations`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/pricing`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/case-studies`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/contact`, changeFrequency: "yearly", priority: 0.9 },
-    { url: `${site.url}/about`, changeFrequency: "yearly", priority: 0.6 },
-    { url: `${site.url}/faq`, changeFrequency: "monthly", priority: 0.7 },
-    { url: `${site.url}/referral`, changeFrequency: "yearly", priority: 0.5 },
-    { url: `${site.url}/blog`, changeFrequency: "weekly", priority: 0.7 },
+    { url: site.url, lastModified: at("home"), changeFrequency: "weekly", priority: 1 },
+    { url: `${site.url}/services`, lastModified: at("services"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/specialties`, lastModified: at("specialties"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/locations`, lastModified: at("locations"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/pricing`, lastModified: at("pricing"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/case-studies`, lastModified: at("caseStudies"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/contact`, lastModified: at("contact"), changeFrequency: "yearly", priority: 0.9 },
+    { url: `${site.url}/about`, lastModified: at("about"), changeFrequency: "yearly", priority: 0.6 },
+    { url: `${site.url}/faq`, lastModified: at("faq"), changeFrequency: "monthly", priority: 0.7 },
+    { url: `${site.url}/referral`, lastModified: at("referral"), changeFrequency: "yearly", priority: 0.5 },
+    { url: `${site.url}/blog`, lastModified: at("blogHub"), changeFrequency: "weekly", priority: 0.7 },
     // Tools carry high priority — they are the link-earning assets.
-    { url: `${site.url}/tools/revenue-leak-calculator`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/tools/denial-code-lookup`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/modifiers`, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${site.url}/cpt-codes`, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${site.url}/resources`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/resources/rcm-benchmarks`, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${site.url}/resources/choosing-a-medical-billing-company`, changeFrequency: "monthly", priority: 0.85 },
-    { url: `${site.url}/glossary`, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/tools/revenue-leak-calculator`, lastModified: at("calculator"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/tools/denial-code-lookup`, lastModified: at("denialLookup"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/modifiers`, lastModified: at("modifiersHub"), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${site.url}/cpt-codes`, lastModified: at("cptHub"), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${site.url}/resources`, lastModified: at("resources"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/resources/rcm-benchmarks`, lastModified: at("rcmBenchmarks"), changeFrequency: "monthly", priority: 0.8 },
+    { url: `${site.url}/resources/choosing-a-medical-billing-company`, lastModified: at("buyersGuide"), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${site.url}/glossary`, lastModified: at("glossaryHub"), changeFrequency: "monthly", priority: 0.8 },
     // Comparison content is the highest-converting and most-cited format on the
     // site, so the hub carries the same priority as the service hub.
-    { url: `${site.url}/compare`, changeFrequency: "monthly", priority: 0.9 },
-    { url: `${site.url}/sitemap`, changeFrequency: "weekly", priority: 0.3 },
-    { url: `${site.url}/privacy`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${site.url}/terms`, changeFrequency: "yearly", priority: 0.2 },
-    { url: `${site.url}/hipaa`, changeFrequency: "yearly", priority: 0.4 },
-    { url: `${site.url}/baa`, changeFrequency: "yearly", priority: 0.4 },
+    { url: `${site.url}/compare`, lastModified: at("compareHub"), changeFrequency: "monthly", priority: 0.9 },
+    { url: `${site.url}/sitemap`, lastModified: at("sitemapPage"), changeFrequency: "weekly", priority: 0.3 },
+    { url: `${site.url}/privacy`, lastModified: at("legal"), changeFrequency: "yearly", priority: 0.2 },
+    { url: `${site.url}/terms`, lastModified: at("legal"), changeFrequency: "yearly", priority: 0.2 },
+    { url: `${site.url}/hipaa`, lastModified: at("legal"), changeFrequency: "yearly", priority: 0.4 },
+    { url: `${site.url}/baa`, lastModified: at("legal"), changeFrequency: "yearly", priority: 0.4 },
   ];
 
   const services = serviceSlugs.map((slug) => ({
@@ -139,8 +139,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...modifierPages,
     ...cptCodePages,
   ].map((entry) => ({
-    // Core pages fall back to the site-wide date; every collection above
-    // sets its own, so this only applies to the hand-listed routes.
+    // Every entry above now sets its own date — the collections from their
+    // content group, the hand-listed pages from a group keyed to the file that
+    // renders them. This fallback remains only so a newly added route without
+    // a group cannot ship with no lastModified at all.
     lastModified: at("core"),
     ...entry,
   }));

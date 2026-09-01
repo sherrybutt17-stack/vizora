@@ -20,7 +20,7 @@ import { getTerm } from "@/lib/content/glossary";
 import { getService } from "@/lib/content/services";
 import { getSpecialty } from "@/lib/content/specialties";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 import { site } from "@/lib/content/site";
 
@@ -107,14 +107,14 @@ export default async function CptCodePage({ params }: { params: Promise<{ code: 
           path: `/cpt-codes/${c.code}`,
           about: [{ name: `CPT code ${c.code}`, url: `${site.url}/cpt-codes/${c.code}` }],
           mentions: [ENTITIES.cpt, ENTITIES.medicalCoding, ENTITIES.medicalBilling],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("cptCodes"),
           speakableSelectors: ["[data-answer]"],
         }),
         techArticleSchema({
           headline: `CPT ${c.code}: ${c.shortName}`,
           description: c.summary,
           path: `/cpt-codes/${c.code}`,
-          updated: LAST_UPDATED,
+          updated: lastUpdated("cptCodes"),
           section: c.category,
         }),
       ]} />

@@ -6,7 +6,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, itemListSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { cptCodes, cptCategories } from "@/lib/content/cpt-codes";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -43,7 +43,7 @@ export default function CptCodesPage() {
             "Guides to commonly billed CPT codes, covering the unit rules, time thresholds and documentation that decide payment.",
           path: "/cpt-codes",
           mentions: [ENTITIES.cpt, ENTITIES.medicalCoding, ENTITIES.medicalBilling],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("cptHub"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -56,7 +56,7 @@ export default function CptCodesPage() {
             lead="Most CPT references restate the descriptor, which tells you what a code is and nothing about whether it will be paid. These cover the unit rules, the time thresholds and the documentation each code actually turns on — and the errors that produce the denial."
           />
           <p className="mt-6 text-center text-sm text-faint">
-            {cptCodes.length} codes · Last updated {formatDate(LAST_UPDATED)}
+            {cptCodes.length} codes · Last updated {formatDate(lastUpdated("cptHub"))}
           </p>
 
           {/* CPT descriptors are copyrighted by the AMA and are deliberately

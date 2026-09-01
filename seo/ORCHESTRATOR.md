@@ -49,6 +49,28 @@ nav, lastmod, citations, check-refs.
 against a 35% bar; 1,174–1,401 words per page; 0 orphans; 0 duplicate titles;
 445 sitemap URLs; 26 URLs accepted by IndexNow.
 
+### 2a. First audit round — DONE 2026-09-02
+
+**What** Four specialists run against the live site; six defects fixed, two
+recommendations declined with reasons (conflict policy 6 and 7).
+**Evidence** Every finding was re-verified against the live site or the source
+before any change: the 404 robots conflict on four route shapes, the
+`/services/../specialties/…` Service url on 75 pages, Organization properties
+on the Service node, a $3.00 USD price published for a 3% rate, a `speakable`
+selector on 53 pages with no matching element, and build-strategy commentary
+rendered as body copy on one CPT page.
+**Also fixed** The `LAST_UPDATED` constant that fed every page's schema dates
+now reads the same git-derived `lastmod.json` the sitemap uses, across 29
+consumers, with hub and standalone pages given their own groups rather than
+inheriting the site-wide `core` date.
+**Validation** 17 pages carrying a schema date agree with their sitemap entry;
+the sitemap now spans six distinct dates instead of one.
+**Note on the specialists themselves** Three of four hit their turn limits
+mid-analysis and returned unusable fragments, having spent their budget on
+shell exploration. Two produced strong reports only after being told to stop
+fetching and report from what they had. If this pattern repeats, instruct them
+to reserve turns for the report at spawn time.
+
 ### 2. Specialist system — DONE 2026-09-01
 
 **What** This registry, matrix and orchestrator; claude-seo installed manually.
@@ -123,7 +145,24 @@ the decision down. These are the standing decisions.
 5. **Keyword-density warnings are false positives here.** geo-optimizer's
    `negative_penalty` fires on 216 of 250 pages — `/locations/idaho` for
    "idaho". Deliberately not chased.
-6. **In-house scripts outrank generic equivalents** on any task where they
+6. **`HowTo` schema stays, against the schema specialist's recommendation.**
+   It was flagged for removal because Google retired HowTo rich results in
+   2023. But schema.org has not deprecated the type, this site optimises for
+   citation rather than Google rich results, and structured step data is
+   plausibly useful to an LLM parsing a process. The cost of keeping it is
+   about a kilobyte on three templates. Removing valid structured data because
+   one consumer stopped rewarding it is the wrong trade for this site.
+7. **The `data-answer` block stays tight, against the GEO specialist's
+   recommendation.** It was flagged as too short — 17 to 49 words against a
+   claimed 134 to 167 words that engines "pull whole". That range was asserted
+   without a source, and the same report separately found that this site's
+   FAQPage answers (35 to 75 words, self-contained, question-headed) are its
+   strongest citable asset and already exist on every reference page. Widening
+   the hero block would either duplicate the fix text already rendered below it
+   or stretch a `speakable` region past the length speakable is for. The tight
+   answer and the long FAQ answers serve different consumers, and the site
+   already ships both.
+8. **In-house scripts outrank generic equivalents** on any task where they
    already run, because they read this site's real sitemap and templates.
 
 ---

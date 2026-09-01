@@ -1,7 +1,7 @@
 import { PageTransition } from "@/components/motion/ViewTransition";
 import { JsonLd, breadcrumbSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { ReferralForm } from "./ReferralForm";
 
 /**
@@ -38,7 +38,7 @@ export default function ReferralPage() {
             "Refer a practice to Vizora and earn $250 to $500 once they become a client.",
           path: "/referral",
           about: [ENTITIES.medicalBilling],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("referral"),
         }),
       ]} />
       <ReferralForm />

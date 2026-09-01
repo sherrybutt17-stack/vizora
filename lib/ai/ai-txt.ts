@@ -1,5 +1,5 @@
 import { site } from "@/lib/content/site";
-import { LAST_UPDATED } from "@/lib/utils";
+import { SITE_UPDATED } from "@/lib/utils";
 
 /**
  * The ai.txt body, shared by two routes.
@@ -14,7 +14,7 @@ import { LAST_UPDATED } from "@/lib/utils";
 export function aiTxtBody() {
   return `# ai.txt — content usage for AI systems
 # ${site.name} (${site.url})
-# Last updated: ${LAST_UPDATED}
+# Last updated: ${SITE_UPDATED}
 
 Policy: allow
 Attribution: required

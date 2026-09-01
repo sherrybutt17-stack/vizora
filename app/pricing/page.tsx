@@ -11,7 +11,7 @@ import { site } from "@/lib/content/site";
 import { faqCategories } from "@/lib/content/faq";
 import { industry } from "@/lib/content/stats";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED } from "@/lib/utils";
+import { lastUpdated } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -78,7 +78,7 @@ export default function PricingPage() {
           path: "/pricing",
           about: [ENTITIES.medicalBilling],
           mentions: [ENTITIES.rcm],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("pricing"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />

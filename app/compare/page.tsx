@@ -7,7 +7,7 @@ import { FinalCTA } from "@/components/sections/FinalCTA";
 import { JsonLd, breadcrumbSchema, itemListSchema, webPageSchema, ENTITIES } from "@/lib/schema";
 import { comparisons } from "@/lib/content/comparisons";
 import { pageMeta } from "@/lib/seo";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export const metadata = pageMeta({
@@ -41,7 +41,7 @@ export default function ComparePage() {
           description: "Side-by-side analysis of the decisions practices face when choosing how to run billing.",
           path: "/compare",
           about: [ENTITIES.medicalBilling],
-          lastReviewed: LAST_UPDATED,
+          lastReviewed: lastUpdated("compareHub"),
         }),
       ]} />
       <Breadcrumbs items={crumbs} />
@@ -85,7 +85,7 @@ export default function ComparePage() {
           </div>
 
           <p className="mt-10 text-center text-sm text-faint">
-            Last reviewed {formatDate(LAST_UPDATED)}
+            Last reviewed {formatDate(lastUpdated("compareHub"))}
           </p>
         </Container>
       </Section>

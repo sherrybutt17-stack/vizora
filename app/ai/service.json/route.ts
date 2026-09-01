@@ -1,7 +1,7 @@
 import { site, payers } from "@/lib/content/site";
 import { services } from "@/lib/content/services";
 import { specialties } from "@/lib/content/specialties";
-import { LAST_UPDATED } from "@/lib/utils";
+import { SITE_UPDATED } from "@/lib/utils";
 import { aiJsonHeaders } from "@/lib/ai/json-headers";
 
 /**
@@ -49,7 +49,7 @@ export function GET() {
         url: `${site.url}/contact`,
       },
       attribution: `${site.name} (${site.url})`,
-      updated: LAST_UPDATED,
+      updated: SITE_UPDATED,
     },
     { headers: aiJsonHeaders },
   );

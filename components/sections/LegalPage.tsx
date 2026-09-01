@@ -1,7 +1,7 @@
 import { AlertTriangle } from "lucide-react";
 import { Container, Section, SectionHead } from "@/components/ui";
 import { Breadcrumbs } from "@/components/layout/Breadcrumbs";
-import { LAST_UPDATED, formatDate } from "@/lib/utils";
+import { lastUpdated, formatDate } from "@/lib/utils";
 import { PageTransition } from "@/components/motion/ViewTransition";
 
 export type LegalSection = { heading: string; body: string[] };
@@ -35,7 +35,7 @@ export function LegalPage({
         <Container>
           <div className="mx-auto max-w-3xl">
             <SectionHead as="h1" align="left" title={title} lead={intro} />
-            <p className="mt-5 text-sm text-faint">Last updated {formatDate(LAST_UPDATED)}</p>
+            <p className="mt-5 text-sm text-faint">Last updated {formatDate(lastUpdated("legal"))}</p>
 
             <div className="mt-8 flex gap-3 rounded-xl border border-warning/30 bg-warning/[0.06] p-5">
               <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-warning" />
