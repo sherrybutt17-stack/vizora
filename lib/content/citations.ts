@@ -152,6 +152,9 @@ const cptOverrides: Record<string, string[]> = {
   "93010": ["physician-fee-schedule", "claims-processing-manual"],
   "20610": ["ncci-policy-manual", "physician-fee-schedule", "hcpcs-level-ii"],
   "96372": ["claims-processing-manual", "ncci-policy-manual", "hcpcs-level-ii"],
+  "96413": ["ama-cpt", "claims-processing-manual", "ncci-policy-manual"],
+  "96415": ["ama-cpt", "claims-processing-manual", "mue-tables"],
+  "96365": ["ama-cpt", "claims-processing-manual", "ncci-policy-manual"],
 };
 
 export const refsForCptCode = (code: string, category: CptCategory): string[] =>

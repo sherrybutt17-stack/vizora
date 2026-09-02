@@ -705,6 +705,7 @@ export const cptCodes: CptCode[] = [
     billingRules: [
       "One initial service per encounter, chosen as the highest service in the hierarchy performed, regardless of the order in which services were given",
       "Chemotherapy sits above therapeutic, prophylactic and diagnostic infusions, which sit above hydration; the initial code comes from the highest tier present",
+      "Infusion must run longer than 15 minutes to be an infusion at all — at or below that the service is a chemotherapy push and takes the push code, which pays considerably less",
       "Covers infusion up to one hour; each additional hour beyond the first is reported with the add-on code, which requires more than 30 minutes beyond the previous increment",
       "A second initial code is reportable only where a separate vascular access site was genuinely required, with the modifier documenting the distinct service",
       "The drug itself is billed separately under its own supply code with units matching the amount administered, and unit errors there are a leading cause of denials on otherwise correct administration claims",
@@ -734,6 +735,7 @@ export const cptCodes: CptCode[] = [
       { question: "What is CPT code 96413 used for?", answer: "Chemotherapy administration by intravenous infusion for up to one hour, reported as the initial service of the encounter. It is the base code for a chemotherapy infusion session." },
       { question: "How many initial infusion codes can be billed per visit?", answer: "One per encounter per vascular access site, taken from the highest service in the hierarchy performed — chemotherapy above therapeutic infusion above hydration. A second initial code needs a genuinely separate access site and a modifier." },
       { question: "When does the additional-hour add-on apply?", answer: "When infusion time exceeds the previous increment by more than 30 minutes. A 90-minute infusion earns one add-on unit; an 85-minute infusion does not, which is why recorded start and stop times decide the claim." },
+      { question: "What is the minimum infusion time for 96413?", answer: "More than 15 minutes. At or below 15 minutes the service is a chemotherapy push rather than an infusion and takes the push code instead, however the line was set up — so the recorded start and stop times, not the intent, decide which code family applies." },
       { question: "Is the chemotherapy drug billed separately from 96413?", answer: "Yes. The administration and the drug are separate claims lines, the drug billed under its own supply code with units matching the dose given. Mismatched units are a leading cause of denial on otherwise correct administration claims." },
     ],
   },
