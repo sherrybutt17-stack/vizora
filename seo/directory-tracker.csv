@@ -1,0 +1,16 @@
+target,priority,category,url,requires,blocked_by,expected_value,status,submitted_date,live_listing_url,notes
+Crunchbase,1,entity,https://www.crunchbase.com,"name, founded 2024, 50+ employees, logo, description",none,"sameAs unlock + AI corpus feed",not started,,,"Do first — fixes brand-entity resolution, not just a backlink"
+Wikidata,1,entity,https://www.wikidata.org,"two independent third-party references",needs Crunchbase + one vertical listing first,"AI corpus feed",blocked,,,"Create after priority 2 listings exist to cite"
+LinkedIn company page,1,entity,https://www.linkedin.com,"company page",owner decision — declined,"entity signal",declined,,,"Recorded as a known cost, not a recommendation"
+HBMA member directory,2,vertical,https://www.hbma.org,"membership fee, company details",none,"industry credential + link",not started,,,"Trade body for this exact industry"
+AAPC vendor listing,2,vertical,https://www.aapc.com,"company details",none,"coder-facing audience",not started,,,
+MGMA vendor directory,2,vertical,https://www.mgma.com,"company details",none,"practice-manager buyers",not started,,,"MGMA already cited as a primary source on the site"
+Beckers / Physicians Practice,2,vertical,,"company details",none,"healthcare publisher listing",not started,,,
+UpCity,3,marketplace,https://upcity.com,"company details, service areas",none,"ranks for best-medical-billing queries",not started,,,"Service-area friendly — lighter address requirement"
+GoodFirms,3,marketplace,https://www.goodfirms.co,"company details, reviews",partially — reviews,"service marketplace",not started,,,
+DesignRush,3,marketplace,https://www.designrush.com,"company details",none,"agency marketplace, healthcare category",not started,,,
+Clutch,3,marketplace,https://clutch.co,"office location, verified client reviews",null postal address,"high-intent B2B marketplace",blocked,,,"Wants a location and verified reviews"
+Expertise.com,3,marketplace,https://www.expertise.com,"city-scoped presence",null postal address,"city listicles",blocked,,,"City-scoped by design"
+G2,4,reviews,https://www.g2.com,"10+ reviews to be worth anything",client permission unconfirmed,"category presence",gated,,,"Run 20 asks to land 10 reviews, or do not submit"
+Capterra,4,reviews,https://www.capterra.com,"reviews",client permission unconfirmed,"category presence",gated,,,"Now owned by G2"
+Best-of listicle outreach,5,editorial,,"pitch on merits",none,"highest-intent surface",not started,,,"Target the top-medical-billing-companies genre seen in SERPs"
